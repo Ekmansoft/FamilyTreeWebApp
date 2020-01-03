@@ -1,0 +1,55 @@
+@page
+@model FamilyTreeServices.Pages.AnalysisResultView.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Analysis</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Analysis.UserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Analysis.UserId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Analysis.FileName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Analysis.FileName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Analysis.OriginalFilename)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Analysis.OriginalFilename)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Analysis.StartTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Analysis.StartTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Analysis.EndTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Analysis.EndTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Analysis.Settings)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Analysis.Settings)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Analysis.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

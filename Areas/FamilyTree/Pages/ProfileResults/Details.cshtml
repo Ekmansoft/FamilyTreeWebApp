@@ -1,0 +1,49 @@
+@page
+@model FamilyTreeServices.Pages.ProfileResults.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.TreeId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.TreeId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.Sex)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.Sex)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.Birth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.Birth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profile.Death)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profile.Death)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Profile.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

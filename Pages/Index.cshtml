@@ -1,0 +1,25 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<h2>Improve your family tree</h2>
+<ul>
+    <li>Find missing relatives</li>
+    <li>Find unreasonable dates</li>
+    <li>Find missing data</li>
+    <li><a href="/FamilyTree/UploadFiles/Upload">Check uploaded GEDCOM file</a></li>
+    <li><a href="/FamilyTree/Geni/LoginCheck">Check Geni.com tree</a></li>
+    <li>
+        PS: If your job runs into problems, it will retry five times, after which it will be paused.
+        If the problems depends on a problem with the site, I will try to improve it.
+        I have noticed that trying to run a jub very far back in time (like say 70 generations) my app runs out of memory.
+        I might look into fixing this in the future, but it is not currently high on  the priority list, since it does not seem to be the main use case for the site.
+    </li>
+    <li> You can check the status at the <a href="/FamilyTree/AnalysisResultView/Index">Jobs</a> page. </li>
+</ul>

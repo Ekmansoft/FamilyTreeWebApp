@@ -1,0 +1,10 @@
+@page
+
+@model UploadFailedModel
+@{
+  ViewData["Title"] = "Upload Failed";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@Model.Message</h3>
+
+<p>Please make sure you allowed cookies to be enablad, as that is needed for file upload. Otherwise, there might have been something wrong with the file.</p>

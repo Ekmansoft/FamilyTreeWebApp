@@ -1,0 +1,55 @@
+@page
+@model FamilyTreeServices.Pages.AnalysisResultView.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>
+          @Html.DisplayNameFor(model => model.Analysis[0].OriginalFilename)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.Analysis[0].StartPersonName)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.Analysis[0].StartTime)<br /> - @Html.DisplayNameFor(model => model.Analysis[0].EndTime)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.Analysis[0].Settings)
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Analysis) {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.OriginalFilename)<br/>
+          @Html.DisplayFor(modelItem => item.FileName)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.StartPersonName)<br />
+          @Html.DisplayFor(modelItem => item.UserId)<br/>
+          @Html.DisplayFor(modelItem => item.UserEmail)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.StartTime)<br/> - @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Settings)<br/>
+          @Html.DisplayFor(modelItem => item.Results)
+        </td>
+        <td>
+          <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a> |
+          <a asp-page="../Analyze/Reanalyze" asp-route-AnalysisId="@item.Id">Update</a> |
+          <a asp-page="../ProfileResults/Index" asp-route-AnalysisId="@item.Id">Show</a>
+        </td>
+      </tr>
+}
+    </tbody>
+</table>

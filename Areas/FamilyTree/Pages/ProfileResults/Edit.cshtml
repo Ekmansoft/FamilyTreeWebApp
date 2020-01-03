@@ -1,0 +1,55 @@
+@page
+@model FamilyTreeServices.Pages.ProfileResults.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Profile</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Profile.Id" />
+            <div class="form-group">
+                <label asp-for="Profile.TreeId" class="control-label"></label>
+                <input asp-for="Profile.TreeId" class="form-control" />
+                <span asp-validation-for="Profile.TreeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.Name" class="control-label"></label>
+                <input asp-for="Profile.Name" class="form-control" />
+                <span asp-validation-for="Profile.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.Sex" class="control-label"></label>
+                <select asp-for="Profile.Sex" class="form-control"></select>
+                <span asp-validation-for="Profile.Sex" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.Birth" class="control-label"></label>
+                <input asp-for="Profile.Birth" class="form-control" />
+                <span asp-validation-for="Profile.Birth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Profile.Death" class="control-label"></label>
+                <input asp-for="Profile.Death" class="form-control" />
+                <span asp-validation-for="Profile.Death" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

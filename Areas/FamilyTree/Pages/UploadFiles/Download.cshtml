@@ -1,0 +1,14 @@
+@page
+@model DownloadFileModel
+@{
+  ViewData["Title"] = "Download";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+@Html.ActionLink("hello", "Download")
+@Html.ActionLink("hello2", "DownloadFile")
+
+<li>@Html.ActionLink("Download", "Download", "Home")</li>
+
+<span id="downloadLink">Download</span>

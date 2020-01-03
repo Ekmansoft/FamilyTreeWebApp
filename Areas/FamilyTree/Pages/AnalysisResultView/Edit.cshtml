@@ -1,0 +1,60 @@
+@page
+@model FamilyTreeServices.Pages.AnalysisResultView.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Analysis</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Analysis.Id" />
+            <div class="form-group">
+                <label asp-for="Analysis.UserId" class="control-label"></label>
+                <input asp-for="Analysis.UserId" class="form-control" />
+                <span asp-validation-for="Analysis.UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Analysis.FileName" class="control-label"></label>
+                <input asp-for="Analysis.FileName" class="form-control" />
+                <span asp-validation-for="Analysis.FileName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Analysis.OriginalFilename" class="control-label"></label>
+                <input asp-for="Analysis.OriginalFilename" class="form-control" />
+                <span asp-validation-for="Analysis.OriginalFilename" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Analysis.StartTime" class="control-label"></label>
+                <input asp-for="Analysis.StartTime" class="form-control" />
+                <span asp-validation-for="Analysis.StartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Analysis.EndTime" class="control-label"></label>
+                <input asp-for="Analysis.EndTime" class="form-control" />
+                <span asp-validation-for="Analysis.EndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Analysis.Settings" class="control-label"></label>
+                <input asp-for="Analysis.Settings" class="form-control" />
+                <span asp-validation-for="Analysis.Settings" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

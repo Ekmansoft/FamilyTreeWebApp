@@ -1,0 +1,14 @@
+@page
+@model GeniLoginModel
+@{
+  ViewData["Title"] = "Geni login";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+<form method="post" enctype="multipart/form-data" asp-for="GeniLogin">
+  <div class="form-group">
+    <input type="submit" value="Geni login" />
+  </div>
+</form>	
+
+<p>You will be taken to the normal geni.com login page.</p>

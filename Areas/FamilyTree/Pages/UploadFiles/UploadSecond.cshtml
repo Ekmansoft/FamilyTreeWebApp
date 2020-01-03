@@ -1,0 +1,11 @@
+@page
+@model UploadSecondFileModel
+@{
+    ViewData["Title"] = "Upload second";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+<form method="post" enctype="multipart/form-data">
+    <input type="file" asp-for="UploadSecond" />
+    <input type="submit" />
+</form>

@@ -1,0 +1,63 @@
+@page
+@model FamilyTreeServices.Pages.AnalysisResultView.IndexModel
+
+@{
+  ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        @Html.DisplayNameFor(model => model.Analysis[0].StartTime)&nbsp;&nbsp;&nbsp;
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Analysis[0].StartPersonName)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Analysis[0].Settings)
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in Model.Analysis)
+    {
+      <tr>
+        <td>
+          <span style="white-space: pre-line">@AnalysisResultView.IndexModel.FormatDatesString(item.StartTime, item.EndTime, item.Id, item.StartCount)</span>
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.OriginalFilename)<br />
+          @Html.DisplayFor(modelItem => item.StartPersonName)
+        </td>
+        <td>
+          @AnalysisResultView.IndexModel.FormatSettingsString(item.Settings)<br />
+          @AnalysisResultView.IndexModel.FormatResultsString(item.Results)<br />
+          @Html.Raw(AnalysisResultView.IndexModel.CheckGedcomLink(item))&nbsp;
+          @Html.Raw(AnalysisResultView.IndexModel.CheckJsonLink(item))
+        </td>
+        <td>
+          @if (AnalysisResultView.IndexModel.InProgress(item.EndTime, item.Id))
+          {
+            <a asp-page="./Delete" asp-route-id="@item.Id">Stop</a>
+          }
+          else
+          {
+            <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            @if (AnalysisResultView.IndexModel.HasFinished(item.EndTime) && AnalysisResultView.IndexModel.CheckDatabaseLink(item))
+            {
+              <a asp-page="../ProfileResults/Index" asp-route-AnalysisId="@item.Id">Show</a>
+            }
+            @if (item.StartCount >= 5)
+            {
+              <a asp-page="./Resume" asp-route-id="@item.Id">Resume</a>
+            }
+          }
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

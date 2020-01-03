@@ -1,0 +1,110 @@
+@page
+@model FamilyTreeServices.Pages.ProfileResults.IndexModel
+
+@{
+  ViewData["Title"] = "Index";
+}
+
+<h3>
+  Analysis made on
+  @Html.DisplayFor(model => model.analysisData.StartTime) on
+  @Html.DisplayFor(model => model.analysisData.OriginalFilename) over
+  @Html.DisplayFor(model => model.Results.SearchedProfiles) profiles,
+  found @Html.DisplayFor(model => model.Results.NoOfProfiles)
+  profiles with @Html.DisplayFor(model => model.Results.NoOfIssues) issues.
+</h3>
+
+<form method="post">
+  @Html.CheckBox("InexactDates", Model.FilterSettingOnPage.Get(IndexModel.FilterType.InexactDates))Inexact dates<br />
+  @Html.CheckBox("MissingDates", Model.FilterSettingOnPage.Get(IndexModel.FilterType.MissingDates))Missing dates<br />
+  @Html.CheckBox("UnknownLocation", Model.FilterSettingOnPage.Get(IndexModel.FilterType.UnknownLocation))Unknown location<br />
+  @Html.CheckBox("ParentIssues", Model.FilterSettingOnPage.Get(IndexModel.FilterType.ParentIssues))Parent issues<br />
+  @Html.CheckBox("Twins", Model.FilterSettingOnPage.Get(IndexModel.FilterType.Twins))Twins<br />
+  @Html.CheckBox("FewChildren", Model.FilterSettingOnPage.Get(IndexModel.FilterType.FewChildren))Few children<br />
+  @Html.CheckBox("UnreasonableDates", Model.FilterSettingOnPage.Get(IndexModel.FilterType.UnreasonableDates))Unreasonable dates<br />
+  @Html.CheckBox("MissingPartner", Model.FilterSettingOnPage.Get(IndexModel.FilterType.MissingPartner))Missing partners<br />
+  @Html.CheckBox("MissingPartnerMitigated", Model.FilterSettingOnPage.Get(IndexModel.FilterType.MissingPartnerMitigated))Missing partners (mitigated)<br />
+  @Html.CheckBox("Duplicates", Model.FilterSettingOnPage.Get(IndexModel.FilterType.Duplicate))Duplicates<br />
+  @Html.CheckBox("AllStates", Model.AllStates)Show all states<br />
+  @Html.DropDownList("PageSize", Model.GetPageSizeSelectList(), "Select PageSize", new { @class = "form-control" })<br />
+
+  <input type="submit" />
+</form>
+
+@for (int i = 0; i <= Model.GetPageNumber(Model.NumberOfItems); i++)
+{
+  @Html.ActionLink((i + 1).ToString(), "Index", new { AnalysisId = Model.analysisData.Id, PageNumber = i });
+  @Html.Raw("&nbsp");
+}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        @Html.DisplayNameFor(model => model.Profiles[0].Name)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Profiles[0].Birth) - @Html.DisplayNameFor(model => model.Profiles[0].Death)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Profiles[0].RelationDistance)
+      </th>
+      <th>
+        @Html.DisplayNameFor(model => model.Profiles[0].Issues)
+      </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in Model.Profiles.Values)
+    {
+    <tr>
+      <td>
+        @if (item.Url != null)
+        {
+          <a href="@Html.DisplayFor(modelItem => item.Url)">
+            @Html.DisplayFor(modelItem => item.Name)
+          </a>
+        }
+        else
+        {
+          @Html.DisplayFor(modelItem => item.Name)
+        }
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Birth) -<br />@Html.DisplayFor(modelItem => item.Death)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.RelationDistance)
+      </td>
+      <td>
+        @foreach (var problem in item.Issues)
+        {
+          <p>
+            @if (problem.Parameters.Count > 0)
+            {
+              <a href="@problem.Parameters[0]">@Html.DisplayFor(problemItem => problem.Description)</a>
+            }
+            else
+            {
+              @Html.DisplayFor(problemItem => problem.Description)
+            }
+            <a asp-page="../IssueResults/Edit" asp-route-Id="@problem.Id">@Html.DisplayFor(problemItem => problem.Status)</a>
+
+          </p>
+        }
+      </td>
+      <td>
+        <a asp-page="../IssueResults/Index" asp-route-ProfileId="@item.ProfileId">Show</a>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+
+@for (int i = 0; i <= Model.GetPageNumber(Model.NumberOfItems); i++)
+{
+  @Html.ActionLink((i + 1).ToString(), "Index", new { AnalysisId = Model.analysisData.Id, PageNumber = i });
+  @Html.Raw("&nbsp");
+}
+
