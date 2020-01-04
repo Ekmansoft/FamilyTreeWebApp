@@ -11,7 +11,7 @@ namespace FamilyTreeWebApp.Data
     {
 	    var configuration = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
 
-      options.UseSqlServer(configuration.GetConnectionString("FamilyTreeDbContextConnection"));
+      options.UseMySql(configuration.GetConnectionString("FamilyTreeDbContextConnection"));
       //options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
       //options.UseMySql(configuration.GetConnectionString("MySqlConnection"));
     }
