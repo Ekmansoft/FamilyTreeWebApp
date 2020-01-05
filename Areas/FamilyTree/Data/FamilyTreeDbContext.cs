@@ -2,16 +2,39 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using FamilyTreeWebTools.Data;
+using System.Diagnostics;
 
 namespace FamilyTreeWebApp.Data
 {
   public class FamilyTreeDbContext : DbContext
   {
+    static readonly TraceSource trace = new TraceSource("FamilyTreeDbContext", SourceLevels.Information);
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
 	    var configuration = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
 
-      options.UseMySql(configuration.GetConnectionString("FamilyTreeDbContextConnection"));
+      string sqlServerString = configuration.GetConnectionString("FamilyTreeDbContextConnection");
+
+      if (!string.IsNullOrEmpty(sqlServerString))
+      {
+        options.UseSqlServer(sqlServerString);
+        trace.TraceInformation("Initialized database sqlServer:" + sqlServerString);
+      }
+      else
+      {
+        string mySqlServerString = configuration.GetConnectionString("FamilyTreeDbContextConnectionMySql");
+
+        if (!string.IsNullOrEmpty(mySqlServerString))
+        {
+          options.UseMySql(mySqlServerString);
+          trace.TraceInformation("Initialized database mySql:" + mySqlServerString);
+        }
+        else
+        {
+          trace.TraceData(TraceEventType.Warning, 0, "No configured database provider");
+        }
+      }
+      //options.UseMySql(configuration.GetConnectionString("FamilyTreeDbContextConnection"));
       //options.UseSqlite(configuration.GetConnectionString("DefaultConnection"));
       //options.UseMySql(configuration.GetConnectionString("MySqlConnection"));
     }
