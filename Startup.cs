@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using Microsoft.Extensions.Options;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
 
 namespace FamilyTreeWebApp
 {
@@ -59,8 +60,11 @@ namespace FamilyTreeWebApp
       services.AddSession(options =>
       {
         // Set a short timeout for easy testing.
-        options.IdleTimeout = TimeSpan.FromSeconds(10);
+        options.IdleTimeout = TimeSpan.FromMinutes(60);
         options.Cookie.HttpOnly = true;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        options.Cookie.SameSite = SameSiteMode.Strict;
+
         // Make the session cookie essential
         options.Cookie.IsEssential = true;
       });
