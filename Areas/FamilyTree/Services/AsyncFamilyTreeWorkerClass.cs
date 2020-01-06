@@ -67,181 +67,177 @@ namespace FamilyTreeWebApp.Services
       // on the UI thread from this method.
       startTime = DateTime.Now;
 
+      if(familyTree == null)
+      {
+        trace.TraceData(TraceEventType.Warning, 0, " familytree is null at job " + analysis.Id);
+        return;
+
+      }
+
       /*Stream myFile = File.Create("/tmp/webapp1_job_" + _jobId + ".log");
 
       TextWriterTraceListener myTextListener = new TextWriterTraceListener(myFile);
       Trace.Listeners.Add(myTextListener);
 
       // Write output to the file.
-      Trace.Write("Test output ");
-
-      trace.TraceInformation("Job " + _jobId + " started");*/
+      Trace.Write("Test output ");*/
 
       progressReporter.ReportProgress(0);
 
-      //string _email = "";
-
-      try
+      using (FamilyTreeDbContext context = new FamilyTreeDbContext())
       {
-        using (FamilyTreeDbContext context = new FamilyTreeDbContext())
+        settings = AnalysisSettings.FromJson(analysis.Settings);
+        startperson = familyTree.GetIndividual(analysis.StartPersonXref);
+
+        if ((settings != null) && (settings.CheckWholeFile))
         {
-          //Analysis analysis = context.Analyses.Find(_jobId);
+          List<string> profileXrefs = new List<string>();
 
-          //_email = analysis.UserEmail;
-          settings = AnalysisSettings.FromJson(analysis.Settings);
-          startperson = familyTree.GetIndividual(analysis.StartPersonXref);
+          IEnumerator<IndividualClass> profiles = stats.GetFamilyTree().SearchPerson(null);
 
-          if ((settings != null) && (settings.CheckWholeFile))
+          while(profiles.MoveNext())
           {
-            List<string> profileXrefs = new List<string>();
-
-            IEnumerator<IndividualClass> profiles = stats.GetFamilyTree().SearchPerson(null);
-
-            while(profiles.MoveNext())
-            {
-              profileXrefs.Add(profiles.Current.GetXrefName());
-            }
-            trace.TraceInformation(analysis.Id + " Loaded {0} profiles", profileXrefs.Count);
-
-            stats.CheckProfileList(profileXrefs);
-            settings.StartPersonName = "";
-            settings.StartPersonXref = "";
-            settings.GenerationsBack = -1;
-            settings.GenerationsForward = -1;
+            profileXrefs.Add(profiles.Current.GetXrefName());
           }
-          else if (startperson != null)
+          trace.TraceInformation(analysis.Id + " Loaded {0} profiles", profileXrefs.Count);
+
+          stats.CheckProfileList(profileXrefs);
+          settings.StartPersonName = "";
+          settings.StartPersonXref = "";
+          settings.GenerationsBack = -1;
+          settings.GenerationsForward = -1;
+        }
+        else if (startperson != null)
+        {
+          trace.TraceInformation("Start job " + analysis.Id + " " + settings.StartPersonName + " " + settings.GenerationsBack + " " + settings.GenerationsForward + " by " + analysis.UserEmail);
+          stats.AnalyseTree(startperson);
+          if(stats.Stopped())
           {
-            trace.TraceInformation("Start job " + analysis.Id + " " + settings.StartPersonName + " " + settings.GenerationsBack + " " + settings.GenerationsForward + " by " + analysis.UserEmail);
-            stats.AnalyseTree(startperson);
-            if(stats.Stopped())
+            trace.TraceInformation(analysis.Id + " Job was stopped...");
+            Analysis tempAnalysis = context.Analyses.Find(analysis.Id);
+
+            if ((tempAnalysis != null) && (tempAnalysis.StartCount == 1000))
             {
-              trace.TraceInformation(analysis.Id + " Job was stopped...");
-              Analysis tempAnalysis = context.Analyses.Find(analysis.Id);
-
-              if ((tempAnalysis != null) && (tempAnalysis.StartCount == 1000))
-              {
-                trace.TraceInformation(analysis.Id + " Job was paused...");
-                stats.GetFamilyTree().Dispose();
-                return;
-              }
+              trace.TraceInformation(analysis.Id + " Job was paused...");
+              stats.GetFamilyTree().Dispose();
+              return;
             }
-          }
-          else
-          {
-            trace.TraceInformation(analysis.Id + " Error no start person in tree analysis...");
-            return;
-          }
-          trace.TraceInformation(stats.GetFamilyTree().GetShortTreeInfo());
-
-          //ICollection<AncestorLineInfo> problemsList = stats.GetAncestorList();
-
-
-          //AncestorStatistics.AnalysisStatistics work = stats.GetStats();
-
-
-          //FamilyDbContextClass.JobInfo info = new FamilyDbContextClass.JobInfo();
-          //JobInfo info = new JobInfo();
-
-          JobInfo info = stats.GetJobInfo(analysis.Id);
-
-          trace.TraceInformation(analysis.Id + ": work done = " + info.Profiles + " profiles and " + info.Families + " families" + ", found " + info.IssueList.Count + " problem profiles");
-
-          /*info.Profiles = work.people;
-          info.Families = work.families;
-          info.StartTime = startTime;
-          info.EndTime = DateTime.Now;
-          info.JobId = _jobId;
-          info.IssueList = problemsList;*/
-
-          //FileStream jsonFile = File.Create("/tmp/job_" + _jobId);
-          //jsonFile.(JsonConvert.SerializeObject(info));
-
-
-          FamilyDbContextClass.MarkJobFinished(context, info);
-
-          if (settings.ExportJson)
-          {
-            string directory = "/tmp/";
-            if (!Directory.Exists(directory))
-            {
-              directory = "";
-            }
-            string intermediateFilename = "work_" + analysis.Id + "_result.json";
-            using (StreamWriter writer = new StreamWriter(directory + FamilyUtility.MakeFilename(intermediateFilename)))
-            {
-              writer.Write(JsonSerializer.Serialize(info));
-
-              writer.Close();
-            }
-            trace.TraceInformation(analysis.Id + ": Intermediate Json file stored:" + intermediateFilename);
-          }
-
-          if (settings.UpdateDatabase)
-          {
-            FamilyDbContextClass.DecodeProblemsList(context, info);
-            trace.TraceInformation(analysis.Id + ": Database updated");
-          }
-
-          if (settings.ExportGedcom)
-          {
-            string gedcomFilename = FamilyWebTree.ExportGedcom(stats.GetFamilyTree());
-
-            FamilyDbContextClass.UpdateExportFilename(analysis.Id, context, gedcomFilename);
-            trace.TraceInformation(analysis.Id + ": Gedcom exported " + gedcomFilename);
-          }
-
-          if (settings.ExportKml)
-          {
-            string directory = "/tmp/";
-            if (!Directory.Exists(directory))
-            {
-              directory = "";
-            }
-            string intermediateFilename = "map_" + analysis.Id + "_result.kml";
-            string mapFile = MapExportClass.CreateMapFile(stats.GetFamilyTree());
-
-            using (StreamWriter writer = new StreamWriter(directory + FamilyUtility.MakeFilename(intermediateFilename)))
-            {
-              writer.Write(mapFile);
-
-              writer.Close();
-            }
-
-            trace.TraceInformation(analysis.Id + ": KML exported " + intermediateFilename);
-          }
-
-          if (settings.SendEmail && !string.IsNullOrEmpty(analysis.UserEmail))
-          {
-            string emailContents = EmailExportClass.ExportHtml(info);
-            string analysisType = null;
-
-            if(!settings.CheckWholeFile)
-            {
-              analysisType = settings.StartPersonName + " " + settings.GenerationsBack + "/" + settings.GenerationsForward ;
-            }
-            else
-            {
-              analysisType = "whole file";
-            }
-            SendMailClass.SendMail(_emailSendSource.Address, _emailSendSource.CredentialAddress, _emailSendSource.CredentialPassword, analysis.UserEmail, "Analysis " + analysis.OriginalFilename + " " + analysisType, emailContents);
-          }
-          else
-          {
-            trace.TraceData(TraceEventType.Warning, 0, "no email sent " + analysis.UserEmail);
           }
         }
+        else
+        {
+          trace.TraceInformation(analysis.Id + " Error no start person in tree analysis...");
+          return;
+        }
+        trace.TraceInformation(stats.GetFamilyTree().GetShortTreeInfo());
+
+        //ICollection<AncestorLineInfo> problemsList = stats.GetAncestorList();
+
+
+        //AncestorStatistics.AnalysisStatistics work = stats.GetStats();
+
+
+        //FamilyDbContextClass.JobInfo info = new FamilyDbContextClass.JobInfo();
+        //JobInfo info = new JobInfo();
+
+        JobInfo info = stats.GetJobInfo(analysis.Id);
+
+        trace.TraceInformation(analysis.Id + ": work done = " + info.Profiles + " profiles and " + info.Families + " families" + ", found " + info.IssueList.Count + " problem profiles");
+
+        /*info.Profiles = work.people;
+        info.Families = work.families;
+        info.StartTime = startTime;
+        info.EndTime = DateTime.Now;
+        info.JobId = _jobId;
+        info.IssueList = problemsList;*/
+
+        //FileStream jsonFile = File.Create("/tmp/job_" + _jobId);
+        //jsonFile.(JsonConvert.SerializeObject(info));
+
+
+        FamilyDbContextClass.MarkJobFinished(context, info);
+
+        if (settings.ExportJson)
+        {
+          string directory = "/tmp/";
+          if (!Directory.Exists(directory))
+          {
+            directory = "";
+          }
+          string intermediateFilename = "work_" + analysis.Id + "_result.json";
+          using (StreamWriter writer = new StreamWriter(directory + FamilyUtility.MakeFilename(intermediateFilename)))
+          {
+            writer.Write(JsonSerializer.Serialize(info));
+
+            writer.Close();
+          }
+          trace.TraceInformation(analysis.Id + ": Intermediate Json file stored:" + intermediateFilename);
+        }
+
+        if (settings.UpdateDatabase)
+        {
+          FamilyDbContextClass.DecodeProblemsList(context, info);
+          trace.TraceInformation(analysis.Id + ": Database updated");
+        }
+
+        if (settings.ExportGedcom)
+        {
+          string gedcomFilename = FamilyWebTree.ExportGedcom(stats.GetFamilyTree());
+
+          FamilyDbContextClass.UpdateExportFilename(analysis.Id, context, gedcomFilename);
+          trace.TraceInformation(analysis.Id + ": Gedcom exported " + gedcomFilename);
+        }
+
+        if (settings.ExportKml)
+        {
+          string directory = "/tmp/";
+          if (!Directory.Exists(directory))
+          {
+            directory = "";
+          }
+          string intermediateFilename = "map_" + analysis.Id + "_result.kml";
+          string mapFile = MapExportClass.CreateMapFile(stats.GetFamilyTree());
+
+          using (StreamWriter writer = new StreamWriter(directory + FamilyUtility.MakeFilename(intermediateFilename)))
+          {
+            writer.Write(mapFile);
+
+            writer.Close();
+          }
+
+          trace.TraceInformation(analysis.Id + ": KML exported " + intermediateFilename);
+        }
+
+        if (settings.SendEmail && !string.IsNullOrEmpty(analysis.UserEmail))
+        {
+          string emailContents = EmailExportClass.ExportHtml(info);
+          string analysisType = null;
+
+          if(!settings.CheckWholeFile)
+          {
+            analysisType = settings.StartPersonName + " " + settings.GenerationsBack + "/" + settings.GenerationsForward ;
+          }
+          else
+          {
+            analysisType = "whole file";
+          }
+          SendMailClass.SendMail(_emailSendSource.Address, _emailSendSource.CredentialAddress, _emailSendSource.CredentialPassword, analysis.UserEmail, "Analysis " + analysis.OriginalFilename + " " + analysisType, emailContents);
+        }
+        else
+        {
+          trace.TraceData(TraceEventType.Warning, 0, "no email sent " + analysis.UserEmail);
+        }
       }
-      catch (Exception ex)
+      if (stats.GetFamilyTree() != null)
       {
-        trace.TraceData(TraceEventType.Error, 0, "db update failed " + ex.ToString());
-        SendMailClass.SendMail(_emailSendSource.Address, _emailSendSource.CredentialAddress, _emailSendSource.CredentialPassword, 
-          analysis.UserEmail, "tree analysis: db update failed ", ex.ToString());
-        SendMailClass.SendMail(_emailSendSource.Address, _emailSendSource.CredentialAddress, _emailSendSource.CredentialPassword,
-          _emailSendSource.Address, "tree analysis: db update failed ", ex.ToString());
+        shortTreeInfo = stats.GetFamilyTree().GetShortTreeInfo();
+        stats.GetFamilyTree().Dispose();
       }
-      shortTreeInfo = stats.GetFamilyTree().GetShortTreeInfo();
+      else
+      {
+        trace.TraceData(TraceEventType.Warning, 0, "AnalyseTreeWorker::DoWork() warning tree is null " + analysis.Id + " " + startTime.ToString("yyyy-MM-dd HH:mm:ss") + " to " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+      }
       trace.TraceInformation("AnalyseTreeWorker::DoWork()" + analysis.Id + " " + startTime.ToString("yyyy-MM-dd HH:mm:ss") + " to " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-      stats.GetFamilyTree().Dispose();
       //progressReporter.Completed();
     }
 

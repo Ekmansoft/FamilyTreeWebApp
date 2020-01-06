@@ -450,6 +450,7 @@ namespace FamilyTreeWebApp.Services
     private static Profile FetchProfile(FamilyTreeDbContext context, string ancestorId, int familyTreeId)
     {
       IEnumerator<Profile> profiles = null;
+      IList<Profile> profileList = new List<Profile>();
 
       profiles = context.Profiles.Where<Profile>(p => p.TreeId == ancestorId && p.FamilyTreeId == familyTreeId).GetEnumerator();
       if (profiles.MoveNext())
@@ -471,7 +472,14 @@ namespace FamilyTreeWebApp.Services
         {
           trace.TraceData(TraceEventType.Error, 0, "  Error more than one item found" + ancestorId + " " + familyTreeId + " found");
         }
-        return profile;
+        profileList.Add(profile);
+        //return profile;
+      }
+      profiles.Dispose();
+
+      if (profileList.Count == 1)
+      {
+        return profileList[0];
       }
       return null;
     }
@@ -480,6 +488,15 @@ namespace FamilyTreeWebApp.Services
     {
       Analysis analysis = context.Analyses.Find(info.JobId);
       TimeCounterClass timeCounter = new TimeCounterClass(info.IssueList.Count, "Step 1/3");
+
+      try
+      {
+        context.SaveChanges();
+      }
+      catch (DbUpdateException ex)
+      {
+        trace.TraceData(TraceEventType.Error, 0, info.JobId + ": db update failed " + ex.ToString());
+      }
 
       timeCounter.Start(0);
 
@@ -515,7 +532,7 @@ namespace FamilyTreeWebApp.Services
 
         DatabaseResults dbResults = new DatabaseResults();
 
-        foreach (AncestorLineInfo ancestor in info.IssueList)
+        foreach (AncestorLineInfo ancestor in info.IssueList.ToList())
         {
           Profile profile = null;
 
@@ -634,7 +651,7 @@ namespace FamilyTreeWebApp.Services
 
         IList<Issue> newIssues = new List<Issue>();
 
-        foreach (AncestorLineInfo ancestor in info.IssueList)
+        foreach (AncestorLineInfo ancestor in info.IssueList.ToList())
         {
           Profile profile = null;
 
@@ -658,7 +675,7 @@ namespace FamilyTreeWebApp.Services
 
           IList<Issue> newList = new List<Issue>();
           int issueLink = -1;
-          foreach (SanityProblem inProblem in ancestor.problemList)
+          foreach (SanityProblem inProblem in ancestor.problemList.ToList())
           {
             timeCounter.Start(25);
             Issue issue = new Issue();
@@ -723,7 +740,7 @@ namespace FamilyTreeWebApp.Services
         timeCounter = new TimeCounterClass(info.IssueList.Count, "Step 3/3");
 
         IList<IssueLink> newLinks = new List<IssueLink>();
-        foreach (AncestorLineInfo ancestor in info.IssueList)
+        foreach (AncestorLineInfo ancestor in info.IssueList.ToList())
         {
           Profile profile = null;
 
@@ -744,7 +761,7 @@ namespace FamilyTreeWebApp.Services
             relationDistance = relation.GetDistance();
           }
 
-          foreach (Issue issue in profile.Issues)
+          foreach (Issue issue in profile.Issues.ToList())
           {
             timeCounter.Start(25);
 

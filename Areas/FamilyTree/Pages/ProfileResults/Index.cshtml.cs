@@ -297,7 +297,7 @@ namespace FamilyTreeServices.Pages.ProfileResults
       var iLinks = (from il in _context.IssueLinks
                     from i in _context.Issues 
                     from p in _context.Profiles 
-                    where (il.AnalysisId == AnalysisId) && (il.IssueId == i.Id) && (i.ProfileId == p.Id) && filterList.Contains((int)i.Type)
+                    where (il.AnalysisId == AnalysisId) && (il.IssueId == i.Id) && (i.ProfileId == p.Id) && filterList.AsEnumerable().Contains((int)i.Type)
                     orderby il.Time
                     select new { p.Name, p.Birth, p.Death, p.Url, i.Id, i.Parameters, i.Status, i.ProfileId, i.Description, i.Type, il.RelationDistance }).ToList();
 
