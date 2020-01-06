@@ -27,12 +27,14 @@ namespace FamilyTreeServices.Pages
     private readonly FamilyTreeDbContext _context;
     private readonly WebAppIdentity _appId;
     private readonly UserManager<IdentityUser> _userManager;
-    
-    public CompareStartModel(FamilyTreeDbContext context, UserManager<IdentityUser> userManager, WebAppIdentity appId)
+    private readonly EmailSendSource _emailSendSource;
+
+    public CompareStartModel(FamilyTreeDbContext context, UserManager<IdentityUser> userManager, WebAppIdentity appId, EmailSendSource emailSendSource)
     {
       _userManager = userManager;
       _context = context;
       _appId = appId;
+      _emailSendSource = emailSendSource;
       //PageLoading = true;
     }
 
@@ -133,7 +135,8 @@ namespace FamilyTreeServices.Pages
       Message += "\nComparison done. Found " + list.Count + " matches";
 
       string emailString = EmailExportClass.ExportDuplicatesHtml(list, startTime, endTime, OriginalFilename, OriginalFilename2);
-      SendMailClass.SendMail("improveyourtree@gmail.com", userEmail, "Comparison between " + OriginalFilename + " and " + OriginalFilename2, emailString);
+      SendMailClass.SendMail(_emailSendSource.Address, _emailSendSource.CredentialAddress, _emailSendSource.CredentialPassword, 
+         userEmail, "Comparison between " + OriginalFilename + " and " + OriginalFilename2, emailString);
       //Message += "\nComparison done!";
 
       return Page();

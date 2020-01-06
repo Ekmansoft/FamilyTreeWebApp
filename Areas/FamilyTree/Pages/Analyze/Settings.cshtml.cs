@@ -25,13 +25,15 @@ namespace FamilyTreeServices.Pages
     private readonly FamilyTreeDbContext _context;
     private readonly UserManager<IdentityUser> _userManager;
     private readonly WebAppIdentity _appId;
+    private readonly EmailSendSource _emailSendSource;
 
-    public AnalyzeSettingsModel(FamilyTreeDbContext context, UserManager<IdentityUser> userManager, WebAppIdentity appId)
+    public AnalyzeSettingsModel(FamilyTreeDbContext context, UserManager<IdentityUser> userManager, WebAppIdentity appId, EmailSendSource emailSendSource)
     {
       _userManager = userManager;
       _context = context;
       PageLoading = true;
       _appId = appId;
+      _emailSendSource = emailSendSource;
     }
 
     public string Message { get; set; }
@@ -184,7 +186,7 @@ namespace FamilyTreeServices.Pages
         }
         else
         {
-          FamilyDbContextClass.StartupCheck(_context, _appId);
+          FamilyDbContextClass.StartupCheck(_context, _appId, _emailSendSource);
 
           HttpContext.Session.SetString("OriginalFilename", "");
           HttpContext.Session.SetString("GedcomFilename", "");

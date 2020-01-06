@@ -21,7 +21,7 @@ namespace FamilyTreeWebApp.Services
   {
     private static readonly TraceSource trace = new TraceSource("FamilyDbContext", SourceLevels.Information);
 
-    public static void StartupCheck(FamilyTreeDbContext _context, WebAppIdentity appId)
+    public static void StartupCheck(FamilyTreeDbContext _context, WebAppIdentity appId, EmailSendSource sendSource)
     {
       FamilyTreeDbContext context = null;
       if(_context != null)
@@ -59,7 +59,7 @@ namespace FamilyTreeWebApp.Services
               FileAnalysis jobEngine = new FileAnalysis();
 
               UserInformation userInfo = FindUserInformation(context, analysis.UserId);
-              jobEngine.StartNewJob(userInfo, analysis, appId.AppId, appId.AppSecret);
+              jobEngine.StartNewJob(userInfo, analysis, appId, sendSource);
               jobsStarted++;
               //Thread.Sleep(20000);
             }

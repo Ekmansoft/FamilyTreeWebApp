@@ -21,12 +21,14 @@ namespace FamilyTreeServices.Pages.AnalysisResultView
   {
     private readonly FamilyTreeDbContext _context;
     private readonly WebAppIdentity _appId;
+    private readonly EmailSendSource _emailSendSource;
     private TraceSource trace = new TraceSource("ResumeModel", SourceLevels.Information);
 
-    public ResumeModel(FamilyTreeDbContext context, WebAppIdentity appId)
+    public ResumeModel(FamilyTreeDbContext context, WebAppIdentity appId, EmailSendSource emailSendSource)
     {
       _context = context;
       _appId = appId;
+      _emailSendSource = emailSendSource;
     }
 
 
@@ -56,7 +58,7 @@ namespace FamilyTreeServices.Pages.AnalysisResultView
         _context.Analyses.Update(Analysis);
         await _context.SaveChangesAsync();
 
-        FamilyDbContextClass.StartupCheck(_context, _appId);
+        FamilyDbContextClass.StartupCheck(_context, _appId, _emailSendSource);
       }
       return RedirectToPage("./Index");
       //return Page();

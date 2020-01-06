@@ -10,16 +10,20 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using Microsoft.Extensions.Options;
+using System.Diagnostics;
 
 namespace FamilyTreeWebApp
 {
   public class Startup
   {
+    private static readonly TraceSource trace = new TraceSource("Startup", SourceLevels.Information);
     //private string _geniClientId = null;
     //private string _geniClientSecret = null;
     public Startup(IConfiguration configuration)
     {
+      trace.TraceInformation("Startup-1");
       Configuration = configuration;
+      trace.TraceInformation("Startup-2");
     }
 
     public IConfiguration Configuration { get; }
@@ -27,6 +31,7 @@ namespace FamilyTreeWebApp
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      trace.TraceInformation("ConfigureServ-1");
       services.AddDistributedMemoryCache();
 
       //_geniClientId = Configuration["Geni:ClientId"];
@@ -41,6 +46,15 @@ namespace FamilyTreeWebApp
       });
       services.Configure(appId);
       services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<WebAppIdentity>>().Value);
+
+      Action<EmailSendSource> emailSendSource = (opt =>
+      {
+        opt.Address = Configuration["EmailSendSource:Address"];
+        opt.CredentialAddress = Configuration["EmailSendSource:CredentialAddress"];
+        opt.CredentialPassword = Configuration["EmailSendSource:CredentialPassword"];
+      });
+      services.Configure(emailSendSource);
+      services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<EmailSendSource>>().Value);
 
       services.AddSession(options =>
       {
@@ -80,11 +94,13 @@ namespace FamilyTreeWebApp
       });
       services.AddMvc();
 
+      trace.TraceInformation("ConfigureServ-2");
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
+      trace.TraceInformation("Configure-1");
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
@@ -101,6 +117,7 @@ namespace FamilyTreeWebApp
       app.UseSession();
       app.UseRouting();
 
+      trace.TraceInformation("Configure-2");
       //app.UseForwardedHeaders(new ForwardedHeadersOptions
       //{
       //  ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor
@@ -114,6 +131,7 @@ namespace FamilyTreeWebApp
       {
         endpoints.MapRazorPages();
       });
+      trace.TraceInformation("Configure-3");
     }
   }
 

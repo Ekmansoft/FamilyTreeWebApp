@@ -29,11 +29,13 @@ namespace FamilyTreeWebApp.Services
     private string shortTreeInfo;
     //private readonly int _jobId;
     private readonly WebAppIdentity _appId;
+    private readonly EmailSendSource _emailSendSource;
 
     public AsyncFamilyTreeWorkerClass(
       IProgressReporterInterface progress,
       Analysis analysis,
       WebAppIdentity appId,
+      EmailSendSource emailSendSource,
       AncestorStatistics _stats)
     {
       progressReporter = progress;
@@ -42,6 +44,7 @@ namespace FamilyTreeWebApp.Services
       //this._jobId = jobId;
       this.analysis = analysis;
       this._appId = appId;
+      this._emailSendSource = emailSendSource;
       shortTreeInfo = "";
 
 
@@ -220,7 +223,7 @@ namespace FamilyTreeWebApp.Services
             {
               analysisType = "whole file";
             }
-            SendMailClass.SendMail("improveyourtree@gmail.com", analysis.UserEmail, "Analysis " + analysis.OriginalFilename + " " + analysisType, emailContents);
+            SendMailClass.SendMail(_emailSendSource.Address, _emailSendSource.CredentialAddress, _emailSendSource.CredentialPassword, analysis.UserEmail, "Analysis " + analysis.OriginalFilename + " " + analysisType, emailContents);
           }
           else
           {
@@ -231,8 +234,10 @@ namespace FamilyTreeWebApp.Services
       catch (Exception ex)
       {
         trace.TraceData(TraceEventType.Error, 0, "db update failed " + ex.ToString());
-        SendMailClass.SendMail("improveyourtree@gmail.com", analysis.UserEmail, "tree analysis: db update failed ", ex.ToString());
-        SendMailClass.SendMail("improveyourtree@gmail.com", "improveyourtree@gmail.com", "tree analysis: db update failed ", ex.ToString());
+        SendMailClass.SendMail(_emailSendSource.Address, _emailSendSource.CredentialAddress, _emailSendSource.CredentialPassword, 
+          analysis.UserEmail, "tree analysis: db update failed ", ex.ToString());
+        SendMailClass.SendMail(_emailSendSource.Address, _emailSendSource.CredentialAddress, _emailSendSource.CredentialPassword,
+          _emailSendSource.Address, "tree analysis: db update failed ", ex.ToString());
       }
       shortTreeInfo = stats.GetFamilyTree().GetShortTreeInfo();
       trace.TraceInformation("AnalyseTreeWorker::DoWork()" + analysis.Id + " " + startTime.ToString("yyyy-MM-dd HH:mm:ss") + " to " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
@@ -259,7 +264,7 @@ namespace FamilyTreeWebApp.Services
 
       stats.Print();
       FamilyTreeDbContext context = new FamilyTreeDbContext();
-      FamilyDbContextClass.StartupCheck(context, _appId);
+      FamilyDbContextClass.StartupCheck(context, _appId, _emailSendSource);
       progressReporter.Completed(shortTreeInfo);
     }
 

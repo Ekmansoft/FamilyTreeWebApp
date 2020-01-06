@@ -25,7 +25,7 @@ namespace FamilyTreeWebApp.Controllers
       trace.TraceData(TraceEventType.Information, 0, "File loaded result = " + result);
     }
 
-    public void StartNewJob(UserInformation userInfo, Analysis analysis, string appId, string appSecret)
+    public void StartNewJob(UserInformation userInfo, Analysis analysis, WebAppIdentity appId, EmailSendSource sendSource)
     {
       trace.TraceData(TraceEventType.Information, 0, "Trying to start job " + analysis.Id);
       if (analysis.StartPersonXref != null)
@@ -39,16 +39,12 @@ namespace FamilyTreeWebApp.Controllers
           if (userInfo != null)
           {
             trace.TraceData(TraceEventType.Information, 0, "Updated geni tokens");
-            authenticationClass = new WebAuthentication(userInfo.UserId, appId, appSecret);
+            authenticationClass = new WebAuthentication(userInfo.UserId, appId.AppId, appId.AppSecret);
             //authenticationClass.geniAuthentication.SetUserId(userInfo.UserId);
             authenticationClass.geniAuthentication.UpdateAuthenticationData(userInfo.GeniAccessToken, userInfo.GeniRefreshToken, Convert.ToInt32(userInfo.GeniExpiresIn), userInfo.GeniAuthenticationTime);
           }
         }
-        WebAppIdentity id = new WebAppIdentity();
-        id.AppId = appId;
-        id.AppSecret = appSecret;
-
-
+        
         FamilyWebTree webTree = new FamilyWebTree(analysis.FileName, authenticationClass);
 
         AnalysisSettings settings = AnalysisSettings.FromJson(analysis.Settings);
@@ -65,7 +61,7 @@ namespace FamilyTreeWebApp.Controllers
         AncestorStatistics stats;
         stats = new AncestorStatistics(webTree.GetFamilyTree(), limits, progressReporter);
 
-        analyseTreeWorker = new AsyncFamilyTreeWorkerClass(progressReporter, analysis, id, stats);
+        analyseTreeWorker = new AsyncFamilyTreeWorkerClass(progressReporter, analysis, appId, sendSource, stats);
         trace.TraceData(TraceEventType.Information, 0, "Job " + analysis.Id + " started");
       }
     }
