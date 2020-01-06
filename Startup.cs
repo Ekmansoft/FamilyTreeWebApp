@@ -12,6 +12,8 @@ using System;
 using Microsoft.Extensions.Options;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.DataProtection;
+using System.IO;
 
 namespace FamilyTreeWebApp
 {
@@ -97,6 +99,9 @@ namespace FamilyTreeWebApp
         options.SlidingExpiration = true;
       });
       services.AddMvc();
+
+      services.AddDataProtection()
+        .PersistKeysToFileSystem(new DirectoryInfo("./persisting-keys"));
 
       trace.TraceInformation("ConfigureServ-2");
     }
