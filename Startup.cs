@@ -127,10 +127,10 @@ namespace FamilyTreeWebApp
       app.UseRouting();
 
       trace.TraceInformation("Configure-2");
-      //app.UseForwardedHeaders(new ForwardedHeadersOptions
-      //{
-      //  ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor
-      //});
+      app.UseForwardedHeaders(new ForwardedHeadersOptions
+      {
+        ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor
+      });
 
 
       app.UseAuthentication();
