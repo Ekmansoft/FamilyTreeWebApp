@@ -14,6 +14,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.DataProtection;
 using System.IO;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FamilyTreeWebApp
 {
@@ -42,7 +43,12 @@ namespace FamilyTreeWebApp
     public void ConfigureServices(IServiceCollection services)
     {
       trace.TraceInformation("ConfigureServ-1");
-      services.AddDistributedMemoryCache();
+      services.Configure<CookiePolicyOptions>(options =>
+      {
+        // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+        options.CheckConsentNeeded = context => true;
+        options.MinimumSameSitePolicy = SameSiteMode.None;
+      });
 
       //_geniClientId = Configuration["Geni:ClientId"];
       //_geniClientSecret = Configuration["Geni:ClientSecret"];
@@ -66,19 +72,21 @@ namespace FamilyTreeWebApp
       services.Configure(emailSendSource);
       services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<EmailSendSource>>().Value);
 
+      services.AddDbContext<FamilyTreeDbContext>();
+      services.AddDistributedMemoryCache();
       services.AddSession(options =>
       {
         // Set a short timeout for easy testing.
         options.IdleTimeout = TimeSpan.FromMinutes(60);
         options.Cookie.HttpOnly = true;
-        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-        options.Cookie.SameSite = SameSiteMode.Strict;
+        //options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        //options.Cookie.SameSite = SameSiteMode.Strict;
 
         // Make the session cookie essential
         options.Cookie.IsEssential = true;
       });
 
-      services.AddRazorPages();
+      //services.AddRazorPages();
 
       //services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();
 
@@ -105,7 +113,15 @@ namespace FamilyTreeWebApp
         options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
         options.SlidingExpiration = true;
       });
-      services.AddMvc();
+      services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0).
+          AddRazorPagesOptions(options =>
+          {
+            //options.AllowAreas = true;
+            options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+            options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+            options.Conventions.AuthorizeAreaFolder("Identity", "/FamilyTree");
+            //options.Conventions.AuthorizeAreaPage("Identity", "/FamilyTree/UploadFiles/Upload");
+          }); ;
 
       services.AddDataProtection()
         .PersistKeysToFileSystem(new DirectoryInfo("./persisting-keys"));
