@@ -17,6 +17,13 @@ using System.IO;
 
 namespace FamilyTreeWebApp
 {
+  //public class EmailSender : IEmailSender
+  //{
+  //  public Task SendEmailAsync(string email, string subject, string message)
+  //  {
+  //    return Task.CompletedTask;
+  //  }
+  //}
   public class Startup
   {
     private static readonly TraceSource trace = new TraceSource("Startup", SourceLevels.Information);
@@ -103,6 +110,7 @@ namespace FamilyTreeWebApp
       services.AddDataProtection()
         .PersistKeysToFileSystem(new DirectoryInfo("./persisting-keys"));
 
+      //services.AddSingleton<IEmailSender, EmailSender>();
       trace.TraceInformation("ConfigureServ-2");
     }
 

@@ -28,6 +28,7 @@ namespace FamilyTreeServices.Pages
       string OrigFilename = HttpContext.Session.GetString("OriginalFilename");
       string Filename = HttpContext.Session.GetString("GedcomFilename");
       Message = "Your file " + OrigFilename +  " was successfully uploaded.";
+      trace.TraceData(TraceEventType.Information, 0, "Upload successful of file " + OrigFilename + " temp-name:" + Filename);
 
       //HttpContext.Session.SetString("GedcomFilename", Filename);
       //HttpContext.Session.SetString("OriginalFilename", OrigFilename);

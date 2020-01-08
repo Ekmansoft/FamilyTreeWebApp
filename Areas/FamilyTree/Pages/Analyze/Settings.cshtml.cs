@@ -72,6 +72,7 @@ namespace FamilyTreeServices.Pages
       string GedcomFilename2 = HttpContext.Session.GetString("GedcomFilename");
       string OriginalFilename2 = HttpContext.Session.GetString("OriginalFilename");
 
+      trace.TraceData(TraceEventType.Information, 0, "Filename:" + GedcomFilename2 + " original file:" + OriginalFilename2 + ", startPerson:" + StartPersonXref);
       //trace.TraceData(TraceEventType.Information, 0, "gat:" + geni_access_token2 + ", gatei:" + token_expires_in2 + ", grt:" + geni_refresh_token + ", gfn:" + GedcomFilename2 + ", ofn:" + OriginalFilename2 + ", spn:" + StartPersonXref);
 
       //var curUser = _userManager.GetUserId(User);
