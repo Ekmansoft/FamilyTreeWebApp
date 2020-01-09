@@ -15,7 +15,7 @@ using FamilyTreeWebApp.Services;
 
 namespace FamilyTreeServices.Pages
 {
-  //[Authorize]
+  [Authorize]
   public class GeniLoginCheckModel : PageModel
   {
     private static readonly TraceSource trace = new TraceSource("GeniLoginCheck", SourceLevels.Information);
