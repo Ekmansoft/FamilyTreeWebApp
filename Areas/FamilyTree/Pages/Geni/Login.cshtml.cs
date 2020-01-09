@@ -11,6 +11,7 @@ using FamilyTreeWebTools.Data;
 using FamilyTreeWebTools.Services;
 using FamilyTreeWebApp.Data;
 using Microsoft.AspNetCore.Identity;
+using FamilyTreeWebApp.Services;
 
 namespace FamilyTreeServices.Pages
 {
@@ -32,10 +33,11 @@ namespace FamilyTreeServices.Pages
 
     public IActionResult OnGet()
     {
+      trace.TraceData(TraceEventType.Information, 0, "GeniLoginModel.OnGet():" + _appId.AppId);
       Message = "Your Login to Geni.";
       string userId = _userManager.GetUserId(this.User);
 
-      WebAuthentication appAuthentication = new WebAuthentication(userId, _appId.AppId, _appId.AppSecret);
+      WebAuthentication appAuthentication = new WebAuthentication(userId, _appId.AppId, _appId.AppSecret, FamilyDbContextClass.UpdateGeniAuthentication);
       string redirectTarget = appAuthentication.getWebRedirect();
 
       trace.TraceData(TraceEventType.Information, 0, "GeniLoginModel.OnGet() redirect to " + redirectTarget);
@@ -44,9 +46,10 @@ namespace FamilyTreeServices.Pages
     public IActionResult OnPost()
     {
       Message = "Your Login to Geni. post";
-      WebAuthentication appAuthentication = new WebAuthentication(_userManager.GetUserId(this.User), _appId.AppId, _appId.AppSecret);
+      WebAuthentication appAuthentication = new WebAuthentication(_userManager.GetUserId(this.User), _appId.AppId, _appId.AppSecret, 
+        FamilyDbContextClass.UpdateGeniAuthentication);
       string redirectTarget = appAuthentication.getWebRedirect();
-      trace.TraceData(TraceEventType.Information, 0, "GeniLoginModel.OnGet() redirect to " + redirectTarget);
+      trace.TraceData(TraceEventType.Information, 0, "GeniLoginModel.OnPost() " + _appId.AppId + " redirect to " + redirectTarget);
       return Redirect(redirectTarget);
     }
   }

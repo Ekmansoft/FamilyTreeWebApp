@@ -76,7 +76,7 @@ namespace FamilyTreeWebApp.Services
       if (userInfo != null)
       {
 
-        authenticationClass = new WebAuthentication(userId, appId.AppId, appId.AppSecret);
+        authenticationClass = new WebAuthentication(userId, appId.AppId, appId.AppSecret, UpdateGeniAuthentication);
         //authenticationClass.geniAuthentication.SetUserId(userId);
         authenticationClass.geniAuthentication.UpdateAuthenticationData(userInfo.GeniAccessToken, userInfo.GeniRefreshToken, userInfo.GeniExpiresIn, userInfo.GeniAuthenticationTime);
       }

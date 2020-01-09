@@ -100,7 +100,7 @@ namespace FamilyTreeServices.Pages
       //string redirectUrl = "/FamilyTree/Analyze/Settings";
       string redirectUrl = "https://improveyourtree.com/FamilyTree/Geni/LoginOk";
 
-      WebAuthentication appAuthentication = new WebAuthentication(_userManager.GetUserId(this.User), _appId.AppId, _appId.AppSecret);
+      WebAuthentication appAuthentication = new WebAuthentication(_userManager.GetUserId(this.User), _appId.AppId, _appId.AppSecret, FamilyDbContextClass.UpdateGeniAuthentication);
 
       string redirectTo = "https://www.geni.com/platform/oauth/request_token?client_id=" + 
           appAuthentication.geniAuthentication.GetClientId() + 
