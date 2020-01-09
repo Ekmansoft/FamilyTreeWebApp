@@ -78,7 +78,7 @@ namespace FamilyTreeWebApp.Services
 
         authenticationClass = new WebAuthentication(userId, appId.AppId, appId.AppSecret, UpdateGeniAuthentication);
         //authenticationClass.geniAuthentication.SetUserId(userId);
-        authenticationClass.geniAuthentication.UpdateAuthenticationData(userInfo.GeniAccessToken, userInfo.GeniRefreshToken, userInfo.GeniExpiresIn, userInfo.GeniAuthenticationTime);
+        authenticationClass.UpdateAuthenticationData(userInfo.GeniAccessToken, userInfo.GeniRefreshToken, userInfo.GeniExpiresIn, userInfo.GeniAuthenticationTime);
       }
       else
       {

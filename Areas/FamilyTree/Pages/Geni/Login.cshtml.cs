@@ -38,7 +38,7 @@ namespace FamilyTreeServices.Pages
       string userId = _userManager.GetUserId(this.User);
 
       WebAuthentication appAuthentication = new WebAuthentication(userId, _appId.AppId, _appId.AppSecret, FamilyDbContextClass.UpdateGeniAuthentication);
-      string redirectTarget = appAuthentication.getWebRedirect();
+      string redirectTarget = appAuthentication.getAuthorizeUrl();
 
       trace.TraceData(TraceEventType.Information, 0, "GeniLoginModel.OnGet() redirect to " + redirectTarget);
       return Redirect(redirectTarget);
@@ -48,7 +48,7 @@ namespace FamilyTreeServices.Pages
       Message = "Your Login to Geni. post";
       WebAuthentication appAuthentication = new WebAuthentication(_userManager.GetUserId(this.User), _appId.AppId, _appId.AppSecret, 
         FamilyDbContextClass.UpdateGeniAuthentication);
-      string redirectTarget = appAuthentication.getWebRedirect();
+      string redirectTarget = appAuthentication.getAuthorizeUrl();
       trace.TraceData(TraceEventType.Information, 0, "GeniLoginModel.OnPost() " + _appId.AppId + " redirect to " + redirectTarget);
       return Redirect(redirectTarget);
     }

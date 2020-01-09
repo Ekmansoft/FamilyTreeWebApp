@@ -63,8 +63,6 @@ namespace FamilyTreeServices.Pages
 
       if (webTree1 == null)
       {
-        trace.TraceData(TraceEventType.Error, 0, "AnalyzeSettingsModel.OnGet() error webtree=null: Geni info: " + authenticationClass.geniAuthentication.GetAccessToken() + 
-           " expiresIn:" + authenticationClass.geniAuthentication.GetExpiresIn());
         trace.TraceData(TraceEventType.Error, 0, "AnalyzeSettingsModel.OnGet() error webtree=null: Gedcom info: " + GedcomFilename + " orig:" + OriginalFilename);
         Message = "No family tree found! Please check that you have enabled cookies!";
         return Page();

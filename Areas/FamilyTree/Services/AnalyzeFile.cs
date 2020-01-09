@@ -41,7 +41,7 @@ namespace FamilyTreeWebApp.Controllers
             trace.TraceData(TraceEventType.Information, 0, "Updated geni tokens");
             authenticationClass = new WebAuthentication(userInfo.UserId, appId.AppId, appId.AppSecret, FamilyDbContextClass.UpdateGeniAuthentication);
             //authenticationClass.geniAuthentication.SetUserId(userInfo.UserId);
-            authenticationClass.geniAuthentication.UpdateAuthenticationData(userInfo.GeniAccessToken, userInfo.GeniRefreshToken, Convert.ToInt32(userInfo.GeniExpiresIn), userInfo.GeniAuthenticationTime);
+            authenticationClass.UpdateAuthenticationData(userInfo.GeniAccessToken, userInfo.GeniRefreshToken, Convert.ToInt32(userInfo.GeniExpiresIn), userInfo.GeniAuthenticationTime);
           }
         }
         

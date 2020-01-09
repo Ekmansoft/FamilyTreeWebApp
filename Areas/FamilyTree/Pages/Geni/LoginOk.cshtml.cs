@@ -102,11 +102,7 @@ namespace FamilyTreeServices.Pages
 
       WebAuthentication appAuthentication = new WebAuthentication(_userManager.GetUserId(this.User), _appId.AppId, _appId.AppSecret, FamilyDbContextClass.UpdateGeniAuthentication);
 
-      string redirectTo = "https://www.geni.com/platform/oauth/request_token?client_id=" + 
-          appAuthentication.geniAuthentication.GetClientId() + 
-          "&redirect_uri=" + HttpUtility.UrlEncode(redirectUrl) +
-          "&client_secret=" + appAuthentication.geniAuthentication.GetClientSecret() +
-          "&code=" + code;
+      string redirectTo = appAuthentication.getRequestTokenUrl(code, redirectUrl);
 
       bool Ok = false;
       int retryCount = 0;
