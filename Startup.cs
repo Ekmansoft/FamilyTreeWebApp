@@ -59,6 +59,7 @@ namespace FamilyTreeWebApp
       {
         opt.AppId = Configuration["Geni:ClientId"];
         opt.AppSecret = Configuration["Geni:ClientSecret"];
+        trace.TraceInformation("ConfigureService App:" + opt.AppId + ":" + opt.AppSecret);
       });
       services.Configure(appId);
       services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<WebAppIdentity>>().Value);
@@ -68,6 +69,7 @@ namespace FamilyTreeWebApp
         opt.Address = Configuration["EmailSendSource:Address"];
         opt.CredentialAddress = Configuration["EmailSendSource:CredentialAddress"];
         opt.CredentialPassword = Configuration["EmailSendSource:CredentialPassword"];
+        trace.TraceInformation("ConfigureService Email:" + opt.Address + ":" + opt.CredentialAddress + ":" + opt.CredentialPassword);
       });
       services.Configure(emailSendSource);
       services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<EmailSendSource>>().Value);
