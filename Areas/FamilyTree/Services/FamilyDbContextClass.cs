@@ -73,10 +73,10 @@ namespace FamilyTreeWebApp.Services
       UserInformation userInfo = FamilyDbContextClass.FindUserInformation(_context, userId);
 
       WebAuthentication authenticationClass = null;
+      authenticationClass = new WebAuthentication(userId, appId.AppId, appId.AppSecret, UpdateGeniAuthentication);
       if (userInfo != null)
       {
 
-        authenticationClass = new WebAuthentication(userId, appId.AppId, appId.AppSecret, UpdateGeniAuthentication);
         //authenticationClass.geniAuthentication.SetUserId(userId);
         authenticationClass.UpdateAuthenticationData(userInfo.GeniAccessToken, userInfo.GeniRefreshToken, userInfo.GeniExpiresIn, userInfo.GeniAuthenticationTime);
       }
