@@ -18,18 +18,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FamilyTreeWebApp
 {
-  //public class EmailSender : IEmailSender
-  //{
-  //  public Task SendEmailAsync(string email, string subject, string message)
-  //  {
-  //    return Task.CompletedTask;
-  //  }
-  //}
   public class Startup
   {
     private static readonly TraceSource trace = new TraceSource("Startup", SourceLevels.Information);
-    //private string _geniClientId = null;
-    //private string _geniClientSecret = null;
     public Startup(IConfiguration configuration)
     {
       trace.TraceInformation("Startup-1");
@@ -42,7 +33,7 @@ namespace FamilyTreeWebApp
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      trace.TraceInformation("ConfigureServ-1");
+      trace.TraceInformation("ConfigureServices-start");
       services.Configure<CookiePolicyOptions>(options =>
       {
         // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -50,11 +41,8 @@ namespace FamilyTreeWebApp
         options.MinimumSameSitePolicy = SameSiteMode.None;
       });
 
-      //_geniClientId = Configuration["Geni:ClientId"];
-      //_geniClientSecret = Configuration["Geni:ClientSecret"];
 
-      //WebAppIdentity appIdInfo = new WebAppIdentity { AppId = Configuration["Geni:ClientId"], AppSecret = Configuration["Geni:ClientSecret"] };
-
+      trace.TraceInformation("ConfigureService App:" + Configuration["Geni:ClientId"]);
       Action<WebAppIdentity> appId = (opt =>
       {
         opt.AppId = Configuration["Geni:ClientId"];
@@ -64,12 +52,14 @@ namespace FamilyTreeWebApp
       services.Configure(appId);
       services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<WebAppIdentity>>().Value);
 
+      trace.TraceInformation("ConfigureService Email:" + Configuration["EmailSendSource:Address"] + ":" + 
+        Configuration["EmailSendSource:CredentialAddress"]);
       Action<EmailSendSource> emailSendSource = (opt =>
       {
         opt.Address = Configuration["EmailSendSource:Address"];
         opt.CredentialAddress = Configuration["EmailSendSource:CredentialAddress"];
         opt.CredentialPassword = Configuration["EmailSendSource:CredentialPassword"];
-        trace.TraceInformation("ConfigureService Email:" + opt.Address + ":" + opt.CredentialAddress + ":" + opt.CredentialPassword);
+        trace.TraceInformation("ConfigureService Email:" + opt.Address + ":" + opt.CredentialAddress);
       });
       services.Configure(emailSendSource);
       services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<EmailSendSource>>().Value);
@@ -129,13 +119,13 @@ namespace FamilyTreeWebApp
         .PersistKeysToFileSystem(new DirectoryInfo("./persisting-keys"));
 
       //services.AddSingleton<IEmailSender, EmailSender>();
-      trace.TraceInformation("ConfigureServ-2");
+      trace.TraceInformation("ConfigureServices-end");
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-      trace.TraceInformation("Configure-1");
+      trace.TraceInformation("Configure-start");
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
@@ -152,7 +142,6 @@ namespace FamilyTreeWebApp
       app.UseSession();
       app.UseRouting();
 
-      trace.TraceInformation("Configure-2");
       app.UseForwardedHeaders(new ForwardedHeadersOptions
       {
         ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor
@@ -166,7 +155,7 @@ namespace FamilyTreeWebApp
       {
         endpoints.MapRazorPages();
       });
-      trace.TraceInformation("Configure-3");
+      trace.TraceInformation("Configure-end");
     }
   }
 
