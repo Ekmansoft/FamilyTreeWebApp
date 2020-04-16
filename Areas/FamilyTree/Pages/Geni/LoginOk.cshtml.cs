@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Web;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -17,6 +17,7 @@ using System.Net;
 using System.Threading;
 using FamilyTreeWebApp.Data;
 using FamilyTreeWebApp.Services;
+using System.Text.Json;
 
 namespace FamilyTreeServices.Pages
 {
@@ -153,7 +154,7 @@ namespace FamilyTreeServices.Pages
         }
       } while (!Ok && retryCount < 5);
 
-      HttpAppAuthenticationResponse appAuthenticationResponse = JsonConvert.DeserializeObject<HttpAppAuthenticationResponse>(returnLine);
+      HttpAppAuthenticationResponse appAuthenticationResponse = JsonSerializer.Deserialize<HttpAppAuthenticationResponse>(returnLine);
 
       if(appAuthenticationResponse != null)
       {

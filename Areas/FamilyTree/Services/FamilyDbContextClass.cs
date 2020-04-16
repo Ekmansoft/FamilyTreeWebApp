@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 using FamilyTreeLibrary.FamilyTreeStore;
 using FamilyTreeWebTools.Data;
 using FamilyTreeWebApp.Data;
@@ -124,6 +124,23 @@ namespace FamilyTreeWebApp.Services
         context.SaveChanges();
       }
       return appSettings.MaxSimultaneousJobs;
+    }
+
+    public static int GetHttpRequestType(FamilyTreeDbContext context)
+    {
+      AppSetting appSettings = null;
+      if (context.AppSettings.Any<AppSetting>())
+      {
+        appSettings = context.AppSettings.First<AppSetting>();
+      }
+      else
+      {
+        appSettings = new AppSetting();
+        appSettings.HttpRequestType = 1;
+        context.AppSettings.Add(appSettings);
+        context.SaveChanges();
+      }
+      return appSettings.HttpRequestType;
     }
 
 

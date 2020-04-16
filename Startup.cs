@@ -65,6 +65,7 @@ namespace FamilyTreeWebApp
       services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<EmailSendSource>>().Value);
 
       services.AddDbContext<FamilyTreeDbContext>();
+      //services.AddDbContext<ProfileDbContext>();
       services.AddDistributedMemoryCache();
       services.AddSession(options =>
       {
