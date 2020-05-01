@@ -126,21 +126,26 @@ namespace FamilyTreeWebApp.Services
       return appSettings.MaxSimultaneousJobs;
     }
 
+    //public static int GetHttpRequestTypeDb(FamilyTreeDbContext context)
+    //{
+    //  AppSetting appSettings = null;
+    //  if (context.AppSettings.Any<AppSetting>())
+    //  {
+    //    appSettings = context.AppSettings.First<AppSetting>();
+    //  }
+    //  else
+    //  {
+    //    appSettings = new AppSetting();
+    //    appSettings.HttpRequestType = 1;
+    //    context.AppSettings.Add(appSettings);
+    //    context.SaveChanges();
+    //  }
+    //  return appSettings.HttpRequestType;
+    //}
+
     public static int GetHttpRequestType(FamilyTreeDbContext context)
     {
-      AppSetting appSettings = null;
-      if (context.AppSettings.Any<AppSetting>())
-      {
-        appSettings = context.AppSettings.First<AppSetting>();
-      }
-      else
-      {
-        appSettings = new AppSetting();
-        appSettings.HttpRequestType = 1;
-        context.AppSettings.Add(appSettings);
-        context.SaveChanges();
-      }
-      return appSettings.HttpRequestType;
+      return 1;
     }
 
 
