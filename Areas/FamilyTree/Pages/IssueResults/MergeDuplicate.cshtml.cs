@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace FamilyTreeServices.Pages.IssueResults
   public class MergeDuplicateModel : PageModel
   {
     private readonly FamilyTreeDbContext _context;
+    private static TraceSource trace = new TraceSource("MergeDuplicate", SourceLevels.Verbose);
 
     private string ExtractId(string url)
     {
@@ -53,26 +55,30 @@ namespace FamilyTreeServices.Pages.IssueResults
         return NotFound();
       }
 
+      trace.TraceData(TraceEventType.Information, 0, "MergeDup id " + id);
       Issue = await _context.Issues.FirstOrDefaultAsync(m => m.Id == id);
 
       if (Issue == null)
       {
         return NotFound();
       }
+      trace.TraceData(TraceEventType.Information, 0, "MergeDup id-1 " + id);
       if (Issue.Parameters == null)
       {
         return NotFound();
       }
-      
+      trace.TraceData(TraceEventType.Information, 0, "MergeDup id-2 " + id);
+
 
       string[] parameters = Issue.Parameters.Split(";");
 
-      Profile1 = await _context.Profiles.FindAsync(id);
+      Profile1 = await _context.Profiles.FindAsync(Issue.ProfileId);
 
       if (Profile1 == null)
       {
         return NotFound();
       }
+      trace.TraceData(TraceEventType.Information, 0, "MergeDup id-3 " + id);
 
       foreach (string param in parameters)
       {
@@ -81,6 +87,7 @@ namespace FamilyTreeServices.Pages.IssueResults
           CompareLink = CreateCompareLink(Profile1.Url, param);
         }
       }
+      trace.TraceData(TraceEventType.Information, 0, "MergeDup id-4 " + id);
 
       return Page();
     }
