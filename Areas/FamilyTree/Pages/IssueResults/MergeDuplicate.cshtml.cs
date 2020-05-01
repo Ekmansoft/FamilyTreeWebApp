@@ -56,6 +56,9 @@ namespace FamilyTreeServices.Pages.IssueResults
       }
       if (status != null)
       {
+        Issue = await _context.Issues.FirstOrDefaultAsync(m => m.Id == id);
+        trace.TraceData(TraceEventType.Information, 0, "MergeDup id update " + id + " " + status);
+
         Issue.Status = (Issue.IssueStatus)status;
         _context.Attach(Issue).State = EntityState.Modified;
 
