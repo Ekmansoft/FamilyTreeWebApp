@@ -32,6 +32,8 @@
     </dl>
 </div>
 <div>
+    <a asp-page="./MergeDuplicate" asp-route-Id="@Model.Issue.Id" asp-route-Status="16">Set to corrected</a> |
+    <a asp-page="./MergeDuplicate" asp-route-Id="@Model.Issue.Id" asp-route-Status="4">Set to discarded</a> |
     <a asp-page="./Edit" asp-route-id="@Model.Issue.Id">Edit</a> |
     <a asp-page="./Index">Back to List</a>
 </div>

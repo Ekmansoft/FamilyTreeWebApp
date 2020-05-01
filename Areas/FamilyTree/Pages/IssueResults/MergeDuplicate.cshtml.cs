@@ -48,11 +48,33 @@ namespace FamilyTreeServices.Pages.IssueResults
 
     public string CompareLink { get; set; }
 
-    public async Task<IActionResult> OnGetAsync(int? id)
+    public async Task<IActionResult> OnGetAsync(int? id, int? status)
     {
       if (id == null)
       {
         return NotFound();
+      }
+      if (status != null)
+      {
+        Issue.Status = (Issue.IssueStatus)status;
+        _context.Attach(Issue).State = EntityState.Modified;
+
+        try
+        {
+          await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+          if (!ProblemExists(Issue.Id))
+          {
+            return NotFound();
+          }
+          else
+          {
+            throw;
+          }
+        }
+
       }
 
       trace.TraceData(TraceEventType.Information, 0, "MergeDup id " + id);
@@ -90,6 +112,10 @@ namespace FamilyTreeServices.Pages.IssueResults
       trace.TraceData(TraceEventType.Information, 0, "MergeDup id-4 " + id);
 
       return Page();
+    }
+    private bool ProblemExists(int id)
+    {
+      return _context.Issues.Any(e => e.Id == id);
     }
   }
 }
