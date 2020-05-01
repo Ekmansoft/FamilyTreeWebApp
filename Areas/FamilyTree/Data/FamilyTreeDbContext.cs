@@ -8,7 +8,7 @@ namespace FamilyTreeWebApp.Data
 {
   public class FamilyTreeDbContext : DbContext
   {
-    static readonly TraceSource trace = new TraceSource("FamilyTreeDbContext", SourceLevels.Information);
+    static readonly TraceSource trace = new TraceSource("FamilyTreeDbContext", SourceLevels.Warning);
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
 	    var configuration = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();

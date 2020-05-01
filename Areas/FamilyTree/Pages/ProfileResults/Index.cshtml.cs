@@ -352,9 +352,10 @@ namespace FamilyTreeServices.Pages.ProfileResults
               {
                 if (param.Length > 0)
                 {
-                  string CompareLink = CreateCompareLink(link.Url, param);
+                  //string CompareLink = CreateCompareLink(link.Url, param);
+                  string CompareLink = "../IssueResults/MergeDuplicate?id=" + link.Id;
 
-                  if(CompareLink != null)
+                  if (CompareLink != null)
                   {
                     issueView.Parameters.Add(CompareLink);
                   }
