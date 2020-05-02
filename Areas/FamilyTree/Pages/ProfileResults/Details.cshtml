@@ -10,6 +10,19 @@
 <div>
     <h4>Profile</h4>
     <hr />
+    <div>
+        @if (Model.Profile.Url != null)
+        {
+            <a href="@Html.DisplayFor(model => model.Profile.Url)">
+                @Html.DisplayFor(model => model.Profile.Name)
+            </a>
+        }
+        else
+        {
+            @Html.DisplayFor(model => model.Profile.Name)
+        }
+        @Html.DisplayFor(model => model.Profile.Birth) - @Html.DisplayFor(model => model.Profile.Death)
+    </div>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Profile.TreeId)

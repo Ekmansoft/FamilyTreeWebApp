@@ -11,46 +11,59 @@
   <h4>Issue</h4>
   <hr />
   <div class="row">
-    <div class="col-md-4">
-      <form method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="Issue.Id" />
-        <div class="form-group">
-          <input name="Issue.Id" class="hidden" asp-for="Issue.Id" asp-items="ViewBag.Id" />
-          <span asp-validation-for="Issue.Id" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <input name="Issue.Parameters" class="hidden" asp-for="Issue.Parameters" asp-items="ViewBag.Parameters" />
-          <span asp-validation-for="Issue.Parameters" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <input name="Issue.ProfileId" class="hidden" asp-for="Issue.ProfileId" asp-items="ViewBag.ProfileId" />
-          <span asp-validation-for="Issue.ProfileId" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label asp-for="Issue.Type" class="control-label"></label>
-          <select asp-for="Issue.Type" class="form-control" asp-items="Html.GetEnumSelectList<Issue.IssueType>()">
-            <option selected="selected" value="Issue.Type">Please select</option>
-          </select>
-          <span asp-validation-for="Issue.Type" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label asp-for="Issue.Description" class="control-label"></label>
-          <input asp-for="Issue.Description" class="form-control" />
-          <span asp-validation-for="Issue.Description" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label asp-for="Issue.Status" class="control-label"></label>
-          <select asp-for="Issue.Status" class="form-control" asp-items="Html.GetEnumSelectList<Issue.IssueStatus>()">
-            <option selected="selected" value="Issue.Status">Please select</option>
-          </select>
-          <span asp-validation-for="Issue.Status" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <input type="submit" value="Save" class="btn btn-default" />
-        </div>
-      </form>
-    </div>
+      <div class="col-md-4">
+          <div>
+              @if (Model.Profile1.Url != null)
+              {
+                  <a href="@Html.DisplayFor(model => model.Profile1.Url)">
+                      @Html.DisplayFor(model => model.Profile1.Name)
+                  </a>
+              }
+              else
+              {
+                  @Html.DisplayFor(model => model.Profile1.Name)
+              }
+              @Html.DisplayFor(model => model.Profile1.Birth) - @Html.DisplayFor(model => model.Profile1.Death)
+          </div>
+          <form method="post">
+              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <input type="hidden" asp-for="Issue.Id" />
+              <div class="form-group">
+                  <input name="Issue.Id" class="hidden" asp-for="Issue.Id" asp-items="ViewBag.Id" />
+                  <span asp-validation-for="Issue.Id" class="text-danger"></span>
+              </div>
+              <div class="form-group">
+                  <input name="Issue.Parameters" class="hidden" asp-for="Issue.Parameters" asp-items="ViewBag.Parameters" />
+                  <span asp-validation-for="Issue.Parameters" class="text-danger"></span>
+              </div>
+              <div class="form-group">
+                  <input name="Issue.ProfileId" class="hidden" asp-for="Issue.ProfileId" asp-items="ViewBag.ProfileId" />
+                  <span asp-validation-for="Issue.ProfileId" class="text-danger"></span>
+              </div>
+              <div class="form-group">
+                  <label asp-for="Issue.Type" class="control-label"></label>
+                  <select asp-for="Issue.Type" class="form-control" asp-items="Html.GetEnumSelectList<Issue.IssueType>()">
+                      <option selected="selected" value="Issue.Type">Please select</option>
+                  </select>
+                  <span asp-validation-for="Issue.Type" class="text-danger"></span>
+              </div>
+              <div class="form-group">
+                  <label asp-for="Issue.Description" class="control-label"></label>
+                  <input asp-for="Issue.Description" class="form-control" />
+                  <span asp-validation-for="Issue.Description" class="text-danger"></span>
+              </div>
+              <div class="form-group">
+                  <label asp-for="Issue.Status" class="control-label"></label>
+                  <select asp-for="Issue.Status" class="form-control" asp-items="Html.GetEnumSelectList<Issue.IssueStatus>()">
+                      <option selected="selected" value="Issue.Status">Please select</option>
+                  </select>
+                  <span asp-validation-for="Issue.Status" class="text-danger"></span>
+              </div>
+              <div class="form-group">
+                  <input type="submit" value="Save" class="btn btn-default" />
+              </div>
+          </form>
+      </div>
   </div>
 
   <div>
