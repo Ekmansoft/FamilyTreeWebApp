@@ -81,15 +81,16 @@
         @foreach (var problem in item.Issues)
         {
           <p>
-            @if (problem.Parameters.Count > 0)
-            {
-              <a href="@problem.Parameters[0]">@Html.DisplayFor(problemItem => problem.Description)</a>
-            }
-            else
-            {
-              @Html.DisplayFor(problemItem => problem.Description)
-            }
-            <a asp-page="../IssueResults/Edit" asp-route-Id="@problem.Id">@Html.DisplayFor(problemItem => problem.Status)</a>
+              @if (problem.Parameters.Count > 0)
+              {
+                  <a href="@problem.Parameters[0]">@Html.DisplayFor(problemItem => problem.Description)</a>
+              }
+              else
+              {
+                  @Html.DisplayFor(problemItem => problem.Description)
+              }
+              <a asp-page="../IssueResults/Edit" asp-route-Id="@problem.Id">@Html.DisplayFor(problemItem => problem.Status)</a>
+              <a asp-page="../IssueResults/Analyze" asp-route-Id="@problem.Id">Analyze</a>
 
           </p>
         }
