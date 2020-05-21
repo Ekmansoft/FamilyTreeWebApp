@@ -26,7 +26,7 @@
   @Html.CheckBox("MissingPartnerMitigated", Model.FilterSettingOnPage.Get(IndexModel.FilterType.MissingPartnerMitigated))Missing partners (mitigated)<br />
   @Html.CheckBox("Duplicates", Model.FilterSettingOnPage.Get(IndexModel.FilterType.Duplicate))Duplicates<br />
   @Html.CheckBox("AllStates", Model.AllStates)Show all states<br />
-  @Html.DropDownList("PageSize", Model.GetPageSizeSelectList(), "Select PageSize", new { @class = "form-control" })<br />
+  @Html.DropDownList("ItemsPerPage", Model.GetPageSizeSelectList(), "Select page size", new { @class = "form-control" })<br />
 
   <input type="submit" />
 </form>
@@ -44,15 +44,12 @@
         @Html.DisplayNameFor(model => model.Profiles[0].Name)
       </th>
       <th>
-        @Html.DisplayNameFor(model => model.Profiles[0].Birth) - @Html.DisplayNameFor(model => model.Profiles[0].Death)
-      </th>
-      <th>
+        @Html.DisplayNameFor(model => model.Profiles[0].Birth) - @Html.DisplayNameFor(model => model.Profiles[0].Death)<br/>
         @Html.DisplayNameFor(model => model.Profiles[0].RelationDistance)
       </th>
       <th>
         @Html.DisplayNameFor(model => model.Profiles[0].Issues)
       </th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -72,10 +69,7 @@
         }
       </td>
       <td>
-        @Html.DisplayFor(modelItem => item.Birth) -<br />@Html.DisplayFor(modelItem => item.Death)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.RelationDistance)
+        @Html.DisplayFor(modelItem => item.Birth) - @Html.DisplayFor(modelItem => item.Death)<br/>@Html.DisplayFor(modelItem => item.RelationDistance)
       </td>
       <td>
         @foreach (var problem in item.Issues)
@@ -94,8 +88,6 @@
 
           </p>
         }
-      </td>
-      <td>
         <a asp-page="../IssueResults/Index" asp-route-ProfileId="@item.ProfileId">Show</a>
       </td>
     </tr>

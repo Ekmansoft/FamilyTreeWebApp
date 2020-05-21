@@ -180,7 +180,7 @@ namespace FamilyTreeServices.Pages.ProfileResults
     {
       List<SelectListItem> listItems = new List<SelectListItem>();
       IList<int> listItemsInt = new List<int>();
-      bool selectedFound = false;
+      //bool selectedFound = false;
 
       trace.TraceData(TraceEventType.Information, 0, "Selected1 = " + NumberOfItems);
       listItemsInt.Add(100);
@@ -195,17 +195,17 @@ namespace FamilyTreeServices.Pages.ProfileResults
         {
           listitem.Selected = true;
           trace.TraceData(TraceEventType.Information, 0, "Selected = " + NumberOfItems);
-          selectedFound = true;
+          //selectedFound = true;
         }
         listItems.Add(listitem);
       }
-      if (!selectedFound)
-      {
-        SelectListItem listitem = new SelectListItem(NumberOfItems.ToString(), NumberOfItems.ToString());
-        listitem.Selected = true;
-        trace.TraceData(TraceEventType.Information, 0, "Selected2 = " + NumberOfItems);
-        listItems.Add(listitem);
-      }
+      //if (!selectedFound)
+      //{
+      //  SelectListItem listitem = new SelectListItem(NumberOfItems.ToString(), NumberOfItems.ToString());
+      //  listitem.Selected = true;
+      //  trace.TraceData(TraceEventType.Information, 0, "Selected2 = " + NumberOfItems);
+      //  listItems.Add(listitem);
+      //}
       return listItems;
     }
 
