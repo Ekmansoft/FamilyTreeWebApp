@@ -58,7 +58,8 @@ namespace FamilyTreeServices.Pages.ProfileResults
       UnreasonableDates,
       Duplicate,
       MissingPartnerMitigated,
-      Hidden
+      Hidden,
+      AllStates
     }
 
     public class FilterSettings
@@ -432,6 +433,7 @@ namespace FamilyTreeServices.Pages.ProfileResults
       FilterSettingOnPage.Update(FilterType.UnreasonableDates, UnreasonableDates);
       FilterSettingOnPage.Update(FilterType.UnknownLocation, UnknownLocation);
       FilterSettingOnPage.Update(FilterType.Hidden, Hidden);
+      FilterSettingOnPage.Update(FilterType.AllStates, AllStates);
       this.AllStates = AllStates;
       //this.ItemsPerPage = Convert.ToInt32(PageSize);
       trace.TraceData(TraceEventType.Warning, 0, "Page size = " + PageSize + " " + NumberOfItems);
