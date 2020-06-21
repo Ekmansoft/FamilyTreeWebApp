@@ -47,7 +47,9 @@ namespace FamilyTreeServices.Pages.ProfileResults
     public enum FilterType
     {
       InexactDates,
-      MissingDates,
+      MissingBirthDeathDate,
+      MissingMarriageDate,
+      UnknownSex,
       UnknownLocation,
       //EventErrors,
       ParentIssues,
@@ -56,6 +58,7 @@ namespace FamilyTreeServices.Pages.ProfileResults
       Twins,
       //ChildIssues,
       UnreasonableDates,
+      OldPrivateProfile,
       Duplicate,
       MissingPartnerMitigated,
       Hidden,
@@ -131,8 +134,9 @@ namespace FamilyTreeServices.Pages.ProfileResults
         case Issue.IssueType.FatherLimitMax:
         case Issue.IssueType.EventLimitMin:
         case Issue.IssueType.EventLimitMax:
-        case Issue.IssueType.OldPrivateProfile:
           return FilterType.UnreasonableDates;
+        case Issue.IssueType.OldPrivateProfile:
+          return FilterType.OldPrivateProfile;
         case Issue.IssueType.ParentsMissing:
         case Issue.IssueType.ParentsProblem:
         case Issue.IssueType.MarriageProblem:
@@ -148,9 +152,11 @@ namespace FamilyTreeServices.Pages.ProfileResults
         case Issue.IssueType.MissingPartnerMitigated:
           return FilterType.MissingPartnerMitigated;
         case Issue.IssueType.UnknownBirthDeath:
+          return FilterType.MissingBirthDeathDate;
         case Issue.IssueType.UnknownSex:
+          return FilterType.UnknownSex;
         case Issue.IssueType.MissingWeddingDate:
-          return FilterType.MissingDates;
+          return FilterType.MissingMarriageDate;
         case Issue.IssueType.InexactBirthDeath:
           return FilterType.InexactDates;
         case Issue.IssueType.UnknownLocation:
@@ -410,10 +416,13 @@ namespace FamilyTreeServices.Pages.ProfileResults
                                        bool MissingPartnerMitigated,
                                        bool Duplicates,
                                        bool Twins,
-                                       bool FewChildren, 
-                                       bool MissingDates,
+                                       bool FewChildren,
+                                       bool MissingBirthDeathDate,
+                                       bool MissingMarriageDate,
+                                       bool UnknownSex,
                                        bool InexactDates,
                                        bool UnreasonableDates,
+                                       bool OldPrivateProfile,
                                        bool UnknownLocation,
                                        bool Hidden,
                                        bool AllStates,
@@ -426,11 +435,14 @@ namespace FamilyTreeServices.Pages.ProfileResults
       FilterSettingOnPage.Update(FilterType.MissingPartner, MissingPartner);
       FilterSettingOnPage.Update(FilterType.MissingPartnerMitigated, MissingPartnerMitigated);
       FilterSettingOnPage.Update(FilterType.Duplicate, Duplicates);
-      FilterSettingOnPage.Update(FilterType.MissingDates, MissingDates);
+      FilterSettingOnPage.Update(FilterType.MissingBirthDeathDate, MissingBirthDeathDate);
+      FilterSettingOnPage.Update(FilterType.MissingMarriageDate, MissingMarriageDate);
+      FilterSettingOnPage.Update(FilterType.UnknownSex, UnknownSex);
       FilterSettingOnPage.Update(FilterType.InexactDates, InexactDates);
       FilterSettingOnPage.Update(FilterType.Twins,  Twins);
       FilterSettingOnPage.Update(FilterType.FewChildren, FewChildren);
       FilterSettingOnPage.Update(FilterType.UnreasonableDates, UnreasonableDates);
+      FilterSettingOnPage.Update(FilterType.OldPrivateProfile, OldPrivateProfile);
       FilterSettingOnPage.Update(FilterType.UnknownLocation, UnknownLocation);
       FilterSettingOnPage.Update(FilterType.Hidden, Hidden);
       FilterSettingOnPage.Update(FilterType.AllStates, AllStates);

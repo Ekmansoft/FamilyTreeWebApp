@@ -15,20 +15,23 @@
 </h3>
 
 <form method="post">
-  @Html.CheckBox("InexactDates", Model.FilterSettingOnPage.Get(IndexModel.FilterType.InexactDates))Inexact dates<br />
-  @Html.CheckBox("MissingDates", Model.FilterSettingOnPage.Get(IndexModel.FilterType.MissingDates))Missing dates<br />
-  @Html.CheckBox("UnknownLocation", Model.FilterSettingOnPage.Get(IndexModel.FilterType.UnknownLocation))Unknown location<br />
-  @Html.CheckBox("ParentIssues", Model.FilterSettingOnPage.Get(IndexModel.FilterType.ParentIssues))Parent issues<br />
-  @Html.CheckBox("Twins", Model.FilterSettingOnPage.Get(IndexModel.FilterType.Twins))Twins<br />
-  @Html.CheckBox("FewChildren", Model.FilterSettingOnPage.Get(IndexModel.FilterType.FewChildren))Few children<br />
-  @Html.CheckBox("UnreasonableDates", Model.FilterSettingOnPage.Get(IndexModel.FilterType.UnreasonableDates))Unreasonable dates<br />
-  @Html.CheckBox("MissingPartner", Model.FilterSettingOnPage.Get(IndexModel.FilterType.MissingPartner))Missing partners<br />
-  @Html.CheckBox("MissingPartnerMitigated", Model.FilterSettingOnPage.Get(IndexModel.FilterType.MissingPartnerMitigated))Missing partners (mitigated)<br />
-  @Html.CheckBox("Duplicates", Model.FilterSettingOnPage.Get(IndexModel.FilterType.Duplicate))Duplicates<br />
-  @Html.CheckBox("AllStates", Model.AllStates)Show all states<br />
-  @Html.DropDownList("ItemsPerPage", Model.GetPageSizeSelectList(), "Select page size", new { @class = "form-control" })<br />
+    @Html.CheckBox("InexactDates", Model.FilterSettingOnPage.Get(IndexModel.FilterType.InexactDates))Inexact dates<br />
+    @Html.CheckBox("MissingBirthDeathDate", Model.FilterSettingOnPage.Get(IndexModel.FilterType.MissingBirthDeathDate))Missing birth or death date<br />
+    @Html.CheckBox("MissingMariageDate", Model.FilterSettingOnPage.Get(IndexModel.FilterType.MissingMarriageDate))Missing marriage date<br />
+    @Html.CheckBox("UnknownSex", Model.FilterSettingOnPage.Get(IndexModel.FilterType.UnknownSex))Unknown sex<br />
+    @Html.CheckBox("UnknownLocation", Model.FilterSettingOnPage.Get(IndexModel.FilterType.UnknownLocation))Unknown location<br />
+    @Html.CheckBox("ParentIssues", Model.FilterSettingOnPage.Get(IndexModel.FilterType.ParentIssues))Parent issues<br />
+    @Html.CheckBox("Twins", Model.FilterSettingOnPage.Get(IndexModel.FilterType.Twins))Twins<br />
+    @Html.CheckBox("FewChildren", Model.FilterSettingOnPage.Get(IndexModel.FilterType.FewChildren))Few children<br />
+    @Html.CheckBox("UnreasonableDates", Model.FilterSettingOnPage.Get(IndexModel.FilterType.UnreasonableDates))Unreasonable dates<br />
+    @Html.CheckBox("OldPrivateProfile", Model.FilterSettingOnPage.Get(IndexModel.FilterType.OldPrivateProfile))Old private profile<br />
+    @Html.CheckBox("MissingPartner", Model.FilterSettingOnPage.Get(IndexModel.FilterType.MissingPartner))Missing partners<br />
+    @Html.CheckBox("MissingPartnerMitigated", Model.FilterSettingOnPage.Get(IndexModel.FilterType.MissingPartnerMitigated))Missing partners (mitigated)<br />
+    @Html.CheckBox("Duplicates", Model.FilterSettingOnPage.Get(IndexModel.FilterType.Duplicate))Duplicates<br />
+    @Html.CheckBox("AllStates", Model.AllStates)Show all states<br />
+    @Html.DropDownList("ItemsPerPage", Model.GetPageSizeSelectList(), "Select page size", new { @class = "form-control" })<br />
 
-  <input type="submit" />
+    <input type="submit" />
 </form>
 
 @for (int i = 0; i <= Model.GetPageNumber(Model.NumberOfItems); i++)
