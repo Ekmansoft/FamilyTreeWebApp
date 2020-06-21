@@ -27,7 +27,7 @@ namespace FamilyTreeWebApp.Controllers
 
     public void StartNewJob(UserInformation userInfo, Analysis analysis, WebAppIdentity appId, EmailSendSource sendSource)
     {
-      trace.TraceData(TraceEventType.Information, 0, "Trying to start job " + analysis.Id);
+      trace.TraceData(TraceEventType.Information, 0, "StartNewJob() " + analysis.Id);
       if (analysis.StartPersonXref != null)
       {
         progressReporter = new AsyncWorkerProgress(analysis.Id, CompletenessProgress, StopRequestHandler);

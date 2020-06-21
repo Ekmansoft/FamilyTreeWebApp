@@ -12,12 +12,15 @@ using FamilyTreeWebApp.Data;
 //using Microsoft.AspNetCore.Identity.UI;
 using System.Globalization;
 using FamilyTreeWebTools.Services;
+using FamilyTreeWebApp.Services;
 
 namespace FamilyTreeServices.Pages.AnalysisResultView
 {
   [Authorize]
   public class IndexModel : PageModel
   {
+    private readonly WebAppIdentity _appId;
+    private readonly EmailSendSource _emailSendSource;
     public static string FormatDateString(DateTime time)
     {
       DateTime now = DateTime.Now;
@@ -265,10 +268,12 @@ namespace FamilyTreeServices.Pages.AnalysisResultView
     private readonly FamilyTreeDbContext _context;
     private readonly UserManager<IdentityUser> _userManager;
 
-    public IndexModel(FamilyTreeDbContext context, UserManager<IdentityUser> userManager)
+    public IndexModel(FamilyTreeDbContext context, UserManager<IdentityUser> userManager, WebAppIdentity appId, EmailSendSource emailSendSource)
     {
       _context = context;
       _userManager = userManager;
+      _appId = appId;
+      _emailSendSource = emailSendSource;
     }
 
     public IList<Analysis> Analysis { get; set; }
@@ -285,6 +290,7 @@ namespace FamilyTreeServices.Pages.AnalysisResultView
 
         Analysis = _context.Analyses.Where(a => a.UserId == curUser).OrderByDescending(a => a.Id).ToList();
       }
+      FamilyDbContextClass.StartupCheck(_context, _appId, _emailSendSource);
     }
   }
 }

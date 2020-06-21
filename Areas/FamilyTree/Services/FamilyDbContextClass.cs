@@ -24,13 +24,15 @@ namespace FamilyTreeWebApp.Services
     public static void StartupCheck(FamilyTreeDbContext _context, WebAppIdentity appId, EmailSendSource sendSource)
     {
       FamilyTreeDbContext context = null;
-      if(_context != null)
+      trace.TraceData(TraceEventType.Information, 0, "StartupCheck");
+      if (_context != null)
       {
         context = _context;
       }
       else
       {
         context = new FamilyTreeDbContext();
+        trace.TraceData(TraceEventType.Information, 0, "create context...");
       }
       using (context)
       {
