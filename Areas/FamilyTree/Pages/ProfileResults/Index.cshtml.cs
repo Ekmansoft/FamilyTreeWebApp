@@ -47,7 +47,9 @@ namespace FamilyTreeServices.Pages.ProfileResults
     public enum FilterType
     {
       InexactDates,
-      MissingBirthDeathDate,
+      MissingBirthDate,
+      MissingDeathDate,
+      MissingDeathDateEmigrated,
       MissingMarriageDate,
       UnknownSex,
       UnknownLocation,
@@ -151,8 +153,13 @@ namespace FamilyTreeServices.Pages.ProfileResults
           return FilterType.MissingPartner;
         case Issue.IssueType.MissingPartnerMitigated:
           return FilterType.MissingPartnerMitigated;
+        case Issue.IssueType.UnknownBirth:
         case Issue.IssueType.UnknownBirthDeath:
-          return FilterType.MissingBirthDeathDate;
+          return FilterType.MissingBirthDate;
+        case Issue.IssueType.UnknownDeath:
+          return FilterType.MissingDeathDate;
+        case Issue.IssueType.UnknownDeathEmigrated:
+          return FilterType.MissingDeathDateEmigrated;
         case Issue.IssueType.UnknownSex:
           return FilterType.UnknownSex;
         case Issue.IssueType.MissingWeddingDate:
@@ -417,7 +424,9 @@ namespace FamilyTreeServices.Pages.ProfileResults
                                        bool Duplicates,
                                        bool Twins,
                                        bool FewChildren,
-                                       bool MissingBirthDeathDate,
+                                       bool MissingBirthDate,
+                                       bool MissingDeathDate,
+                                       bool MissingDeathDateEmigrated,
                                        bool MissingMarriageDate,
                                        bool UnknownSex,
                                        bool InexactDates,
@@ -435,7 +444,9 @@ namespace FamilyTreeServices.Pages.ProfileResults
       FilterSettingOnPage.Update(FilterType.MissingPartner, MissingPartner);
       FilterSettingOnPage.Update(FilterType.MissingPartnerMitigated, MissingPartnerMitigated);
       FilterSettingOnPage.Update(FilterType.Duplicate, Duplicates);
-      FilterSettingOnPage.Update(FilterType.MissingBirthDeathDate, MissingBirthDeathDate);
+      FilterSettingOnPage.Update(FilterType.MissingBirthDate, MissingBirthDate);
+      FilterSettingOnPage.Update(FilterType.MissingDeathDate, MissingDeathDate);
+      FilterSettingOnPage.Update(FilterType.MissingDeathDateEmigrated, MissingDeathDateEmigrated);
       FilterSettingOnPage.Update(FilterType.MissingMarriageDate, MissingMarriageDate);
       FilterSettingOnPage.Update(FilterType.UnknownSex, UnknownSex);
       FilterSettingOnPage.Update(FilterType.InexactDates, InexactDates);

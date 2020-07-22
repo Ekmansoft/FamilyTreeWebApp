@@ -16,7 +16,9 @@
 
 <form method="post">
     @Html.CheckBox("InexactDates", Model.FilterSettingOnPage.Get(IndexModel.FilterType.InexactDates))Inexact dates<br />
-    @Html.CheckBox("MissingBirthDeathDate", Model.FilterSettingOnPage.Get(IndexModel.FilterType.MissingBirthDeathDate))Missing birth or death date<br />
+    @Html.CheckBox("MissingBirthDate", Model.FilterSettingOnPage.Get(IndexModel.FilterType.MissingBirthDate))Missing birth date<br />
+    @Html.CheckBox("MissingDeathDate", Model.FilterSettingOnPage.Get(IndexModel.FilterType.MissingDeathDate))Missing death date<br />
+    @Html.CheckBox("MissingDeathDateEmigrated", Model.FilterSettingOnPage.Get(IndexModel.FilterType.MissingDeathDateEmigrated))Missing death date (emigrated)<br />
     @Html.CheckBox("MissingMarriageDate", Model.FilterSettingOnPage.Get(IndexModel.FilterType.MissingMarriageDate))Missing marriage date<br />
     @Html.CheckBox("UnknownSex", Model.FilterSettingOnPage.Get(IndexModel.FilterType.UnknownSex))Unknown sex<br />
     @Html.CheckBox("UnknownLocation", Model.FilterSettingOnPage.Get(IndexModel.FilterType.UnknownLocation))Unknown location<br />

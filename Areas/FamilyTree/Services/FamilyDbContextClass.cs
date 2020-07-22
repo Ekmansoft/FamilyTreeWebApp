@@ -175,8 +175,12 @@ namespace FamilyTreeWebApp.Services
           return Issue.IssueType.Twins;
         case SanityCheckLimits.SanityProblemId.inexactBirthDeath_e:
           return Issue.IssueType.InexactBirthDeath;
-        case SanityCheckLimits.SanityProblemId.unknownBirthDeath_e:
-          return Issue.IssueType.UnknownBirthDeath;
+        case SanityCheckLimits.SanityProblemId.unknownBirth_e:
+          return Issue.IssueType.UnknownBirth;
+        case SanityCheckLimits.SanityProblemId.unknownDeath_e:
+          return Issue.IssueType.UnknownDeath;
+        case SanityCheckLimits.SanityProblemId.unknownDeathEmigrated_e:
+          return Issue.IssueType.UnknownDeathEmigrated;
         case SanityCheckLimits.SanityProblemId.parentsMissing_e:
           return Issue.IssueType.ParentsMissing;
         case SanityCheckLimits.SanityProblemId.parentsProblem_e:
