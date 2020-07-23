@@ -99,7 +99,7 @@ namespace FamilyTreeServices.Pages
       if (profileId == null)
       {
         Message = "No profile id";
-        return NotFound();
+        return Page();
       }
       Profile = webTree.GetFamilyTree().GetIndividual(profileId);
       if (Profile == null)
@@ -107,6 +107,7 @@ namespace FamilyTreeServices.Pages
         Message = "Profile " + profileId + " not found";
         return Page();
       }
+      ProfileData = GetProfileInfo(Profile);
 
       return Page();
     }
