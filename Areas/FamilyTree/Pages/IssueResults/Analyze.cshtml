@@ -11,17 +11,17 @@
     <h4>Issue</h4>
     <hr />
     <div>
-        @if (Model.Profile1.Url != null)
+        @if (Model.Profile.Url != null)
         {
-            <a href="@Html.DisplayFor(model => model.Profile1.Url)">
-                @Html.DisplayFor(model => model.Profile1.Name)
+            <a href="@Html.DisplayFor(model => model.Profile.Url)">
+                @Html.DisplayFor(model => model.Profile.Name)
             </a>
         }
         else
         {
-            @Html.DisplayFor(model => model.Profile1.Name)
+            @Html.DisplayFor(model => model.Profile.Name)
         }
-        @Html.DisplayFor(model => model.Profile1.Birth) - @Html.DisplayFor(model => model.Profile1.Death)
+        @Html.DisplayFor(model => model.Profile.Birth) - @Html.DisplayFor(model => model.Profile.Death)
     </div>
     <dl class="dl-horizontal">
         <dt>

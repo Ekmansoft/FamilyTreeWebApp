@@ -44,9 +44,14 @@ namespace FamilyTreeServices.Pages.IssueResults
     }
 
     public Issue Issue { get; set; }
-    public Profile Profile1 { get; set; }
+    public Profile Profile { get; set; }
 
     public string ExternalLink { get; set; }
+
+    public string CreateLink(string id)
+    {
+      return "../Geni/ShowProfile/" + id;
+    }
 
     public async Task<IActionResult> OnGetAsync(int? id, int? status)
     {
@@ -88,9 +93,9 @@ namespace FamilyTreeServices.Pages.IssueResults
         return NotFound();
       }
       //trace.TraceData(TraceEventType.Information, 0, "MergeDup id-1 " + id);
-      Profile1 = await _context.Profiles.FindAsync(Issue.ProfileId);
+      Profile = await _context.Profiles.FindAsync(Issue.ProfileId);
 
-      if (Profile1 == null)
+      if (Profile == null)
       {
         return NotFound();
       }
@@ -105,7 +110,7 @@ namespace FamilyTreeServices.Pages.IssueResults
         {
           if (param.Length > 0)
           {
-            ExternalLink = CreateCompareLink(Profile1.Url, param);
+            ExternalLink = CreateCompareLink(Profile.Url, param);
           }
         }
         trace.TraceData(TraceEventType.Information, 0, "Analyze id-4 " + id);
@@ -113,7 +118,7 @@ namespace FamilyTreeServices.Pages.IssueResults
       else
       {
         trace.TraceData(TraceEventType.Information, 0, "Analyze id-5 " + id);
-        ExternalLink = Profile1.Url;
+        ExternalLink = CreateLink(Profile.TreeId);
       }
 
       return Page();
