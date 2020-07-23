@@ -7,9 +7,8 @@
 <h3>@ViewData["Message"]</h3>
 
 <div>
-    <h4>Issue</h4>
-    <hr />
-    <div>
+    @if (Model.ProfileData != null)
+    {
         @if (Model.ProfileData.Url != null)
         {
             <a href="@Html.DisplayFor(model => model.ProfileData.Url)">
@@ -20,6 +19,6 @@
         {
             @Html.DisplayFor(model => model.ProfileData.Name)
         }
-        @Html.DisplayFor(model => model.ProfileData.BirthDate) - @Html.DisplayFor(model => model.ProfileData.DeathDate)
-    </div>
+        <div>Html.DisplayFor(model => model.ProfileData.BirthDate) - Html.DisplayFor(model => model.ProfileData.DeathDate)</div>
+    }
 </div>
