@@ -65,6 +65,13 @@ namespace FamilyTreeServices.Pages
     {
       if (ev != null)
       {
+        AddressClass address = ev.GetAddress();
+
+        if (address != null)
+        {
+          return address.ToString();
+        }
+
         PlaceStructureClass place = ev.GetPlace();
 
         if (place != null)
