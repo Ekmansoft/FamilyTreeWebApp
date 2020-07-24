@@ -77,7 +77,7 @@ namespace FamilyTreeServices.Pages
 
   public class GeniShowProfileModel : PageModel
   {
-    private static readonly TraceSource trace = new TraceSource("GeniShowProfileModel", SourceLevels.Verbose);
+    private static readonly TraceSource trace = new TraceSource("GeniShowProfileModel", SourceLevels.Warning);
     private readonly FamilyTreeDbContext _context;
     private readonly WebAppIdentity _appId;
     private readonly UserManager<IdentityUser> _userManager;
@@ -199,14 +199,14 @@ namespace FamilyTreeServices.Pages
 
       IList<FamilyXrefClass> spouseFamilies = Profile.GetFamilySpouseList();
       int familyCount = 1;
-      foreach (FamilyXrefClass spouseFamXref in spouseFamilies)
+      foreach (FamilyXrefClass focusFamXref in spouseFamilies)
       {
         ExtendedFamilyInfo family = new ExtendedFamilyInfo("Own family " + familyCount);
 
         // Add spouses in this marriage / relation
-        FamilyClass SpouseFamily = webTree.GetFamilyTree().GetFamily(spouseFamXref.GetXrefName());
-        IList<IndividualXrefClass> SpouseXrefs = SpouseFamily.GetParentList();
-        IndividualEventClass marriage = SpouseFamily.GetEvent(IndividualEventClass.EventType.FamMarriage);
+        FamilyClass FocusFamily = webTree.GetFamilyTree().GetFamily(focusFamXref.GetXrefName());
+        IList<IndividualXrefClass> SpouseXrefs = FocusFamily.GetParentList();
+        IndividualEventClass marriage = FocusFamily.GetEvent(IndividualEventClass.EventType.FamMarriage);
         if ((marriage != null) && marriage.GetDate().ValidDate())
         {
           DateTime marriageDate = marriage.GetDate().ToDateTime();
@@ -224,7 +224,7 @@ namespace FamilyTreeServices.Pages
         }
 
         // Add children in this relation
-        IList<IndividualXrefClass> ChildXrefs = SpouseFamily.GetChildList();
+        IList<IndividualXrefClass> ChildXrefs = FocusFamily.GetChildList();
         foreach (IndividualXrefClass childXref in ChildXrefs)
         {
           trace.TraceData(TraceEventType.Information, 0, "Own fam child " + childXref.GetXrefName() + " " + familyCount);
@@ -245,6 +245,12 @@ namespace FamilyTreeServices.Pages
         ExtendedFamilyInfo family = new ExtendedFamilyInfo("");
         FamilyClass FocusFamily = webTree.GetFamilyTree().GetFamily(focusFamXref.GetXrefName());
 
+        IndividualEventClass marriage = FocusFamily.GetEvent(IndividualEventClass.EventType.FamMarriage);
+        if ((marriage != null) && marriage.GetDate().ValidDate())
+        {
+          DateTime marriageDate = marriage.GetDate().ToDateTime();
+          family.MarriageDate = marriageDate.ToString();
+        }
         // Add siblings in this family
         IList<IndividualXrefClass> SpouseXrefs = FocusFamily.GetParentList();
         foreach (IndividualXrefClass spouseXref in SpouseXrefs)
