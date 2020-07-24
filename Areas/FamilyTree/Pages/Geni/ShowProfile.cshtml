@@ -19,6 +19,7 @@
         {
             @Html.DisplayFor(model => model.ProfileData.Name)
         }
-        <div>Html.DisplayFor(model => model.ProfileData.BirthDate) - Html.DisplayFor(model => model.ProfileData.DeathDate)</div>
+        <div>Born: @Html.DisplayFor(model => model.ProfileData.BirthDate) in @Html.DisplayFor(model => model.ProfileData.BirthPlace)</div>
+        <div>Died: @Html.DisplayFor(model => model.ProfileData.DeathDate) in @Html.DisplayFor(model => model.ProfileData.DeathPlace)</div>
     }
 </div>

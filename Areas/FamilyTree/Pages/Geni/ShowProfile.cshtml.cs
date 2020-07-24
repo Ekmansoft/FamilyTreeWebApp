@@ -48,6 +48,33 @@ namespace FamilyTreeServices.Pages
     private readonly WebAppIdentity _appId;
     private readonly UserManager<IdentityUser> _userManager;
 
+    public static string GetEventDateString(IndividualEventClass ev)
+    {
+      if (ev != null)
+      {
+        FamilyDateTimeClass date = ev.GetDate();
+
+        if (date != null)
+        {
+          return date.ToString();
+        }
+      }
+      return "";
+    }
+    public static string GetEventPlaceString(IndividualEventClass ev)
+    {
+      if (ev != null)
+      {
+        PlaceStructureClass place = ev.GetPlace();
+
+        if (place != null)
+        {
+          return place.ToString();
+        }
+      }
+      return "";
+    }
+
     public GeniShowProfileModel(WebAppIdentity appId, UserManager<IdentityUser> userManager, FamilyTreeDbContext context)
     {
       _context = context;
@@ -60,10 +87,12 @@ namespace FamilyTreeServices.Pages
       SimpleProfileInfo Result = new SimpleProfileInfo(profile.GetXrefName());
 
       Result.Name = profile.GetName();
-      Result.BirthDate = AncestorStatistics.GetEventDateString(profile, IndividualEventClass.EventType.Birth);
-      Result.DeathDate = AncestorStatistics.GetEventDateString(profile, IndividualEventClass.EventType.Death);
-      //Result.BirthPlace = "";
-      //Result.BirthPlace = "";
+      IndividualEventClass birthEvent = profile.GetEvent(IndividualEventClass.EventType.Birth);
+      IndividualEventClass deathEvent = profile.GetEvent(IndividualEventClass.EventType.Death);
+      Result.BirthDate = GetEventDateString(birthEvent);
+      Result.DeathDate = GetEventDateString(deathEvent);
+      Result.BirthPlace = GetEventPlaceString(birthEvent);
+      Result.DeathPlace = GetEventPlaceString(deathEvent);
 
       IList<string> urls = profile.GetUrlList();
 
