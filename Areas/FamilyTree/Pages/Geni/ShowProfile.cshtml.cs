@@ -54,6 +54,7 @@ namespace FamilyTreeServices.Pages
     public SimpleProfileInfo()
     {
       Name = "";
+      Sex = "";
       Id = "";
       BirthDate = "";
       DeathDate = "";
@@ -63,6 +64,7 @@ namespace FamilyTreeServices.Pages
 
     }
     public string Name { get; set; }
+    public string Sex { get; set; }
     public string Id { get; set; }
     public string BirthDate { get; set; }
     public string BirthPlace { get; set; }
@@ -132,6 +134,18 @@ namespace FamilyTreeServices.Pages
       Result.DeathDate = GetEventDateString(deathEvent);
       Result.BirthPlace = GetEventPlaceString(birthEvent);
       Result.DeathPlace = GetEventPlaceString(deathEvent);
+      switch (profile.GetSex())
+      {
+        case IndividualClass.IndividualSexType.Unknown:
+          Result.Sex = "Unknown";
+          break;
+        case IndividualClass.IndividualSexType.Male:
+          Result.Sex = "Male";
+          break;
+        case IndividualClass.IndividualSexType.Female:
+          Result.Sex = "Female";
+          break;
+      };
 
       IList<string> urls = profile.GetUrlList();
 
