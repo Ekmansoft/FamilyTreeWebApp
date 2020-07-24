@@ -22,4 +22,19 @@
         <div>Born: @Html.DisplayFor(model => model.ProfileData.BirthDate) in @Html.DisplayFor(model => model.ProfileData.BirthPlace)</div>
         <div>Died: @Html.DisplayFor(model => model.ProfileData.DeathDate) in @Html.DisplayFor(model => model.ProfileData.DeathPlace)</div>
     }
+    @if (Model.ExtendedProfile != null)
+    {
+        @foreach (ExtendedFamilyInfo family in Model.ExtendedProfile.ChildInFamilies)
+        {
+            <div> @Html.ViewData[family.Title]</div>
+            @foreach (SimpleProfileInfo profile in family.Spouses)
+            {
+                <a href="@Html.ViewData[profile.Url]">
+                    @Html.ViewData[profile.Name]
+                </a>
+                <div>Born: @Html.ViewData[profile.BirthDate] in @Html.ViewData[profile.BirthPlace]</div>
+                <div>Died: @Html.ViewData[profile.DeathDate] in @Html.ViewData[profile.DeathPlace]</div>
+            }
+        }
+    }
 </div>

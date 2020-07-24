@@ -19,17 +19,45 @@ namespace FamilyTreeServices.Pages
 {
   [Authorize]
 
+  public class ExtendedFamilyInfo
+  {
+    public ExtendedFamilyInfo(string title)
+    {
+      Title = title;
+      IList<SimpleProfileInfo> Spouses = new List<SimpleProfileInfo>();
+      IList<SimpleProfileInfo> Children = new List<SimpleProfileInfo>();
+    }
+
+    public string Title;
+    public IList<SimpleProfileInfo> Spouses;
+    public IList<SimpleProfileInfo> Children;
+  }
+  public class ExtendedProfileInfo
+  {
+    public ExtendedProfileInfo()
+    {
+      SimpleProfileInfo MainProfile = new SimpleProfileInfo();
+      IList<ExtendedFamilyInfo> SpouseInFamilies = new List<ExtendedFamilyInfo>();
+      IList<ExtendedFamilyInfo> ChildInFamilies = new List<ExtendedFamilyInfo>();
+    }
+
+    public SimpleProfileInfo MainProfile;
+    public IList<ExtendedFamilyInfo> SpouseInFamilies;
+    public IList<ExtendedFamilyInfo> ChildInFamilies;
+  }
+
   public class SimpleProfileInfo
   {
 
-    public SimpleProfileInfo(string id)
+    public SimpleProfileInfo()
     {
       Name = "";
-      Id = id;
+      Id = "";
       BirthDate = "";
       DeathDate = "";
       BirthPlace = "";
       DeathPlace = "";
+      Url = "";
 
     }
     public string Name { get; set; }
@@ -91,9 +119,10 @@ namespace FamilyTreeServices.Pages
 
     public static SimpleProfileInfo GetProfileInfo(IndividualClass profile)
     {
-      SimpleProfileInfo Result = new SimpleProfileInfo(profile.GetXrefName());
+      SimpleProfileInfo Result = new SimpleProfileInfo();
 
       Result.Name = profile.GetName();
+      Result.Id = profile.GetXrefName();
       IndividualEventClass birthEvent = profile.GetEvent(IndividualEventClass.EventType.Birth);
       IndividualEventClass deathEvent = profile.GetEvent(IndividualEventClass.EventType.Death);
       Result.BirthDate = GetEventDateString(birthEvent);
@@ -113,6 +142,8 @@ namespace FamilyTreeServices.Pages
     public string Message { get; set; }
 
     public IndividualClass Profile { get; set; }
+
+    public ExtendedProfileInfo ExtendedProfile { get; set; }
 
     public SimpleProfileInfo ProfileData { get; set; }
 
@@ -144,6 +175,74 @@ namespace FamilyTreeServices.Pages
         return Page();
       }
       ProfileData = GetProfileInfo(Profile);
+      ExtendedProfile.MainProfile = GetProfileInfo(Profile);
+
+      IList<FamilyXrefClass> spouseFamilies = Profile.GetFamilySpouseList();
+      int familyCount = 1;
+      foreach (FamilyXrefClass spouseFamXref in spouseFamilies)
+      {
+        ExtendedFamilyInfo family = new ExtendedFamilyInfo("Own family " + familyCount);
+
+        // Add spouses in this marriage / relation
+        FamilyClass SpouseFamily = webTree.GetFamilyTree().GetFamily(spouseFamXref.GetXrefName());
+        IList<IndividualXrefClass> SpouseXrefs = SpouseFamily.GetParentList();
+        foreach (IndividualXrefClass spouseXref in SpouseXrefs)
+        {
+          // Skip current profile when listing spouses
+          if (spouseXref.GetXrefName() != profileId)
+          {
+            IndividualClass Spouse = webTree.GetFamilyTree().GetIndividual(spouseXref.GetXrefName());
+            family.Spouses.Add(GetProfileInfo(Spouse));
+          }
+        }
+
+        // Add children in this relation
+        IList<IndividualXrefClass> ChildXrefs = SpouseFamily.GetChildList();
+        foreach (IndividualXrefClass childXref in ChildXrefs)
+        {
+          // Skip current profile when listing children
+          if (childXref.GetXrefName() != profileId)
+          {
+            IndividualClass Child = webTree.GetFamilyTree().GetIndividual(childXref.GetXrefName());
+            family.Children.Add(GetProfileInfo(Child));
+          }
+        }
+        ExtendedProfile.SpouseInFamilies.Add(family);
+        familyCount++;
+      }
+      IList<FamilyXrefClass> childFamilies = Profile.GetFamilyChildList();
+      familyCount = 1;
+      foreach (FamilyXrefClass focusFamXref in childFamilies)
+      {
+        ExtendedFamilyInfo family = new ExtendedFamilyInfo("Raised in family " + familyCount);
+        FamilyClass FocusFamily = webTree.GetFamilyTree().GetFamily(focusFamXref.GetXrefName());
+
+        // Add siblings in this family
+        IList<IndividualXrefClass> SpouseXrefs = FocusFamily.GetParentList();
+        foreach (IndividualXrefClass spouseXref in SpouseXrefs)
+        {
+          // Skip current profile when listing spouses
+          if (spouseXref.GetXrefName() != profileId)
+          {
+            IndividualClass Spouse = webTree.GetFamilyTree().GetIndividual(spouseXref.GetXrefName());
+            family.Spouses.Add(GetProfileInfo(Spouse));
+          }
+        }
+
+        // Add children in this relation
+        IList<IndividualXrefClass> ChildXrefs = FocusFamily.GetChildList();
+        foreach (IndividualXrefClass childXref in ChildXrefs)
+        {
+          // Skip current profile when listing children
+          if (childXref.GetXrefName() != profileId)
+          {
+            IndividualClass Child = webTree.GetFamilyTree().GetIndividual(childXref.GetXrefName());
+            family.Children.Add(GetProfileInfo(Child));
+          }
+        }
+        ExtendedProfile.ChildInFamilies.Add(family);
+        familyCount++;
+      }
 
       return Page();
     }
