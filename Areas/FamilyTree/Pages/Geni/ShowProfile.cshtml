@@ -27,7 +27,7 @@
         @foreach (ExtendedFamilyInfo family in Model.ExtendedProfile.ChildInFamilies)
         {
 <div>
-    <h4>@Html.DisplayFor(myTitle => family.Title) spouses</h4>
+    <h4>@Html.DisplayFor(myTitle => family.Title) parents (@Html.DisplayFor(myTitle => family.MarriageDate))</h4>
     @foreach (SimpleProfileInfo profile in family.Spouses)
     {
         @Html.DisplayFor(myUrl => profile.Sex) <a href="@Html.DisplayFor(myUrl => profile.Url)">
@@ -38,7 +38,7 @@
     }
 </div>
 <div>
-    <h4>@Html.DisplayFor(myTitle => family.Title) children</h4>
+    <h4>@Html.DisplayFor(myTitle => family.Title) siblings</h4>
     @foreach (SimpleProfileInfo profile in family.Children)
     {
         @Html.DisplayFor(myUrl => profile.Sex) <a href="@Html.DisplayFor(myUrl => profile.Url)">
@@ -52,7 +52,7 @@
         @foreach (ExtendedFamilyInfo family in Model.ExtendedProfile.SpouseInFamilies)
         {
 <div>
-    <h4>@Html.DisplayFor(myTitle => family.Title) spouses</h4>
+    <h4>@Html.DisplayFor(myTitle => family.Title) spouses (@Html.DisplayFor(myTitle => family.MarriageDate))</h4>
     @foreach (SimpleProfileInfo profile in family.Spouses)
     {
         @Html.DisplayFor(myUrl => profile.Sex) <a href="@Html.DisplayFor(myUrl => profile.Url)">
@@ -63,7 +63,7 @@
     }
 </div>
 <div>
-    <h4>@Html.DisplayFor(myTitle => family.Title) children</h4>
+    <h4>@Html.DisplayFor(myTitle => family.Title) own children</h4>
     @foreach (SimpleProfileInfo profile in family.Children)
     {
         @Html.DisplayFor(myUrl => profile.Sex) <a href="@Html.DisplayFor(myUrl => profile.Url)">

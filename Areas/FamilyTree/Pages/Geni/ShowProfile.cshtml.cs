@@ -26,11 +26,13 @@ namespace FamilyTreeServices.Pages
       Title = title;
       Spouses = new List<SimpleProfileInfo>();
       Children = new List<SimpleProfileInfo>();
+      MarriageDate = "";
     }
 
     public string Title;
     public IList<SimpleProfileInfo> Spouses;
     public IList<SimpleProfileInfo> Children;
+    public string MarriageDate;
   }
   public class ExtendedProfileInfo
   {
@@ -204,6 +206,12 @@ namespace FamilyTreeServices.Pages
         // Add spouses in this marriage / relation
         FamilyClass SpouseFamily = webTree.GetFamilyTree().GetFamily(spouseFamXref.GetXrefName());
         IList<IndividualXrefClass> SpouseXrefs = SpouseFamily.GetParentList();
+        IndividualEventClass marriage = SpouseFamily.GetEvent(IndividualEventClass.EventType.FamMarriage);
+        if ((marriage != null) && marriage.GetDate().ValidDate())
+        {
+          DateTime marriageDate = marriage.GetDate().ToDateTime();
+          family.MarriageDate = marriageDate.ToString();
+        }
         foreach (IndividualXrefClass spouseXref in SpouseXrefs)
         {
           trace.TraceData(TraceEventType.Information, 0, "Own fam spouse " + spouseXref.GetXrefName() + " " + familyCount);
