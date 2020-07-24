@@ -24,8 +24,8 @@ namespace FamilyTreeServices.Pages
     public ExtendedFamilyInfo(string title)
     {
       Title = title;
-      IList<SimpleProfileInfo> Spouses = new List<SimpleProfileInfo>();
-      IList<SimpleProfileInfo> Children = new List<SimpleProfileInfo>();
+      Spouses = new List<SimpleProfileInfo>();
+      Children = new List<SimpleProfileInfo>();
     }
 
     public string Title;
@@ -36,9 +36,9 @@ namespace FamilyTreeServices.Pages
   {
     public ExtendedProfileInfo()
     {
-      SimpleProfileInfo MainProfile = new SimpleProfileInfo();
-      IList<ExtendedFamilyInfo> SpouseInFamilies = new List<ExtendedFamilyInfo>();
-      IList<ExtendedFamilyInfo> ChildInFamilies = new List<ExtendedFamilyInfo>();
+      MainProfile = new SimpleProfileInfo();
+      SpouseInFamilies = new List<ExtendedFamilyInfo>();
+      ChildInFamilies = new List<ExtendedFamilyInfo>();
     }
 
     public SimpleProfileInfo MainProfile;
