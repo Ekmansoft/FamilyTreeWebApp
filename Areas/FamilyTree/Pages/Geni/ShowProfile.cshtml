@@ -19,8 +19,8 @@
         {
             @Html.DisplayFor(model => model.ProfileData.Name)
         }
-        <div>Born: @Html.DisplayFor(model => model.ProfileData.BirthDate) in @Html.DisplayFor(model => model.ProfileData.BirthPlace)</div>
-        <div>Died: @Html.DisplayFor(model => model.ProfileData.DeathDate) in @Html.DisplayFor(model => model.ProfileData.DeathPlace)</div>
+        <p>b: @Html.DisplayFor(model => model.ProfileData.BirthDate) in @Html.DisplayFor(model => model.ProfileData.BirthPlace)</p>
+        <p>d: @Html.DisplayFor(model => model.ProfileData.DeathDate) in @Html.DisplayFor(model => model.ProfileData.DeathPlace)</p>
     }
     @if (Model.ExtendedProfile != null)
     {
@@ -28,14 +28,21 @@
         {
 <div>
     <h4>@Html.DisplayFor(myTitle => family.Title) parents (@Html.DisplayFor(myTitle => family.MarriageDate))</h4>
-    @foreach (SimpleProfileInfo profile in family.Spouses)
-    {
-        @Html.DisplayFor(myUrl => profile.Sex) <a href="@Html.DisplayFor(myUrl => profile.Url)">
-            @Html.DisplayFor(myUrl => profile.Name)
-        </a>
-        <div>Born: @Html.DisplayFor(myDate => profile.BirthDate) in @Html.DisplayFor(myDate => profile.BirthPlace)</div>
-        <div>Died: @Html.DisplayFor(myDate => profile.DeathDate) in @Html.DisplayFor(myDate => profile.DeathPlace)</div>
-    }
+    <ul>
+        @foreach (SimpleProfileInfo profile in family.Spouses)
+        {
+            <div style="background-color:black;color:white;padding:20px;">
+                <h5>
+                    @Html.DisplayFor(myUrl => profile.Sex)
+                                <a href="@Html.DisplayFor(myUrl => profile.Url)">
+                                    @Html.DisplayFor(myUrl => profile.Name)
+                                </a>
+                            </h5>
+                <p>b: @Html.DisplayFor(myDate => profile.BirthDate) in @Html.DisplayFor(myDate => profile.BirthPlace)</p>
+                <p>d: @Html.DisplayFor(myDate => profile.DeathDate) in @Html.DisplayFor(myDate => profile.DeathPlace)</p>
+            </div>
+            }
+    </ul>
 </div>
 <div>
     <h4>@Html.DisplayFor(myTitle => family.Title) siblings</h4>
@@ -44,8 +51,8 @@
         @Html.DisplayFor(myUrl => profile.Sex) <a href="@Html.DisplayFor(myUrl => profile.Url)">
             @Html.DisplayFor(myUrl => profile.Name)
         </a>
-        <div>Born: @Html.DisplayFor(myDate => profile.BirthDate) in @Html.DisplayFor(myDate => profile.BirthPlace)</div>
-        <div>Died: @Html.DisplayFor(myDate => profile.DeathDate) in @Html.DisplayFor(myDate => profile.DeathPlace)</div>
+        <p>b: @Html.DisplayFor(myDate => profile.BirthDate) in @Html.DisplayFor(myDate => profile.BirthPlace)</p>
+        <p>d: @Html.DisplayFor(myDate => profile.DeathDate) in @Html.DisplayFor(myDate => profile.DeathPlace)</p>
     }
 </div>
         }
@@ -58,8 +65,8 @@
         @Html.DisplayFor(myUrl => profile.Sex) <a href="@Html.DisplayFor(myUrl => profile.Url)">
             @Html.DisplayFor(myUrl => profile.Name)
         </a>
-        <div>Born: @Html.DisplayFor(myDate => profile.BirthDate) in @Html.DisplayFor(myDate => profile.BirthPlace)</div>
-        <div>Died: @Html.DisplayFor(myDate => profile.DeathDate) in @Html.DisplayFor(myDate => profile.DeathPlace)</div>
+        <p>b: @Html.DisplayFor(myDate => profile.BirthDate) in @Html.DisplayFor(myDate => profile.BirthPlace)</p>
+        <p>d: @Html.DisplayFor(myDate => profile.DeathDate) in @Html.DisplayFor(myDate => profile.DeathPlace)</p>
     }
 </div>
 <div>
@@ -69,8 +76,8 @@
         @Html.DisplayFor(myUrl => profile.Sex) <a href="@Html.DisplayFor(myUrl => profile.Url)">
             @Html.DisplayFor(myUrl => profile.Name)
         </a>
-        <div>Born: @Html.DisplayFor(myDate => profile.BirthDate) in @Html.DisplayFor(myDate => profile.BirthPlace)</div>
-        <div>Died: @Html.DisplayFor(myDate => profile.DeathDate) in @Html.DisplayFor(myDate => profile.DeathPlace)</div>
+        <p>b: @Html.DisplayFor(myDate => profile.BirthDate) in @Html.DisplayFor(myDate => profile.BirthPlace)</p>
+        <p>d: @Html.DisplayFor(myDate => profile.DeathDate) in @Html.DisplayFor(myDate => profile.DeathPlace)</p>
     }
 </div>
         }

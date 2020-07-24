@@ -242,14 +242,14 @@ namespace FamilyTreeServices.Pages
       familyCount = 1;
       foreach (FamilyXrefClass focusFamXref in childFamilies)
       {
-        ExtendedFamilyInfo family = new ExtendedFamilyInfo("Raised in family " + familyCount);
+        ExtendedFamilyInfo family = new ExtendedFamilyInfo("");
         FamilyClass FocusFamily = webTree.GetFamilyTree().GetFamily(focusFamXref.GetXrefName());
 
         // Add siblings in this family
         IList<IndividualXrefClass> SpouseXrefs = FocusFamily.GetParentList();
         foreach (IndividualXrefClass spouseXref in SpouseXrefs)
         {
-          trace.TraceData(TraceEventType.Information, 0, "Raised in fam spouse " + spouseXref.GetXrefName() + " " + familyCount);
+          trace.TraceData(TraceEventType.Information, 0, "Parent " + spouseXref.GetXrefName() + " " + familyCount);
           // Skip current profile when listing spouses
           if (spouseXref.GetXrefName() != profileId)
           {
