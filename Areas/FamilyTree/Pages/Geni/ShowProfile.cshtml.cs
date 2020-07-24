@@ -121,6 +121,7 @@ namespace FamilyTreeServices.Pages
     {
       SimpleProfileInfo Result = new SimpleProfileInfo();
 
+      trace.TraceData(TraceEventType.Information, 0, "Profile " + profile.GetXrefName() + " " + profile.GetName());
       Result.Name = profile.GetName();
       Result.Id = profile.GetXrefName();
       IndividualEventClass birthEvent = profile.GetEvent(IndividualEventClass.EventType.Birth);
@@ -189,6 +190,7 @@ namespace FamilyTreeServices.Pages
         IList<IndividualXrefClass> SpouseXrefs = SpouseFamily.GetParentList();
         foreach (IndividualXrefClass spouseXref in SpouseXrefs)
         {
+          trace.TraceData(TraceEventType.Information, 0, "Own fam spouse " + spouseXref.GetXrefName() + " " + familyCount);
           // Skip current profile when listing spouses
           if (spouseXref.GetXrefName() != profileId)
           {
@@ -201,6 +203,7 @@ namespace FamilyTreeServices.Pages
         IList<IndividualXrefClass> ChildXrefs = SpouseFamily.GetChildList();
         foreach (IndividualXrefClass childXref in ChildXrefs)
         {
+          trace.TraceData(TraceEventType.Information, 0, "Own fam child " + childXref.GetXrefName() + " " + familyCount);
           // Skip current profile when listing children
           if (childXref.GetXrefName() != profileId)
           {
@@ -222,6 +225,7 @@ namespace FamilyTreeServices.Pages
         IList<IndividualXrefClass> SpouseXrefs = FocusFamily.GetParentList();
         foreach (IndividualXrefClass spouseXref in SpouseXrefs)
         {
+          trace.TraceData(TraceEventType.Information, 0, "Raised in fam spouse " + spouseXref.GetXrefName() + " " + familyCount);
           // Skip current profile when listing spouses
           if (spouseXref.GetXrefName() != profileId)
           {
@@ -234,6 +238,7 @@ namespace FamilyTreeServices.Pages
         IList<IndividualXrefClass> ChildXrefs = FocusFamily.GetChildList();
         foreach (IndividualXrefClass childXref in ChildXrefs)
         {
+          trace.TraceData(TraceEventType.Information, 0, "Raised in fam child " + childXref.GetXrefName() + " " + familyCount);
           // Skip current profile when listing children
           if (childXref.GetXrefName() != profileId)
           {

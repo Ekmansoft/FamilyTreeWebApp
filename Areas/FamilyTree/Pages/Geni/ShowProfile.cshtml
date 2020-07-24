@@ -26,14 +26,14 @@
     {
         @foreach (ExtendedFamilyInfo family in Model.ExtendedProfile.ChildInFamilies)
         {
-            <div> @Html.ViewData[family.Title]</div>
+            <div> @Html.DisplayFor(myTitle => family.Title)</div>
             @foreach (SimpleProfileInfo profile in family.Spouses)
             {
-                <a href="@Html.ViewData[profile.Url]">
-                    @Html.ViewData[profile.Name]
+                <a href="@Html.DisplayFor(myUrl => profile.Url)">
+                    @Html.DisplayFor(myUrl => profile.Url)
                 </a>
-                <div>Born: @Html.ViewData[profile.BirthDate] in @Html.ViewData[profile.BirthPlace]</div>
-                <div>Died: @Html.ViewData[profile.DeathDate] in @Html.ViewData[profile.DeathPlace]</div>
+                <div>Born: @Html.DisplayFor(myDate => profile.BirthDate) in @Html.DisplayFor(myDate => profile.BirthPlace)</div>
+                <div>Died: @Html.DisplayFor(myDate => profile.DeathDate) in @Html.DisplayFor(myDate => profile.DeathPlace)</div>
             }
         }
     }
