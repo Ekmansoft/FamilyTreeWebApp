@@ -201,7 +201,7 @@ namespace FamilyTreeServices.Pages
       int familyCount = 1;
       foreach (FamilyXrefClass focusFamXref in spouseFamilies)
       {
-        ExtendedFamilyInfo family = new ExtendedFamilyInfo("Own family " + familyCount);
+        ExtendedFamilyInfo family = new ExtendedFamilyInfo("F" + familyCount);
 
         // Add spouses in this marriage / relation
         FamilyClass FocusFamily = webTree.GetFamilyTree().GetFamily(focusFamXref.GetXrefName());
@@ -214,7 +214,7 @@ namespace FamilyTreeServices.Pages
         }
         foreach (IndividualXrefClass spouseXref in SpouseXrefs)
         {
-          trace.TraceData(TraceEventType.Information, 0, "Own fam spouse " + spouseXref.GetXrefName() + " " + familyCount);
+          trace.TraceData(TraceEventType.Information, 0, "Spouse " + spouseXref.GetXrefName() + " " + familyCount);
           // Skip current profile when listing spouses
           if (spouseXref.GetXrefName() != profileId)
           {
@@ -227,7 +227,7 @@ namespace FamilyTreeServices.Pages
         IList<IndividualXrefClass> ChildXrefs = FocusFamily.GetChildList();
         foreach (IndividualXrefClass childXref in ChildXrefs)
         {
-          trace.TraceData(TraceEventType.Information, 0, "Own fam child " + childXref.GetXrefName() + " " + familyCount);
+          trace.TraceData(TraceEventType.Information, 0, "Child " + childXref.GetXrefName() + " " + familyCount);
           // Skip current profile when listing children
           if (childXref.GetXrefName() != profileId)
           {
