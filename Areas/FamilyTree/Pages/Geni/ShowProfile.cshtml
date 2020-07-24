@@ -9,18 +9,15 @@
 <div>
     @if (Model.ProfileData != null)
     {
-        @if (Model.ProfileData.Url != null)
-        {
-            <a href="@Html.DisplayFor(model => model.ProfileData.Url)">
-                @Html.DisplayFor(model => model.ProfileData.Name)
-            </a>
-        }
-        else
-        {
-            @Html.DisplayFor(model => model.ProfileData.Name)
-        }
-        <p>b: @Html.DisplayFor(model => model.ProfileData.BirthDate) in @Html.DisplayFor(model => model.ProfileData.BirthPlace)</p>
-        <p>d: @Html.DisplayFor(model => model.ProfileData.DeathDate) in @Html.DisplayFor(model => model.ProfileData.DeathPlace)</p>
+        <div style="background-color:white;padding:20px;">
+            <h6>
+                <a href="@Html.DisplayFor(model => model.ProfileData.Url)">
+                    @Html.DisplayFor(model => model.ProfileData.Name)
+                </a> (@Html.DisplayFor(model => model.ProfileData.Sex))
+            </h6>
+            <p>b: @Html.DisplayFor(model => model.ProfileData.BirthDate) in @Html.DisplayFor(model => model.ProfileData.BirthPlace)</p>
+            <p>d: @Html.DisplayFor(model => model.ProfileData.DeathDate) in @Html.DisplayFor(model => model.ProfileData.DeathPlace)</p>
+        </div>
     }
     @if (Model.ExtendedProfile != null)
     {
@@ -30,7 +27,7 @@
                 <h5>@Html.DisplayFor(myTitle => family.Title) (@Html.DisplayFor(myTitle => family.MarriageDate))</h5>
                 @foreach (SimpleProfileInfo profile in family.Spouses)
                 {
-                    <div style="background-color:lightcoral;padding:10px;">
+                    <div style="background-color:lightcoral;padding:20px;">
                         <h6>
                             <a href="@Html.DisplayFor(myUrl => profile.Url)">
                                 @Html.DisplayFor(myUrl => profile.Name)
@@ -63,7 +60,7 @@
                 <h5>Parents (@Html.DisplayFor(myTitle => family.MarriageDate))</h5>
                 @foreach (SimpleProfileInfo profile in family.Spouses)
                 {
-                    <div style="background-color:lightgreen;padding:5px;">
+                    <div style="background-color:lightgreen;padding:20px;">
                         <h6>
                             <a href="@Html.DisplayFor(myUrl => profile.Url)">
                                 @Html.DisplayFor(myUrl => profile.Name)
