@@ -175,6 +175,7 @@ namespace FamilyTreeServices.Pages
         return Page();
       }
       ProfileData = GetProfileInfo(Profile);
+      ExtendedProfile = new ExtendedProfileInfo();
       ExtendedProfile.MainProfile = GetProfileInfo(Profile);
 
       IList<FamilyXrefClass> spouseFamilies = Profile.GetFamilySpouseList();
