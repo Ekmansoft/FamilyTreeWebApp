@@ -36,11 +36,13 @@ namespace FamilyTreeServices.Pages
   {
     public ExtendedProfileInfo()
     {
+      //Title = "";
       MainProfile = new SimpleProfileInfo();
       SpouseInFamilies = new List<ExtendedFamilyInfo>();
       ChildInFamilies = new List<ExtendedFamilyInfo>();
     }
 
+    //public string Title;
     public SimpleProfileInfo MainProfile;
     public IList<ExtendedFamilyInfo> SpouseInFamilies;
     public IList<ExtendedFamilyInfo> ChildInFamilies;

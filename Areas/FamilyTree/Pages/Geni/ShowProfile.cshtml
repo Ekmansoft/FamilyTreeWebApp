@@ -26,15 +26,31 @@
     {
         @foreach (ExtendedFamilyInfo family in Model.ExtendedProfile.ChildInFamilies)
         {
-            <div> @Html.DisplayFor(myTitle => family.Title)</div>
-            @foreach (SimpleProfileInfo profile in family.Spouses)
-            {
-                <a href="@Html.DisplayFor(myUrl => profile.Url)">
-                    @Html.DisplayFor(myUrl => profile.Url)
-                </a>
-                <div>Born: @Html.DisplayFor(myDate => profile.BirthDate) in @Html.DisplayFor(myDate => profile.BirthPlace)</div>
-                <div>Died: @Html.DisplayFor(myDate => profile.DeathDate) in @Html.DisplayFor(myDate => profile.DeathPlace)</div>
-            }
+            <div>
+                <h4>@Html.DisplayFor(myTitle => family.Title)</h4>
+                @foreach (SimpleProfileInfo profile in family.Spouses)
+                {
+                    <a href="@Html.DisplayFor(myUrl => profile.Name)">
+                        @Html.DisplayFor(myUrl => profile.Url)
+                    </a>
+                    <div>Born: @Html.DisplayFor(myDate => profile.BirthDate) in @Html.DisplayFor(myDate => profile.BirthPlace)</div>
+                    <div>Died: @Html.DisplayFor(myDate => profile.DeathDate) in @Html.DisplayFor(myDate => profile.DeathPlace)</div>
+                }
+            </div>
+        }
+        @foreach (ExtendedFamilyInfo family in Model.ExtendedProfile.SpouseInFamilies)
+        {
+            <div>
+                <h4>@Html.DisplayFor(myTitle => family.Title)</h4>
+                @foreach (SimpleProfileInfo profile in family.Spouses)
+                {
+                    <a href="@Html.DisplayFor(myUrl => profile.Name)">
+                        @Html.DisplayFor(myUrl => profile.Url)
+                    </a>
+                    <div>Born: @Html.DisplayFor(myDate => profile.BirthDate) in @Html.DisplayFor(myDate => profile.BirthPlace)</div>
+                    <div>Died: @Html.DisplayFor(myDate => profile.DeathDate) in @Html.DisplayFor(myDate => profile.DeathPlace)</div>
+                }
+            </div>
         }
     }
 </div>
