@@ -158,6 +158,11 @@ namespace FamilyTreeServices.Pages
       return Result;
     }
 
+    public static string GetLocalLink(string id)
+    {
+      return "./ShowProfile?treeName=Geni.com&&profileId=" + id;
+    }
+
     public string Message { get; set; }
 
     public IndividualClass Profile { get; set; }
