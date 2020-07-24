@@ -139,13 +139,13 @@ namespace FamilyTreeServices.Pages
       switch (profile.GetSex())
       {
         case IndividualClass.IndividualSexType.Unknown:
-          Result.Sex = "Unknown";
+          Result.Sex = "-";
           break;
         case IndividualClass.IndividualSexType.Male:
-          Result.Sex = "Male";
+          Result.Sex = "m";
           break;
         case IndividualClass.IndividualSexType.Female:
-          Result.Sex = "Female";
+          Result.Sex = "f";
           break;
       };
 
