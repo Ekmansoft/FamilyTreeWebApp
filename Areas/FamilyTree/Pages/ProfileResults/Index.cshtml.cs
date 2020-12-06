@@ -16,7 +16,7 @@ namespace FamilyTreeServices.Pages.ProfileResults
   public class IndexModel : PageModel
   {
     private readonly FamilyTreeDbContext _context;
-    private static TraceSource trace = new TraceSource("ProfileResults", SourceLevels.Verbose);
+    private static TraceSource trace = new TraceSource("ProfileResults", SourceLevels.Warning);
 
     public IndexModel(FamilyTreeDbContext context)
     {
