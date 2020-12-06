@@ -14,7 +14,7 @@ namespace FamilyTreeServices.Pages.IssueResults
   public class AnalyzeModel : PageModel
   {
     private readonly FamilyTreeDbContext _context;
-    private readonly static TraceSource trace = new TraceSource("Analyze", SourceLevels.Verbose);
+    private readonly static TraceSource trace = new TraceSource("Analyze", SourceLevels.Warning);
 
     private string ExtractId(string url)
     {

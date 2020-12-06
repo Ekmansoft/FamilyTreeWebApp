@@ -7,7 +7,7 @@ namespace FamilyTreeServices.Pages
   [Authorize]
   public class AnalyzeRunModel : PageModel
   {
-    private static readonly TraceSource trace = new TraceSource("AnalyzeRun", SourceLevels.Information);
+    private static readonly TraceSource trace = new TraceSource("AnalyzeRun", SourceLevels.Warning);
     public string Message { get; set; }
 
     public void OnGet()
