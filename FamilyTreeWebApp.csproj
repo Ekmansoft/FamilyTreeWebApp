@@ -8,7 +8,7 @@
     <Authors>Kenneth Ekman</Authors>
     <PackageLicenseFile>LICENSE-2.0.txt</PackageLicenseFile>
     <NeutralLanguage>en</NeutralLanguage>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/endian02/FamilyTreeCodecGedcom</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Genealogy</PackageTags>
