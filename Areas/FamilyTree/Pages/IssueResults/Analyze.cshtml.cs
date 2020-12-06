@@ -48,9 +48,17 @@ namespace FamilyTreeServices.Pages.IssueResults
 
     public string ExternalLink { get; set; }
 
-    public string CreateLink(string treeName, string id)
+    public string CreateGeniLink(string treeName, string id)
     {
       return "../Geni/ShowProfile?treeName=" + treeName + "&&profileId=" + id;
+    }
+
+    public string CreateLink(Profile profile)
+    {
+      if ((profile.Url != null) && (profile.Url.Length > 0)) {
+        return profile.Url;
+      }
+      return null;
     }
 
     public async Task<IActionResult> OnGetAsync(int? id, int? status)
@@ -118,7 +126,7 @@ namespace FamilyTreeServices.Pages.IssueResults
       else
       {
         trace.TraceData(TraceEventType.Information, 0, "Analyze id-5 " + id);
-        ExternalLink = CreateLink("Geni.com", Profile.TreeId);
+        ExternalLink = CreateLink(Profile);
       }
 
       return Page();
