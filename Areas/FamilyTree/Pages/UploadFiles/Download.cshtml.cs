@@ -1,16 +1,12 @@
+using FamilyTreeWebApp.Data;
+using FamilyTreeWebTools.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using FamilyTreeWebApp.Data;
-using FamilyTreeWebTools.Data;
 
 namespace FamilyTreeServices.Pages
 {

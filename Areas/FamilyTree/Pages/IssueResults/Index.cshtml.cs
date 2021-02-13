@@ -1,12 +1,10 @@
-using System;
+using FamilyTreeWebApp.Data;
+using FamilyTreeWebTools.Data;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using FamilyTreeWebTools.Data;
-using FamilyTreeWebApp.Data;
 
 namespace FamilyTreeServices.Pages.IssueResults
 {

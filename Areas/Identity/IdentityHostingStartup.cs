@@ -1,12 +1,10 @@
-﻿using System;
-using System.Diagnostics;
-using AspNetCoreWebApp3.Models;
+﻿using AspNetCoreWebApp3.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics;
 
 [assembly: HostingStartup(typeof(AspNetCoreWebApp3.Areas.Identity.IdentityHostingStartup))]
 namespace AspNetCoreWebApp3.Areas.Identity
@@ -38,7 +36,7 @@ namespace AspNetCoreWebApp3.Areas.Identity
           }
           else
           {
-            trace.TraceData(TraceEventType.Warning, 0,  "No configured database ");
+            trace.TraceData(TraceEventType.Warning, 0, "No configured database ");
           }
         }
 

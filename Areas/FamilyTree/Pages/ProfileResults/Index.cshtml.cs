@@ -1,15 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using FamilyTreeWebApp.Data;
 using FamilyTreeWebTools.Data;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace FamilyTreeServices.Pages.ProfileResults
 {
@@ -243,7 +242,8 @@ namespace FamilyTreeServices.Pages.ProfileResults
         {
           trace.TraceData(TraceEventType.Warning, 0, "Error parsing page size [" + itemsPerPageStr + "]");
         }
-      } else
+      }
+      else
       {
         trace.TraceData(TraceEventType.Warning, 0, "Error TryParse page size [" + itemsPerPageStr + "]");
       }
@@ -256,7 +256,7 @@ namespace FamilyTreeServices.Pages.ProfileResults
 
       if ((ix > 0) && (ix < url.Length))
       {
-        return  url.Substring(ix + 1);
+        return url.Substring(ix + 1);
       }
       return null;
     }
@@ -268,7 +268,7 @@ namespace FamilyTreeServices.Pages.ProfileResults
 
       if ((id1 != null) && (id2 != null))
       {
-        return  "https://www.geni.com/merge/compare/" + id1 + "?return=match&to=" + id2;
+        return "https://www.geni.com/merge/compare/" + id1 + "?return=match&to=" + id2;
       }
       return null;
     }
@@ -298,7 +298,7 @@ namespace FamilyTreeServices.Pages.ProfileResults
       }
       IList<int> filterList = new List<int>();
 
-      foreach(Issue.IssueType type in Enum.GetValues(typeof(Issue.IssueType)))
+      foreach (Issue.IssueType type in Enum.GetValues(typeof(Issue.IssueType)))
       {
         if (IsVisible(type, filterSettings))
         {
@@ -309,8 +309,8 @@ namespace FamilyTreeServices.Pages.ProfileResults
       trace.TraceData(TraceEventType.Information, 0, "Running query Id:" + AnalysisId + " page:" + Page + " filter length:" + filterList.Count);
 
       var iLinks = (from il in _context.IssueLinks
-                    from i in _context.Issues 
-                    from p in _context.Profiles 
+                    from i in _context.Issues
+                    from p in _context.Profiles
                     where (il.AnalysisId == AnalysisId) && (il.IssueId == i.Id) && (i.ProfileId == p.Id) && filterList.AsEnumerable().Contains((int)i.Type)
                     orderby il.Time
                     select new { p.Name, p.Birth, p.Death, p.Url, i.Id, i.Parameters, i.Status, i.ProfileId, i.Description, i.Type, il.RelationDistance }).ToList();
@@ -410,7 +410,7 @@ namespace FamilyTreeServices.Pages.ProfileResults
         trace.TraceData(TraceEventType.Information, 0, "Cookie:" + filterStr);
         FilterSettingOnPage.FromString(filterStr);
       }
-      if(!string.IsNullOrEmpty(itemsPerPageStr))
+      if (!string.IsNullOrEmpty(itemsPerPageStr))
       {
         ItemsPerPage = UpdateItemsPerPage(itemsPerPageStr);
       }
@@ -450,7 +450,7 @@ namespace FamilyTreeServices.Pages.ProfileResults
       FilterSettingOnPage.Update(FilterType.MissingMarriageDate, MissingMarriageDate);
       FilterSettingOnPage.Update(FilterType.UnknownSex, UnknownSex);
       FilterSettingOnPage.Update(FilterType.InexactDates, InexactDates);
-      FilterSettingOnPage.Update(FilterType.Twins,  Twins);
+      FilterSettingOnPage.Update(FilterType.Twins, Twins);
       FilterSettingOnPage.Update(FilterType.FewChildren, FewChildren);
       FilterSettingOnPage.Update(FilterType.UnreasonableDates, UnreasonableDates);
       FilterSettingOnPage.Update(FilterType.OldPrivateProfile, OldPrivateProfile);

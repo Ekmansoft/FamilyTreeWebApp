@@ -1,17 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using FamilyTreeWebApp.Data;
+using FamilyTreeWebTools.Data;
+using FamilyTreeWebTools.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using FamilyTreeWebTools.Data;
-using FamilyTreeWebApp.Data;
-using FamilyTreeWebTools.Services;
-using System.Threading;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace FamilyTreeServices.Pages.AnalysisResultView
 {
@@ -30,7 +25,7 @@ namespace FamilyTreeServices.Pages.AnalysisResultView
     {
       int progress = ProgressDbClass.Instance.GetProgress(jobId);
 
-      if(progress >= 0)
+      if (progress >= 0)
       {
         return true;
       }
@@ -56,7 +51,7 @@ namespace FamilyTreeServices.Pages.AnalysisResultView
       return Page();
     }
 
-    public async Task<IActionResult> OnPostAsync(int? id, bool?Pause)
+    public async Task<IActionResult> OnPostAsync(int? id, bool? Pause)
     {
       if (id == null)
       {

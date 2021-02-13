@@ -1,12 +1,8 @@
-using System;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Diagnostics;
 
 namespace FamilyTreeServices.Pages
 {
@@ -27,7 +23,7 @@ namespace FamilyTreeServices.Pages
     {
       string OrigFilename = HttpContext.Session.GetString("OriginalFilename");
       string Filename = HttpContext.Session.GetString("GedcomFilename");
-      Message = "Your file " + OrigFilename +  " was successfully uploaded.";
+      Message = "Your file " + OrigFilename + " was successfully uploaded.";
       trace.TraceData(TraceEventType.Information, 0, "Upload successful of file " + OrigFilename + " temp-name:" + Filename);
 
       //HttpContext.Session.SetString("GedcomFilename", Filename);

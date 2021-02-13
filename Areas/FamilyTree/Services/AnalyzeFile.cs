@@ -1,12 +1,11 @@
-﻿using System;
-using System.Diagnostics;
-using FamilyTreeLibrary.FamilyTreeStore;
+﻿using FamilyTreeLibrary.FamilyTreeStore;
+using FamilyTreeTools.FamilyTreeSanityCheck;
+using FamilyTreeWebApp.Services;
 //using FamilyStudioData.FamilyData;
 using FamilyTreeWebTools.Data;
 using FamilyTreeWebTools.Services;
-using FamilyTreeWebApp.Services;
-using FamilyTreeTools.CompareResults;
-using FamilyTreeTools.FamilyTreeSanityCheck;
+using System;
+using System.Diagnostics;
 
 namespace FamilyTreeWebApp.Controllers
 {
@@ -18,7 +17,7 @@ namespace FamilyTreeWebApp.Controllers
     private int currentProgress;
 
     public FileAnalysis()
-    {      
+    {
     }
     public void LoadCompletedCallback(Boolean result)
     {
@@ -44,7 +43,7 @@ namespace FamilyTreeWebApp.Controllers
             authenticationClass.UpdateAuthenticationData(userInfo.GeniAccessToken, userInfo.GeniRefreshToken, Convert.ToInt32(userInfo.GeniExpiresIn), userInfo.GeniAuthenticationTime);
           }
         }
-        
+
         FamilyWebTree webTree = new FamilyWebTree(analysis.FileName, authenticationClass);
 
         AnalysisSettings settings = AnalysisSettings.FromJson(analysis.Settings);
@@ -96,5 +95,5 @@ namespace FamilyTreeWebApp.Controllers
       return ProgressDbClass.Instance.StopRequested(id);
     }
   }
- 
+
 }

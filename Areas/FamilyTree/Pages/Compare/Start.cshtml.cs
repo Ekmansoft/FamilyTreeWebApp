@@ -1,21 +1,20 @@
-using System;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using FamilyTreeLibrary.FamilyTreeStore;
-//using FamilyStudioData.Controllers;
-using FamilyTreeWebTools.Services;
-using FamilyTreeWebTools.Compare;
 using FamilyTreeWebApp.Data;
 using FamilyTreeWebApp.Services;
-using FamilyTreeWebTools.Email;
+using FamilyTreeWebTools.Compare;
 using FamilyTreeWebTools.Data;
+using FamilyTreeWebTools.Email;
+//using FamilyStudioData.Controllers;
+using FamilyTreeWebTools.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace FamilyTreeServices.Pages
 {
@@ -133,7 +132,7 @@ namespace FamilyTreeServices.Pages
       Message += "\nComparison done. Found " + list.Count + " matches";
 
       string emailString = EmailExportClass.ExportDuplicatesHtml(list, startTime, endTime, OriginalFilename, OriginalFilename2);
-      SendMailClass.SendMail(_emailSendSource.Address, _emailSendSource.CredentialAddress, _emailSendSource.CredentialPassword, 
+      SendMailClass.SendMail(_emailSendSource.Address, _emailSendSource.CredentialAddress, _emailSendSource.CredentialPassword,
          userEmail, "Comparison between " + OriginalFilename + " and " + OriginalFilename2, emailString);
       //Message += "\nComparison done!";
 

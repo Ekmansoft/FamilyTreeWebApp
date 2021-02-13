@@ -1,7 +1,7 @@
-using System;
+using FamilyTreeWebTools.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using FamilyTreeWebTools.Data;
+using System;
 using System.Diagnostics;
 
 namespace FamilyTreeWebApp.Data
@@ -11,7 +11,7 @@ namespace FamilyTreeWebApp.Data
     static readonly TraceSource trace = new TraceSource("FamilyTreeDbContext", SourceLevels.Warning);
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-	    var configuration = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
+      var configuration = new ConfigurationBuilder().SetBasePath(AppDomain.CurrentDomain.BaseDirectory).AddJsonFile("appsettings.json").Build();
 
       string sqlServerString = configuration.GetConnectionString("FamilyTreeDbContextConnection");
 

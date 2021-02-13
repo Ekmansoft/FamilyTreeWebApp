@@ -1,19 +1,17 @@
-using System;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using FamilyTreeLibrary.FamilyTreeStore;
-//using FamilyStudioData.Controllers;
-using FamilyTreeWebTools.Services;
-using FamilyTreeWebTools.Data;
 using FamilyTreeWebApp.Data;
 using FamilyTreeWebApp.Services;
+using FamilyTreeWebTools.Data;
+//using FamilyStudioData.Controllers;
+using FamilyTreeWebTools.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace FamilyTreeServices.Pages
 {
@@ -91,7 +89,7 @@ namespace FamilyTreeServices.Pages
 
       FamilyWebTree webTree = new FamilyWebTree(GedcomFilename2, authenticationClass);
 
-      if(webTree == null)
+      if (webTree == null)
       {
         //trace.TraceData(TraceEventType.Error, 0, "AnalyzeSettingsModel.OnGet() error webtree=null: Geni info: " + geni_access_token2 + " expiresIn:" + token_expires_in2);
         trace.TraceData(TraceEventType.Error, 0, "AnalyzeSettingsModel.OnGet() error webtree=null: Gedcom info: " + GedcomFilename2 + " orig:" + OriginalFilename2);
@@ -148,7 +146,7 @@ namespace FamilyTreeServices.Pages
       return Page();
     }
 
-    public async Task<IActionResult>  OnPost()
+    public async Task<IActionResult> OnPost()
     {
       trace.TraceData(TraceEventType.Information, 0, "AnalyzeSettingsModel.OnPost() start gen:" + Settings.GenerationsBack + "/" + Settings.GenerationsForward + " dup:" + Settings.DuplicateCheck);
 
@@ -168,7 +166,7 @@ namespace FamilyTreeServices.Pages
         string userEmail = await _userManager.GetEmailAsync(user);
         string userId = _userManager.GetUserId(this.User);
 
-        if(Settings.CheckWholeFile)
+        if (Settings.CheckWholeFile)
         {
           Settings.StartPersonName = "";
           Settings.StartPersonXref = "";

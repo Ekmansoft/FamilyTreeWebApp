@@ -1,20 +1,20 @@
 using AspNetCoreWebApp3.Models;
-using FamilyTreeWebTools.Data;
 using FamilyTreeWebApp.Data;
+using FamilyTreeWebTools.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 using Microsoft.Extensions.Options;
+using System;
 using System.Diagnostics;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.DataProtection;
 using System.IO;
-using Microsoft.AspNetCore.Mvc;
 
 namespace FamilyTreeWebApp
 {
@@ -52,7 +52,7 @@ namespace FamilyTreeWebApp
       services.Configure(appId);
       services.AddSingleton(resolver => resolver.GetRequiredService<IOptions<WebAppIdentity>>().Value);
 
-      trace.TraceInformation("ConfigureService Email:" + Configuration["EmailSendSource:Address"] + ":" + 
+      trace.TraceInformation("ConfigureService Email:" + Configuration["EmailSendSource:Address"] + ":" +
         Configuration["EmailSendSource:CredentialAddress"]);
       Action<EmailSendSource> emailSendSource = (opt =>
       {

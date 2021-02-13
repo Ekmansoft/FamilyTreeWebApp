@@ -1,13 +1,11 @@
-using System;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using FamilyTreeWebApp.Data;
+using FamilyTreeWebTools.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using FamilyTreeWebTools.Data;
-using FamilyTreeWebApp.Data;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FamilyTreeServices.Pages.IssueResults
 {
@@ -55,7 +53,8 @@ namespace FamilyTreeServices.Pages.IssueResults
 
     public string CreateLink(Profile profile)
     {
-      if ((profile.Url != null) && (profile.Url.Length > 0)) {
+      if ((profile.Url != null) && (profile.Url.Length > 0))
+      {
         return profile.Url;
       }
       return null;
@@ -122,7 +121,7 @@ namespace FamilyTreeServices.Pages.IssueResults
           }
         }
         trace.TraceData(TraceEventType.Information, 0, "Analyze id-4 " + id);
-      } 
+      }
       else
       {
         trace.TraceData(TraceEventType.Information, 0, "Analyze id-5 " + id);

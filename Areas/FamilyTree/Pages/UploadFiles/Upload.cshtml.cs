@@ -57,7 +57,7 @@ namespace FamilyTreeServices.Pages
 
       using (var fileStream = new FileStream(gedcomFile, FileMode.Create))
       {
-          await Upload.CopyToAsync(fileStream);
+        await Upload.CopyToAsync(fileStream);
       }
       TimeSpan delta = DateTime.Now - startTime;
       trace.TraceData(TraceEventType.Information, 0, "Upload done after " + delta.ToString());

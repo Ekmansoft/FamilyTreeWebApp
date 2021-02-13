@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using FamilyTreeWebApp.Data;
+using FamilyTreeWebTools.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using FamilyTreeWebTools.Data;
-using FamilyTreeWebApp.Data;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace FamilyTreeServices.Pages.AnalysisResultView
 {

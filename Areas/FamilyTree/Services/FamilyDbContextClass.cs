@@ -1,18 +1,14 @@
-﻿using System;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-//using Newtonsoft.Json;
-using FamilyTreeLibrary.FamilyTreeStore;
-using FamilyTreeWebTools.Data;
-using FamilyTreeWebApp.Data;
-using FamilyTreeWebTools.Services;
+﻿using FamilyTreeTools.FamilyTreeSanityCheck;
 using FamilyTreeWebApp.Controllers;
-using FamilyTreeTools.FamilyTreeSanityCheck;
+using FamilyTreeWebApp.Data;
+//using Newtonsoft.Json;
+using FamilyTreeWebTools.Data;
+using FamilyTreeWebTools.Services;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace FamilyTreeWebApp.Services
 {
@@ -100,7 +96,7 @@ namespace FamilyTreeWebApp.Services
     {
       UserInformation userInfo = context.UserInformations.Find(userId);
 
-      if(userInfo != null)
+      if (userInfo != null)
       {
         DateTime expiryTime = userInfo.GeniAuthenticationTime.AddSeconds(userInfo.GeniExpiresIn);
         TimeSpan diff = expiryTime - DateTime.Now;
@@ -663,7 +659,7 @@ namespace FamilyTreeWebApp.Services
           }
         }
 
-        foreach(Profile profile in newProfiles)
+        foreach (Profile profile in newProfiles)
         {
           trace.TraceData(TraceEventType.Information, 0, "  adding profile " + ProfileToString(profile) + " " + profile.Id + " " + profile.TreeId);
         }
@@ -842,4 +838,3 @@ namespace FamilyTreeWebApp.Services
   }
 
 }
-  

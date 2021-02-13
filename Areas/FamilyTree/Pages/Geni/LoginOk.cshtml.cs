@@ -1,23 +1,19 @@
-using System;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO;
-using System.Web;
-//using Newtonsoft.Json;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Identity;
-using FamilyTreeWebTools.Data;
-using FamilyTreeWebTools.Services;
-using System.Net;
-using System.Threading;
 using FamilyTreeWebApp.Data;
 using FamilyTreeWebApp.Services;
+using FamilyTreeWebTools.Data;
+using FamilyTreeWebTools.Services;
+//using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Net;
 using System.Text.Json;
+using System.Threading;
 
 namespace FamilyTreeServices.Pages
 {
@@ -55,7 +51,7 @@ namespace FamilyTreeServices.Pages
       Message = "Logging into Geni....";
       //geni_expires_in = expires_in;
       //geni_access_token = access_token;
-      trace.TraceData(TraceEventType.Information, 0, "GeniLoginOkModel.OnGet() code:" + 
+      trace.TraceData(TraceEventType.Information, 0, "GeniLoginOkModel.OnGet() code:" +
         code + " expires_in: " + expires_in + " state: " + state + " message: " + message);
 
       if (string.IsNullOrEmpty(code))
@@ -73,14 +69,14 @@ namespace FamilyTreeServices.Pages
       else
       {
         HttpContext.Session.SetString("geni_code", code);
-        HttpContext.Session.SetString("geni_access_token", "");		
+        HttpContext.Session.SetString("geni_access_token", "");
         HttpContext.Session.SetString("token_expires_in", expires_in);
         HttpContext.Session.SetString("GedcomFilename", "");
         HttpContext.Session.SetString("OriginalFilename", "");
       }
       string retryCounter = HttpContext.Session.GetString("RetryCounter");
 
-      if(string.IsNullOrEmpty(retryCounter))
+      if (string.IsNullOrEmpty(retryCounter))
       {
         retryCounter = "1";
       }
@@ -147,7 +143,7 @@ namespace FamilyTreeServices.Pages
 
         }
         retryCount++;
-        if(retryCount == 5)
+        if (retryCount == 5)
         {
           HttpContext.Session.SetString("geni_code", "");
           return Redirect("./Login");
@@ -156,9 +152,9 @@ namespace FamilyTreeServices.Pages
 
       HttpAppAuthenticationResponse appAuthenticationResponse = JsonSerializer.Deserialize<HttpAppAuthenticationResponse>(returnLine);
 
-      if(appAuthenticationResponse != null)
+      if (appAuthenticationResponse != null)
       {
-        trace.TraceData(TraceEventType.Information, 0, "GeniLoginOkModel.OnGet() get auth " + appAuthenticationResponse.access_token + " refreshToken:" + appAuthenticationResponse.refresh_token + " expiresIn:"+appAuthenticationResponse.expires_in);
+        trace.TraceData(TraceEventType.Information, 0, "GeniLoginOkModel.OnGet() get auth " + appAuthenticationResponse.access_token + " refreshToken:" + appAuthenticationResponse.refresh_token + " expiresIn:" + appAuthenticationResponse.expires_in);
         if (!String.IsNullOrEmpty(appAuthenticationResponse.access_token))
         {
           HttpContext.Session.SetString("geni_access_token", appAuthenticationResponse.access_token);
@@ -185,7 +181,7 @@ namespace FamilyTreeServices.Pages
 
       string AlternativeRedirect = HttpContext.Session.GetString("RedirectAfterGeniLogin");
 
-      if((AlternativeRedirect != null) && (AlternativeRedirect.Length > 0))
+      if ((AlternativeRedirect != null) && (AlternativeRedirect.Length > 0))
       {
         redirectTarget = AlternativeRedirect;
         trace.TraceData(TraceEventType.Information, 0, "GeniLoginOkModel.OnGet() redirect to " + redirectTarget);
@@ -193,7 +189,7 @@ namespace FamilyTreeServices.Pages
       }
 
       return Redirect(redirectTarget);
-      
+
     }
     public void OnPost()
     {

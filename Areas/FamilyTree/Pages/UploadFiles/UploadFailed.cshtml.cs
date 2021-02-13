@@ -1,12 +1,8 @@
-using System;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Diagnostics;
 
 namespace FamilyTreeServices.Pages
 {
@@ -25,7 +21,7 @@ namespace FamilyTreeServices.Pages
 
     public void OnGet()
     {
-      Message = "Your file " + OrigFilename +  " was was not successfully decoded. (Please note that cookies must be allowed)";
+      Message = "Your file " + OrigFilename + " was was not successfully decoded. (Please note that cookies must be allowed)";
       if (OrigFilename.ToLower().IndexOf(".ged") < 0)
       {
         Message += " The filename does not seem to end with *.GED. Is it really a GEDCOM file?";
@@ -35,7 +31,7 @@ namespace FamilyTreeServices.Pages
     }
     public void OnPost()
     {
-      Message = "Your file " + OrigFilename  + " was was not successfully decoded. (Please note that cookies must be allowed)";
+      Message = "Your file " + OrigFilename + " was was not successfully decoded. (Please note that cookies must be allowed)";
     }
   }
 }

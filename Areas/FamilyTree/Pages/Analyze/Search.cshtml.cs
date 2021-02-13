@@ -1,17 +1,14 @@
-using System;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using FamilyTreeWebTools.Services;
-using FamilyTreeWebTools.Data;
 using FamilyTreeWebApp.Data;
 using FamilyTreeWebApp.Services;
+using FamilyTreeWebTools.Data;
+using FamilyTreeWebTools.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace FamilyTreeServices.Pages
 {
@@ -33,7 +30,7 @@ namespace FamilyTreeServices.Pages
     }
 
     [BindProperty]
-    public IList<FamilyWebTree.SimplePerson> SimplePeople {get; set;}
+    public IList<FamilyWebTree.SimplePerson> SimplePeople { get; set; }
 
     [TempData]
     public string SearchString { get; set; }
@@ -42,7 +39,7 @@ namespace FamilyTreeServices.Pages
     {
       string geniIdString = "";
 
-      foreach(char ch in searchString)
+      foreach (char ch in searchString)
       {
         if (char.IsDigit(ch))
         {
@@ -63,7 +60,7 @@ namespace FamilyTreeServices.Pages
       }
       return null;
     }
-  
+
 
     public void OnGet(string SearchString)
     {
@@ -72,7 +69,7 @@ namespace FamilyTreeServices.Pages
       var GedcomFilename = HttpContext.Session.GetString("GedcomFilename");
 
       SimplePeople = new List<FamilyWebTree.SimplePerson>();
-      
+
       if ((SearchString != null) && (SearchString.Length > 0))
       {
         string userId = _userManager.GetUserId(this.User);
@@ -86,7 +83,7 @@ namespace FamilyTreeServices.Pages
 
         FamilyWebTree webTree = new FamilyWebTree(GedcomFilename, authenticationClass);
 
-        if(webTree != null)
+        if (webTree != null)
         {
           string guidId = GetGeniId(SearchString);
           int peopleCount = 0;
@@ -97,11 +94,11 @@ namespace FamilyTreeServices.Pages
             trace.TraceData(TraceEventType.Information, 0, "Search guid " + guidId + " => " + profileId);
             FamilyTreeLibrary.FamilyData.IndividualClass person = webTree.GetFamilyTree().GetIndividual(profileId);
 
-            if(person != null)
+            if (person != null)
             {
               trace.TraceData(TraceEventType.Information, 0, "Found person from guid " + person.GetName() + " " + person.GetXrefName());
-              FamilyWebTree.SimplePerson simplePerson = new FamilyWebTree.SimplePerson(person.GetName(), person.GetXrefName(), 
-                "(" + person.GetDate(FamilyTreeLibrary.FamilyData.IndividualEventClass.EventType.Birth) + " - " + 
+              FamilyWebTree.SimplePerson simplePerson = new FamilyWebTree.SimplePerson(person.GetName(), person.GetXrefName(),
+                "(" + person.GetDate(FamilyTreeLibrary.FamilyData.IndividualEventClass.EventType.Birth) + " - " +
                 person.GetDate(FamilyTreeLibrary.FamilyData.IndividualEventClass.EventType.Death) + ")");
 
               SimplePeople.Add(simplePerson);

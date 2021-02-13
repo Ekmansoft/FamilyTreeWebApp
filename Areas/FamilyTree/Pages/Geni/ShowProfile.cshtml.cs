@@ -1,19 +1,15 @@
-using System;
-using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using FamilyTreeLibrary.FamilyData;
+using FamilyTreeWebApp.Data;
+using FamilyTreeWebApp.Services;
 using FamilyTreeWebTools.Data;
 using FamilyTreeWebTools.Services;
-using FamilyTreeWebApp.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using FamilyTreeWebApp.Services;
-using FamilyTreeLibrary.FamilyData;
-using FamilyTreeTools.FamilyTreeSanityCheck;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace FamilyTreeServices.Pages
 {
@@ -290,7 +286,7 @@ namespace FamilyTreeServices.Pages
     public IActionResult OnPost()
     {
       Message = "Your Login to Geni. post";
-      WebAuthentication appAuthentication = new WebAuthentication(_userManager.GetUserId(this.User), _appId.AppId, _appId.AppSecret, 
+      WebAuthentication appAuthentication = new WebAuthentication(_userManager.GetUserId(this.User), _appId.AppId, _appId.AppSecret,
         FamilyDbContextClass.UpdateGeniAuthentication);
       trace.TraceData(TraceEventType.Information, 0, "GeniShowProfileModel.OnPost() " + _appId.AppId);
       return Page();

@@ -1,18 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using FamilyTreeWebApp.Data;
+using FamilyTreeWebApp.Services;
+//using Microsoft.EntityFrameworkCore;
+using FamilyTreeWebTools.Data;
+using FamilyTreeWebTools.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 //using System.Threading.Tasks;
 //using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-//using Microsoft.EntityFrameworkCore;
-using FamilyTreeWebTools.Data;
-using FamilyTreeWebApp.Data;
+using System;
+using System.Collections.Generic;
 //using Microsoft.AspNetCore.Identity.UI;
 using System.Globalization;
-using FamilyTreeWebTools.Services;
-using FamilyTreeWebApp.Services;
+using System.Linq;
 
 namespace FamilyTreeServices.Pages.AnalysisResultView
 {
@@ -68,7 +68,7 @@ namespace FamilyTreeServices.Pages.AnalysisResultView
       }
       result = result.Trim(' ');
 
-      if(result.Length == 0)
+      if (result.Length == 0)
       {
         result = "0s";
       }
@@ -201,7 +201,7 @@ namespace FamilyTreeServices.Pages.AnalysisResultView
 
     public static string FormatSettingsString(string json)
     {
-      if((json == null) || (json.Length == 0))
+      if ((json == null) || (json.Length == 0))
       {
         return "";
       }
