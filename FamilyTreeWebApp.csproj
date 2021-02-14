@@ -4,17 +4,17 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>615a70b1-952a-46cf-9860-a667fd89f64d</UserSecretsId>
-    <Company>Kenneth Ekman</Company>
+    <Company>Ekmansoft</Company>
     <Authors>Kenneth Ekman</Authors>
     <PackageLicenseFile>LICENSE-2.0.txt</PackageLicenseFile>
     <NeutralLanguage>en</NeutralLanguage>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <RepositoryUrl>https://github.com/endian02/FamilyTreeCodecGedcom</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Ekmansoft/FamilyTreeCodecGedcom</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Genealogy</PackageTags>
-    <PackageProjectUrl>https://github.com/users/endian02/projects/1</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/users/Ekmansoft/projects/1</PackageProjectUrl>
     <NeutralLanguage>en</NeutralLanguage>
-    <PackageId>endian.FamilyTree.WebApp</PackageId>
+    <PackageId>Ekmansoft.FamilyTree.WebApp</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
