@@ -318,18 +318,10 @@ namespace FamilyTreeWebApp.Services
 
       foreach (Analysis job in jobs)
       {
-        if (job.EndTime == null)
+        if (job.EndTime.Year == 1)
         {
-          trace.TraceData(TraceEventType.Warning, 0, "job endtime is null:" + job.Id + ", started " + job.StartCount + " times");
           jobList.Add(job.Id);
-        }
-        else
-        {
-          if (job.EndTime.Year == 1)
-          {
-            jobList.Add(job.Id);
-            trace.TraceData(TraceEventType.Warning, 0, "job hasn't finished:" + job.Id + ", started " + job.StartCount + " times");
-          }
+          trace.TraceData(TraceEventType.Warning, 0, "job hasn't finished:" + job.Id + ", started " + job.StartCount + " times");
         }
       }
       return jobList;

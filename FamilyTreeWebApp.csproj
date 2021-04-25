@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>615a70b1-952a-46cf-9860-a667fd89f64d</UserSecretsId>
     <Company>Ekmansoft</Company>
     <Authors>Kenneth Ekman</Authors>
@@ -15,6 +15,7 @@
     <PackageProjectUrl>https://github.com/users/Ekmansoft/projects/1</PackageProjectUrl>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageId>Ekmansoft.FamilyTree.WebApp</PackageId>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
