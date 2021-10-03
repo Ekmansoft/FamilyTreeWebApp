@@ -228,9 +228,9 @@ namespace FamilyTreeServices.Pages.AnalysisResultView
 
         if (settings.DuplicateCheck)
         {
-          result += ", DupCheck";
+          result += ", duplicate search on";
         }
-        result += ", Export:";
+        result += "<br/>Export:";
         if (settings.ExportGedcom)
         {
           result += "Gedcom,";
@@ -264,7 +264,7 @@ namespace FamilyTreeServices.Pages.AnalysisResultView
       if (results != null)
       {
         string result = "Searched " + results.SearchedProfiles + " profiles and " +
-          results.SearchedFamilies + " families, found " + results.NoOfIssues + " issues in " + results.NoOfProfiles + " profiles";
+          results.SearchedFamilies + " families<br/>Found " + results.NoOfIssues + " issues in " + results.NoOfProfiles + " profiles";
 
         return result;
       }
