@@ -221,25 +221,31 @@ namespace FamilyTreeServices.Pages.AnalysisResultView
           result += settings.GenerationsBack + "/" + settings.GenerationsForward + " generations";
         }
 
+        if (settings.EndYear > 0)
+        {
+          result += " until year " + settings.EndYear; 
+        }
+
         if (settings.DuplicateCheck)
         {
           result += ", DupCheck";
         }
+        result += ", Export:";
         if (settings.ExportGedcom)
         {
-          result += ", Export GEDCOM";
+          result += "Gedcom,";
         }
         if (settings.ExportJson)
         {
-          result += ", Export Json";
+          result += "Json,";
         }
         if (settings.UpdateDatabase)
         {
-          result += ", Database";
+          result += "Database,";
         }
         if (settings.SendEmail)
         {
-          result += ", Email";
+          result += "Email";
         }
 
         return result;
