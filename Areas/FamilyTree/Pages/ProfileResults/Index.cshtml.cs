@@ -54,8 +54,6 @@ namespace FamilyTreeServices.Pages.ProfileResults
       UnknownLocation,
       //EventErrors,
       ParentIssues,
-      MissingMother,
-      MissingFather,
       MissingPartner,
       FewChildren,
       Twins,
@@ -64,6 +62,8 @@ namespace FamilyTreeServices.Pages.ProfileResults
       OldPrivateProfile,
       Duplicate,
       MissingPartnerMitigated,
+      MissingMother,
+      MissingFather,
       Hidden,
       AllStates
     }
