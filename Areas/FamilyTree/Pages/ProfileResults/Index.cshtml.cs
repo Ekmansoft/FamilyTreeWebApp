@@ -64,6 +64,7 @@ namespace FamilyTreeServices.Pages.ProfileResults
       MissingPartnerMitigated,
       MissingMother,
       MissingFather,
+      MissingBirthDeath,
       Hidden,
       AllStates
     }
@@ -159,8 +160,9 @@ namespace FamilyTreeServices.Pages.ProfileResults
         case Issue.IssueType.MissingPartnerMitigated:
           return FilterType.MissingPartnerMitigated;
         case Issue.IssueType.UnknownBirth:
-        case Issue.IssueType.UnknownBirthDeath:
           return FilterType.MissingBirthDate;
+        case Issue.IssueType.UnknownBirthDeath:
+          return FilterType.MissingBirthDeath;
         case Issue.IssueType.UnknownDeath:
           return FilterType.MissingDeathDate;
         case Issue.IssueType.UnknownDeathEmigrated:
@@ -434,6 +436,7 @@ namespace FamilyTreeServices.Pages.ProfileResults
                                        bool FewChildren,
                                        bool MissingBirthDate,
                                        bool MissingDeathDate,
+                                       bool MissingBirthDeath,
                                        bool MissingDeathDateEmigrated,
                                        bool MissingMarriageDate,
                                        bool UnknownSex,
@@ -456,6 +459,7 @@ namespace FamilyTreeServices.Pages.ProfileResults
       FilterSettingOnPage.Update(FilterType.Duplicate, Duplicates);
       FilterSettingOnPage.Update(FilterType.MissingBirthDate, MissingBirthDate);
       FilterSettingOnPage.Update(FilterType.MissingDeathDate, MissingDeathDate);
+      FilterSettingOnPage.Update(FilterType.MissingBirthDeath, MissingBirthDeath);
       FilterSettingOnPage.Update(FilterType.MissingDeathDateEmigrated, MissingDeathDateEmigrated);
       FilterSettingOnPage.Update(FilterType.MissingMarriageDate, MissingMarriageDate);
       FilterSettingOnPage.Update(FilterType.UnknownSex, UnknownSex);
