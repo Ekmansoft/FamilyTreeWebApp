@@ -11,10 +11,7 @@
   <thead>
     <tr>
       <th>
-        @Html.DisplayNameFor(model => model.Analysis[0].StartTime)&nbsp;&nbsp;&nbsp;
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.Analysis[0].StartPersonName)
+        @Html.DisplayNameFor(model => model.Analysis[0].StartTime)
       </th>
       <th>
         @Html.DisplayNameFor(model => model.Analysis[0].Settings)
@@ -28,8 +25,6 @@
       <tr>
         <td>
           <span style="white-space: pre-line">@AnalysisResultView.IndexModel.FormatDatesString(item.StartTime, item.EndTime, item.Id, item.StartCount)</span>
-        </td>
-        <td>
           @Html.DisplayFor(modelItem => item.OriginalFilename)<br />
           @Html.DisplayFor(modelItem => item.StartPersonName)
         </td>

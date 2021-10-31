@@ -54,6 +54,8 @@ namespace FamilyTreeServices.Pages.ProfileResults
       UnknownLocation,
       //EventErrors,
       ParentIssues,
+      MissingMother,
+      MissingFather,
       MissingPartner,
       FewChildren,
       Twins,
@@ -144,6 +146,10 @@ namespace FamilyTreeServices.Pages.ProfileResults
         case Issue.IssueType.NoOfChildrenMax:
         case Issue.IssueType.DaysBetweenChildren:
           return FilterType.ParentIssues;
+        case Issue.IssueType.MissingMother:
+          return FilterType.MissingMother;
+        case Issue.IssueType.MissingFather:
+          return FilterType.MissingFather;
         case Issue.IssueType.Twins:
           return FilterType.Twins;
         case Issue.IssueType.NoOfChildrenMin:
@@ -419,6 +425,8 @@ namespace FamilyTreeServices.Pages.ProfileResults
       DoWork(AnalysisId, RealPage, FilterSettingOnPage);
     }
     public void OnPost(int AnalysisId, bool ParentIssues,
+                                       bool MissingMother,
+                                       bool MissingFather,
                                        bool MissingPartner,
                                        bool MissingPartnerMitigated,
                                        bool Duplicates,
@@ -441,6 +449,8 @@ namespace FamilyTreeServices.Pages.ProfileResults
       FilterSettingOnPage = new FilterSettings();
 
       FilterSettingOnPage.Update(FilterType.ParentIssues, ParentIssues);
+      FilterSettingOnPage.Update(FilterType.MissingMother, MissingMother);
+      FilterSettingOnPage.Update(FilterType.MissingFather, MissingFather);
       FilterSettingOnPage.Update(FilterType.MissingPartner, MissingPartner);
       FilterSettingOnPage.Update(FilterType.MissingPartnerMitigated, MissingPartnerMitigated);
       FilterSettingOnPage.Update(FilterType.Duplicate, Duplicates);

@@ -179,6 +179,10 @@ namespace FamilyTreeWebApp.Services
           return Issue.IssueType.UnknownDeathEmigrated;
         case SanityCheckLimits.SanityProblemId.parentsMissing_e:
           return Issue.IssueType.ParentsMissing;
+        case SanityCheckLimits.SanityProblemId.missingMother_e:
+          return Issue.IssueType.MissingMother;
+        case SanityCheckLimits.SanityProblemId.missingFather_e:
+          return Issue.IssueType.MissingFather;
         case SanityCheckLimits.SanityProblemId.parentsProblem_e:
           return Issue.IssueType.ParentsProblem;
         case SanityCheckLimits.SanityProblemId.marriageProblem_e:
