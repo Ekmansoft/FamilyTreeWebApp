@@ -106,8 +106,7 @@ namespace FamilyTreeWebApp
         options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
         options.SlidingExpiration = true;
       });
-      services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0).
-          AddRazorPagesOptions(options =>
+      services.AddMvc().AddRazorPagesOptions(options =>
           {
             //options.AllowAreas = true;
             options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
