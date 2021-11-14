@@ -12,8 +12,10 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace FamilyTreeServices.Pages
 {
@@ -25,6 +27,8 @@ namespace FamilyTreeServices.Pages
     private readonly WebAppIdentity _appId;
     private readonly FamilyTreeDbContext _context;
     private readonly UserManager<IdentityUser> _userManager;
+    private static HttpClient httpClient;
+    private static HttpClientHandler clientHandler;
     public string Message { get; set; }
 
     public GeniLoginOkModel(FamilyTreeDbContext context, UserManager<IdentityUser> userManager, WebAppIdentity appId)
@@ -108,13 +112,23 @@ namespace FamilyTreeServices.Pages
       {
         try
         {
+          clientHandler = new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate };
+          clientHandler.UseDefaultCredentials = false;
+          clientHandler.Credentials = CredentialCache.DefaultCredentials;
+          clientHandler.AllowAutoRedirect = true;
 
-          WebRequest webRequestGetUrl;
-          webRequestGetUrl = WebRequest.Create(redirectTo);
+          httpClient = new HttpClient(clientHandler);
 
-          WebResponse response = webRequestGetUrl.GetResponse();
+          //httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Uri.EscapeDataString(appAuthentication.GetAccessToken()));
+          httpClient.DefaultRequestHeaders.Add("accept-encoding", "gzip,deflate");
 
-          StreamReader objReader = new StreamReader(response.GetResponseStream());
+          //WebRequest webRequestGetUrl;
+          //webRequestGetUrl = WebRequest.Create(redirectTo);
+
+          Task<HttpResponseMessage> responseTask = httpClient.GetAsync(redirectUrl);
+          HttpResponseMessage response = responseTask.Result;
+
+          StreamReader objReader = new StreamReader(response.Content.ReadAsStream());
 
           returnLine = objReader.ReadToEnd();
           objReader.Dispose();
