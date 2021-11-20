@@ -26,7 +26,7 @@ namespace FamilyTreeWebApp.Data
 
         if (!string.IsNullOrEmpty(mySqlServerString))
         {
-          options.UseMySql(mySqlServerString);
+          options.UseMySql(mySqlServerString, MySqlServerVersion.AutoDetect(mySqlServerString));
           trace.TraceInformation("Initialized database mySql:" + mySqlServerString);
         }
         else

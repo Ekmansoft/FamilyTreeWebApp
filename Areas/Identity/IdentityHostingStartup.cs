@@ -31,7 +31,7 @@ namespace AspNetCoreWebApp3.Areas.Identity
           if (!string.IsNullOrEmpty(mySqlServerString))
           {
             services.AddDbContext<IdentityContext>(options =>
-                options.UseMySql(mySqlServerString));
+                options.UseMySql(mySqlServerString, MySqlServerVersion.AutoDetect(mySqlServerString)));
             trace.TraceInformation("Initialized database mySql:" + mySqlServerString);
           }
           else
