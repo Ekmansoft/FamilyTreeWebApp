@@ -9,8 +9,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Net;
 using System.Net.Http;
 using System.Text.Json;
@@ -127,8 +129,22 @@ namespace FamilyTreeServices.Pages
 
           Task<HttpResponseMessage> responseTask = httpClient.GetAsync(redirectUrl);
           HttpResponseMessage response = responseTask.Result;
+          ICollection<string> headers = response.Content.Headers.ContentEncoding;
+          Stream stream = null;
 
-          StreamReader objReader = new StreamReader(response.Content.ReadAsStream());
+          if (headers.Contains("gzip"))
+          {
+            stream = new GZipStream(response.Content.ReadAsStream(), CompressionMode.Decompress);
+          }
+          else if (headers.Contains("deflate"))
+          {
+            stream = new DeflateStream(response.Content.ReadAsStream(), CompressionMode.Decompress);
+          }
+          else
+          {
+            stream = response.Content.ReadAsStream();
+          }
+          StreamReader objReader = new StreamReader(stream);
 
           returnLine = objReader.ReadToEnd();
           objReader.Dispose();
@@ -164,7 +180,26 @@ namespace FamilyTreeServices.Pages
         }
       } while (!Ok && retryCount < 5);
 
-      HttpAppAuthenticationResponse appAuthenticationResponse = JsonSerializer.Deserialize<HttpAppAuthenticationResponse>(returnLine);
+      HttpAppAuthenticationResponse appAuthenticationResponse = null;
+
+      try
+      {
+        appAuthenticationResponse = JsonSerializer.Deserialize<HttpAppAuthenticationResponse>(returnLine);
+
+      }
+      catch (JsonException e)
+      {
+        trace.TraceData(TraceEventType.Error, 0, "GeniLoginOkModel.OnGet() json parse failed " + returnLine);
+        trace.TraceData(TraceEventType.Error, 0, "GeniLoginOkModel.OnGet() json parse failed " + e.ToString());
+
+      }
+      catch (Exception e)
+      {
+        trace.TraceData(TraceEventType.Error, 0, "GeniLoginOkModel.OnGet() failed " + returnLine);
+        trace.TraceData(TraceEventType.Error, 0, "GeniLoginOkModel.OnGet() failed " + e.ToString());
+
+      }
+
 
       if (appAuthenticationResponse != null)
       {
