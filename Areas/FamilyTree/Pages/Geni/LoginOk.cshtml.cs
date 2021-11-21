@@ -127,7 +127,7 @@ namespace FamilyTreeServices.Pages
           //WebRequest webRequestGetUrl;
           //webRequestGetUrl = WebRequest.Create(redirectTo);
 
-          Task<HttpResponseMessage> responseTask = httpClient.GetAsync(redirectUrl);
+          Task<HttpResponseMessage> responseTask = httpClient.GetAsync(redirectTo);
           HttpResponseMessage response = responseTask.Result;
           ICollection<string> headers = response.Content.Headers.ContentEncoding;
           Stream stream = null;
@@ -189,7 +189,7 @@ namespace FamilyTreeServices.Pages
       }
       catch (JsonException e)
       {
-        trace.TraceData(TraceEventType.Error, 0, "GeniLoginOkModel.OnGet() json parse failed " + returnLine);
+        trace.TraceData(TraceEventType.Error, 0, "GeniLoginOkModel.OnGet() json parse failed " + returnLine.Length + ": "+ returnLine);
         trace.TraceData(TraceEventType.Error, 0, "GeniLoginOkModel.OnGet() json parse failed " + e.ToString());
 
       }
