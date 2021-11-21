@@ -34,6 +34,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EkmanSoft.FamilyTree.Library" Version="1.2.0" />
+    <PackageReference Include="EkmanSoft.FamilyTree.Tools" Version="1.2.0" />
+    <PackageReference Include="EkmanSoft.FamilyTree.WebTools" Version="1.2.0" />
     <ProjectReference Include="..\FamilyTreeLibrary\FamilyTreeLibrary.csproj" />
     <ProjectReference Include="..\FamilyTreeTools\FamilyTreeTools.csproj" />
     <ProjectReference Include="..\FamilyTreeWebTools\FamilyTreeWebTools.csproj" />
