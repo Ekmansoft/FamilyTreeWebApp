@@ -9,7 +9,7 @@
 - Support for comparing two trees, either two gedcom trees or a gedcom tree to the geni.com tree.
 
 ### Dependencies
-- Dotnet Core 3.1
+- Dotnet Core 6.0
 - FamilyTreeLibrary https://github.com/Ekmansoft/FamilyTreeLibrary
 - FamilyTreeTools https://github.com/Ekmansoft/FamilyTreeTools
 - FamilyTreeWebTools https://github.com/Ekmansoft/FamilyTreeWebTools
