@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
-namespace FamilyTreeWebApp.Migrations
+namespace Ekmansoft.FamilyTree.WebApp.Migrations
 {
   public partial class CreateIdentitySchema : Migration
   {

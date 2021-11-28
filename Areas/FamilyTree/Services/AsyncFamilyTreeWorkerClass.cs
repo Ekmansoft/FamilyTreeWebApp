@@ -1,10 +1,10 @@
-﻿using FamilyTreeLibrary.FamilyData;
-using FamilyTreeLibrary.FamilyTreeStore;
-using FamilyTreeTools.FamilyTreeSanityCheck;
-using FamilyTreeWebApp.Data;
-using FamilyTreeWebTools.Data;
-using FamilyTreeWebTools.Email;
-using FamilyTreeWebTools.Services;
+﻿using Ekmansoft.FamilyTree.Library.FamilyData;
+using Ekmansoft.FamilyTree.Library.FamilyTreeStore;
+using Ekmansoft.FamilyTree.Tools.FamilyTreeSanityCheck;
+using Ekmansoft.FamilyTree.WebApp.Data;
+using Ekmansoft.FamilyTree.WebTools.Data;
+using Ekmansoft.FamilyTree.WebTools.Email;
+using Ekmansoft.FamilyTree.WebTools.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +13,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 
-namespace FamilyTreeWebApp.Services
+namespace Ekmansoft.FamilyTree.WebApp.Services
 {
   public class AsyncFamilyTreeWorkerClass : IAsyncWorkerProgressInterface
   {

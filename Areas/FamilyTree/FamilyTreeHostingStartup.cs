@@ -1,4 +1,4 @@
-using FamilyTreeWebApp.Data;
+using Ekmansoft.FamilyTree.WebApp.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 

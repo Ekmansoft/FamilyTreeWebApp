@@ -1,4 +1,4 @@
-### FamilyTreeWebApp
+### Ekmansoft.FamilyTree.WebApp
 - Dotnet Core C# library for working with genealogy family trees on a web site (http://improveyourtree.com).
 
 ### Description
@@ -10,11 +10,11 @@
 
 ### Dependencies
 - Dotnet Core 6.0
-- FamilyTreeLibrary https://github.com/Ekmansoft/FamilyTreeLibrary
-- FamilyTreeTools https://github.com/Ekmansoft/FamilyTreeTools
-- FamilyTreeWebTools https://github.com/Ekmansoft/FamilyTreeWebTools
-- FamilyTreeCodecGedcom https://github.com/Ekmansoft/FamilyTreeCodecGedcom
-- FamilyTreeCodecGeni https://github.com/Ekmansoft/FamilyTreeCodecGeni
+- Ekmansoft.FamilyTree.Library https://github.com/Ekmansoft/FamilyTreeLibrary
+- Ekmansoft.FamilyTree.Tools https://github.com/Ekmansoft/FamilyTreeTools
+- Ekmansoft.FamilyTree.WebTools https://github.com/Ekmansoft/FamilyTreeWebTools
+- Ekmansoft.FamilyTree.Codec.Gedcom https://github.com/Ekmansoft/FamilyTreeCodecGedcom
+- Ekmansoft.FamilyTree.Codec.Geni https://github.com/Ekmansoft/FamilyTreeCodecGeni
 
 ### License 
 - Apache 2.0

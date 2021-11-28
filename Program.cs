@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace FamilyTreeWebApp
+namespace Ekmansoft.FamilyTree.WebApp
 {
   public class Program
   {

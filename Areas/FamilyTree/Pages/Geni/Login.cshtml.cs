@@ -1,6 +1,6 @@
-using FamilyTreeWebApp.Services;
-using FamilyTreeWebTools.Data;
-using FamilyTreeWebTools.Services;
+using Ekmansoft.FamilyTree.WebApp.Services;
+using Ekmansoft.FamilyTree.WebTools.Data;
+using Ekmansoft.FamilyTree.WebTools.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

@@ -1,7 +1,7 @@
-using FamilyTreeWebApp.Data;
-using FamilyTreeWebApp.Services;
-using FamilyTreeWebTools.Data;
-using FamilyTreeWebTools.Services;
+using Ekmansoft.FamilyTree.WebApp.Data;
+using Ekmansoft.FamilyTree.WebApp.Services;
+using Ekmansoft.FamilyTree.WebTools.Data;
+using Ekmansoft.FamilyTree.WebTools.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -92,14 +92,14 @@ namespace FamilyTreeServices.Pages
           {
             string profileId = "profile-g" + guidId;
             trace.TraceData(TraceEventType.Information, 0, "Search guid " + guidId + " => " + profileId);
-            FamilyTreeLibrary.FamilyData.IndividualClass person = webTree.GetFamilyTree().GetIndividual(profileId);
+            Ekmansoft.FamilyTree.Library.FamilyData.IndividualClass person = webTree.GetFamilyTree().GetIndividual(profileId);
 
             if (person != null)
             {
               trace.TraceData(TraceEventType.Information, 0, "Found person from guid " + person.GetName() + " " + person.GetXrefName());
               FamilyWebTree.SimplePerson simplePerson = new FamilyWebTree.SimplePerson(person.GetName(), person.GetXrefName(),
-                "(" + person.GetDate(FamilyTreeLibrary.FamilyData.IndividualEventClass.EventType.Birth) + " - " +
-                person.GetDate(FamilyTreeLibrary.FamilyData.IndividualEventClass.EventType.Death) + ")");
+                "(" + person.GetDate(Ekmansoft.FamilyTree.Library.FamilyData.IndividualEventClass.EventType.Birth) + " - " +
+                person.GetDate(Ekmansoft.FamilyTree.Library.FamilyData.IndividualEventClass.EventType.Death) + ")");
 
               SimplePeople.Add(simplePerson);
               peopleCount++;

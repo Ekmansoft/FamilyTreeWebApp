@@ -1,6 +1,6 @@
-using FamilyTreeWebApp.Data;
-using FamilyTreeWebApp.Services;
-using FamilyTreeWebTools.Data;
+using Ekmansoft.FamilyTree.WebApp.Data;
+using Ekmansoft.FamilyTree.WebApp.Services;
+using Ekmansoft.FamilyTree.WebTools.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

@@ -15,7 +15,8 @@
     <PackageProjectUrl>https://github.com/users/Ekmansoft/projects/1</PackageProjectUrl>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageId>Ekmansoft.FamilyTree.WebApp</PackageId>
-    <Version>1.2.0</Version>
+    <AssemblyName>Ekmansoft.FamilyTree.WebApp</AssemblyName>
+    <Version>1.3.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,9 +35,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EkmanSoft.FamilyTree.Library" Version="1.2.0" />
-    <PackageReference Include="EkmanSoft.FamilyTree.Tools" Version="1.2.0" />
-    <PackageReference Include="EkmanSoft.FamilyTree.WebTools" Version="1.2.0" />
+    <PackageReference Include="Ekmansoft.FamilyTree.Library" Version="1.3.0" />
+    <PackageReference Include="Ekmansoft.FamilyTree.Tools" Version="1.3.0" />
+    <PackageReference Include="Ekmansoft.FamilyTree.WebTools" Version="1.3.0" />
     <ProjectReference Include="..\FamilyTreeLibrary\FamilyTreeLibrary.csproj" />
     <ProjectReference Include="..\FamilyTreeTools\FamilyTreeTools.csproj" />
     <ProjectReference Include="..\FamilyTreeWebTools\FamilyTreeWebTools.csproj" />

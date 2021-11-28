@@ -1,5 +1,5 @@
-using FamilyTreeWebApp.Data;
-using FamilyTreeWebTools.Data;
+using Ekmansoft.FamilyTree.WebApp.Data;
+using Ekmansoft.FamilyTree.WebTools.Data;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;

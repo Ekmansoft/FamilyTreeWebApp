@@ -1,16 +1,16 @@
-﻿using FamilyTreeTools.FamilyTreeSanityCheck;
-using FamilyTreeWebApp.Controllers;
-using FamilyTreeWebApp.Data;
+﻿using Ekmansoft.FamilyTree.Tools.FamilyTreeSanityCheck;
+using Ekmansoft.FamilyTree.WebApp.Controllers;
+using Ekmansoft.FamilyTree.WebApp.Data;
 //using Newtonsoft.Json;
-using FamilyTreeWebTools.Data;
-using FamilyTreeWebTools.Services;
+using Ekmansoft.FamilyTree.WebTools.Data;
+using Ekmansoft.FamilyTree.WebTools.Services;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace FamilyTreeWebApp.Services
+namespace Ekmansoft.FamilyTree.WebApp.Services
 {
 
   public class FamilyDbContextClass
@@ -351,11 +351,11 @@ namespace FamilyTreeWebApp.Services
         analysis.OriginalFilename = origFilename;
         analysis.FileName = filepath;
 
-        FamilyTree tree = new FamilyTree();
+        FamilyTreeStorage tree = new FamilyTreeStorage();
 
         tree.Name = analysis.OriginalFilename;
         tree.Filename = analysis.FileName;
-        tree.Type = (int)FamilyTree.TreeType.GedcomFile;
+        tree.Type = (int)FamilyTreeStorage.TreeType.GedcomFile;
         tree.Url = "";
         context.Add(tree);
         context.SaveChanges();
@@ -366,15 +366,15 @@ namespace FamilyTreeWebApp.Services
       {
         analysis.OriginalFilename = "Geni.com";
         analysis.FileName = "Geni.com";
-        IQueryable<FamilyTree> trees = context.FamilyTrees.Where(f => f.Type == (int)FamilyTree.TreeType.GeniDotCom);
+        IQueryable<FamilyTreeStorage> trees = context.FamilyTrees.Where(f => f.Type == (int)FamilyTreeStorage.TreeType.GeniDotCom);
 
-        if ((trees == null) || (trees.Count<FamilyTree>() == 0))
+        if ((trees == null) || (trees.Count<FamilyTreeStorage>() == 0))
         {
-          FamilyTree tree = new FamilyTree();
+          FamilyTreeStorage tree = new FamilyTreeStorage();
 
           tree.Name = analysis.OriginalFilename;
           tree.Filename = analysis.OriginalFilename;
-          tree.Type = (int)FamilyTree.TreeType.GeniDotCom;
+          tree.Type = (int)FamilyTreeStorage.TreeType.GeniDotCom;
           tree.Url = "geni.com";
           context.Add(tree);
           context.SaveChanges();
@@ -382,7 +382,7 @@ namespace FamilyTreeWebApp.Services
         }
         else
         {
-          foreach (FamilyTree geniTree in trees)
+          foreach (FamilyTreeStorage geniTree in trees)
           {
             analysis.FamilyTreeId = geniTree.Id;
           }

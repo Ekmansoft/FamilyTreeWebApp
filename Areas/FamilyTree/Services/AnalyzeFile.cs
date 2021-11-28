@@ -1,13 +1,13 @@
-﻿using FamilyTreeLibrary.FamilyTreeStore;
-using FamilyTreeTools.FamilyTreeSanityCheck;
-using FamilyTreeWebApp.Services;
+﻿using Ekmansoft.FamilyTree.Library.FamilyTreeStore;
+using Ekmansoft.FamilyTree.Tools.FamilyTreeSanityCheck;
+using Ekmansoft.FamilyTree.WebApp.Services;
 //using FamilyStudioData.FamilyData;
-using FamilyTreeWebTools.Data;
-using FamilyTreeWebTools.Services;
+using Ekmansoft.FamilyTree.WebTools.Data;
+using Ekmansoft.FamilyTree.WebTools.Services;
 using System;
 using System.Diagnostics;
 
-namespace FamilyTreeWebApp.Controllers
+namespace Ekmansoft.FamilyTree.WebApp.Controllers
 {
   public class FileAnalysis
   {

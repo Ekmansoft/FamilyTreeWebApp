@@ -1,6 +1,6 @@
 using AspNetCoreWebApp3.Models;
-using FamilyTreeWebApp.Data;
-using FamilyTreeWebTools.Data;
+using Ekmansoft.FamilyTree.WebApp.Data;
+using Ekmansoft.FamilyTree.WebTools.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
@@ -16,7 +16,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 
-namespace FamilyTreeWebApp
+namespace Ekmansoft.FamilyTree.WebApp
 {
   public class Startup
   {

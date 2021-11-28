@@ -1,10 +1,10 @@
-using FamilyTreeWebTools.Data;
+using Ekmansoft.FamilyTree.WebTools.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Diagnostics;
 
-namespace FamilyTreeWebApp.Data
+namespace Ekmansoft.FamilyTree.WebApp.Data
 {
   public class FamilyTreeDbContext : DbContext
   {
@@ -53,7 +53,7 @@ namespace FamilyTreeWebApp.Data
 
     public DbSet<IssueLink> IssueLinks { get; set; }
 
-    public DbSet<FamilyTree> FamilyTrees { get; set; }
+    public DbSet<FamilyTreeStorage> FamilyTrees { get; set; }
 
     public DbSet<Profile> Profiles { get; set; }
 

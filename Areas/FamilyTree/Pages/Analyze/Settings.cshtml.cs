@@ -1,9 +1,9 @@
-using FamilyTreeLibrary.FamilyTreeStore;
-using FamilyTreeWebApp.Data;
-using FamilyTreeWebApp.Services;
-using FamilyTreeWebTools.Data;
+using Ekmansoft.FamilyTree.Library.FamilyTreeStore;
+using Ekmansoft.FamilyTree.WebApp.Data;
+using Ekmansoft.FamilyTree.WebApp.Services;
+using Ekmansoft.FamilyTree.WebTools.Data;
 //using FamilyStudioData.Controllers;
-using FamilyTreeWebTools.Services;
+using Ekmansoft.FamilyTree.WebTools.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
