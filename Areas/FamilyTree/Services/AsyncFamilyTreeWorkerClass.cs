@@ -175,7 +175,7 @@ namespace Ekmansoft.FamilyTree.WebApp.Services
 
           if (settings.ExportJson)
           {
-            jsonAnalysisFilename = "work_" + analysis.Id + "_result.json";
+            jsonAnalysisFilename = "job_" + analysis.Id + "_result.json";
             using (StreamWriter writer = new StreamWriter(tempFileDirectory + FamilyUtility.MakeFilename(jsonAnalysisFilename)))
             {
               writer.Write(JsonSerializer.Serialize(info));
@@ -193,7 +193,7 @@ namespace Ekmansoft.FamilyTree.WebApp.Services
 
           if (settings.ExportGedcom)
           {
-            gedcomFilename = "export_" + analysis.Id + "_result.ged";
+            gedcomFilename = "job_" + analysis.Id + "_export.ged";
             FamilyWebTree.ExportGedcom(stats.GetFamilyTree(), gedcomFilename);
 
             FamilyDbContextClass.UpdateExportFilename(analysis.Id, context, gedcomFilename);
@@ -202,7 +202,7 @@ namespace Ekmansoft.FamilyTree.WebApp.Services
 
           if (settings.ExportKml)
           {
-            kmlAnalysisFilename = "map_" + analysis.Id + "_result.kml";
+            kmlAnalysisFilename = "job_" + analysis.Id + "_map.kml";
             string mapFile = MapExportClass.CreateMapFile(stats.GetFamilyTree());
 
             using (StreamWriter writer = new StreamWriter(tempFileDirectory + FamilyUtility.MakeFilename(kmlAnalysisFilename)))
@@ -217,7 +217,7 @@ namespace Ekmansoft.FamilyTree.WebApp.Services
 
           if (settings.SendEmail && !string.IsNullOrEmpty(analysis.UserEmail))
           {
-            string emailContents = EmailExportClass.ExportHtml(info);
+            string emailContents = EmailExportClass.ExportHtml(info, settings);
             string analysisType = null;
             List<string> attachmentFilenames = new List<string>();
 
