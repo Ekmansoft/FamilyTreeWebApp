@@ -194,9 +194,9 @@ namespace Ekmansoft.FamilyTree.WebApp.Services
           if (settings.ExportGedcom)
           {
             gedcomFilename = "job_" + analysis.Id + "_export.ged";
-            FamilyWebTree.ExportGedcom(stats.GetFamilyTree(), gedcomFilename);
+            FamilyWebTree.ExportGedcom(stats.GetFamilyTree(), tempFileDirectory + FamilyUtility.MakeFilename(gedcomFilename));
 
-            FamilyDbContextClass.UpdateExportFilename(analysis.Id, context, gedcomFilename);
+            FamilyDbContextClass.UpdateExportFilename(analysis.Id, context, tempFileDirectory + FamilyUtility.MakeFilename(gedcomFilename));
             trace.TraceInformation(analysis.Id + ": Gedcom exported " + gedcomFilename);
           }
 
