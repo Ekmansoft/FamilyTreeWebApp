@@ -90,6 +90,8 @@ namespace Ekmansoft.FamilyTree.WebApp.Services
         {
           settings = AnalysisSettings.FromJson(analysis.Settings);
           startperson = familyTree.GetIndividual(analysis.StartPersonXref);
+          string jsonAnalysisFilename = null;
+          string kmlAnalysisFilename = null;
 
           if ((settings != null) && (settings.CheckWholeFile))
           {
@@ -166,14 +168,14 @@ namespace Ekmansoft.FamilyTree.WebApp.Services
             {
               directory = "";
             }
-            string intermediateFilename = "work_" + analysis.Id + "_result.json";
-            using (StreamWriter writer = new StreamWriter(directory + FamilyUtility.MakeFilename(intermediateFilename)))
+            jsonAnalysisFilename = "work_" + analysis.Id + "_result.json";
+            using (StreamWriter writer = new StreamWriter(directory + FamilyUtility.MakeFilename(jsonAnalysisFilename)))
             {
               writer.Write(JsonSerializer.Serialize(info));
 
               writer.Close();
             }
-            trace.TraceInformation(analysis.Id + ": Intermediate Json file stored:" + intermediateFilename);
+            trace.TraceInformation(analysis.Id + ": Intermediate Json file stored:" + jsonAnalysisFilename);
           }
 
           if (settings.UpdateDatabase)
@@ -197,23 +199,24 @@ namespace Ekmansoft.FamilyTree.WebApp.Services
             {
               directory = "";
             }
-            string intermediateFilename = "map_" + analysis.Id + "_result.kml";
+            kmlAnalysisFilename = "map_" + analysis.Id + "_result.kml";
             string mapFile = MapExportClass.CreateMapFile(stats.GetFamilyTree());
 
-            using (StreamWriter writer = new StreamWriter(directory + FamilyUtility.MakeFilename(intermediateFilename)))
+            using (StreamWriter writer = new StreamWriter(directory + FamilyUtility.MakeFilename(kmlAnalysisFilename)))
             {
               writer.Write(mapFile);
 
               writer.Close();
             }
 
-            trace.TraceInformation(analysis.Id + ": KML exported " + intermediateFilename);
+            trace.TraceInformation(analysis.Id + ": KML exported " + kmlAnalysisFilename);
           }
 
           if (settings.SendEmail && !string.IsNullOrEmpty(analysis.UserEmail))
           {
             string emailContents = EmailExportClass.ExportHtml(info);
             string analysisType = null;
+            List<string> attachmentFilenames = new List<string>();
 
             if (!settings.CheckWholeFile)
             {
@@ -223,7 +226,21 @@ namespace Ekmansoft.FamilyTree.WebApp.Services
             {
               analysisType = "whole file";
             }
-            SendMailClass.SendMail(_emailSendSource.Address, _emailSendSource.CredentialAddress, _emailSendSource.CredentialPassword, analysis.UserEmail, "Analysis " + analysis.OriginalFilename + " " + analysisType, emailContents);
+            if (jsonAnalysisFilename != null)
+            {
+              attachmentFilenames.Add(jsonAnalysisFilename);
+            }
+            if (kmlAnalysisFilename != null)
+            {
+              attachmentFilenames.Add(kmlAnalysisFilename);
+            }
+            SendMailClass.SendMail(_emailSendSource.Address, 
+                                    _emailSendSource.CredentialAddress, 
+                                    _emailSendSource.CredentialPassword, 
+                                    analysis.UserEmail, 
+                                    "Analysis " + analysis.OriginalFilename + " " + analysisType, 
+                                    emailContents, 
+                                    attachmentFilenames);
           }
           else
           {

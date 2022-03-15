@@ -9,7 +9,7 @@
     <PackageLicenseFile>LICENSE-2.0.txt</PackageLicenseFile>
     <NeutralLanguage>en</NeutralLanguage>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <RepositoryUrl>https://github.com/Ekmansoft/FamilyTreeCodecGedcom</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Ekmansoft/FamilyTreeWebApp</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Genealogy</PackageTags>
     <PackageProjectUrl>https://github.com/users/Ekmansoft/projects/1</PackageProjectUrl>
@@ -37,7 +37,7 @@
   <ItemGroup>
     <PackageReference Include="Ekmansoft.FamilyTree.Library" Version="1.3.0" />
     <PackageReference Include="Ekmansoft.FamilyTree.Tools" Version="1.3.0" />
-    <PackageReference Include="Ekmansoft.FamilyTree.WebTools" Version="1.3.0" />
+    <PackageReference Include="Ekmansoft.FamilyTree.WebTools" Version="1.3.1" />
     <ProjectReference Include="..\FamilyTreeLibrary\FamilyTreeLibrary.csproj" />
     <ProjectReference Include="..\FamilyTreeTools\FamilyTreeTools.csproj" />
     <ProjectReference Include="..\FamilyTreeWebTools\FamilyTreeWebTools.csproj" />
