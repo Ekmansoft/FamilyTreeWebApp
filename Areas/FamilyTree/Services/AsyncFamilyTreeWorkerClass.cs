@@ -92,6 +92,12 @@ namespace Ekmansoft.FamilyTree.WebApp.Services
           startperson = familyTree.GetIndividual(analysis.StartPersonXref);
           string jsonAnalysisFilename = null;
           string kmlAnalysisFilename = null;
+          string gedcomFilename = null;
+          string tempFileDirectory = "/tmp/";
+          if (!Directory.Exists(tempFileDirectory))
+          {
+            tempFileDirectory = "";
+          }
 
           if ((settings != null) && (settings.CheckWholeFile))
           {
@@ -113,7 +119,12 @@ namespace Ekmansoft.FamilyTree.WebApp.Services
           }
           else if (startperson != null)
           {
-            trace.TraceInformation("Start job " + analysis.Id + " " + settings.StartPersonName + " " + settings.GenerationsBack + " " + settings.GenerationsForward + " by " + analysis.UserEmail);
+            trace.TraceInformation("Start job " + analysis.Id + " " + 
+                                    settings.StartPersonName + " " + 
+                                    settings.GenerationsBack + " " + 
+                                    settings.GenerationsForward + " " + 
+                                    settings.EndYear + " by " + 
+                                    analysis.UserEmail);
             stats.AnalyseTree(startperson);
             if (stats.Stopped())
             {
@@ -146,7 +157,8 @@ namespace Ekmansoft.FamilyTree.WebApp.Services
 
           JobInfo info = stats.GetJobInfo(analysis.Id);
 
-          trace.TraceInformation(analysis.Id + ": work done = " + info.Profiles + " profiles and " + info.Families + " families" + ", found " + info.IssueList.Count + " problem profiles");
+          trace.TraceInformation(analysis.Id + ": work done = " + info.Profiles + " profiles and " + 
+            info.Families + " families" + ", found " + info.IssueList.Count + " problem profiles");
 
           /*info.Profiles = work.people;
           info.Families = work.families;
@@ -163,13 +175,8 @@ namespace Ekmansoft.FamilyTree.WebApp.Services
 
           if (settings.ExportJson)
           {
-            string directory = "/tmp/";
-            if (!Directory.Exists(directory))
-            {
-              directory = "";
-            }
             jsonAnalysisFilename = "work_" + analysis.Id + "_result.json";
-            using (StreamWriter writer = new StreamWriter(directory + FamilyUtility.MakeFilename(jsonAnalysisFilename)))
+            using (StreamWriter writer = new StreamWriter(tempFileDirectory + FamilyUtility.MakeFilename(jsonAnalysisFilename)))
             {
               writer.Write(JsonSerializer.Serialize(info));
 
@@ -186,7 +193,8 @@ namespace Ekmansoft.FamilyTree.WebApp.Services
 
           if (settings.ExportGedcom)
           {
-            string gedcomFilename = FamilyWebTree.ExportGedcom(stats.GetFamilyTree());
+            gedcomFilename = "export_" + analysis.Id + "_result.ged";
+            FamilyWebTree.ExportGedcom(stats.GetFamilyTree(), gedcomFilename);
 
             FamilyDbContextClass.UpdateExportFilename(analysis.Id, context, gedcomFilename);
             trace.TraceInformation(analysis.Id + ": Gedcom exported " + gedcomFilename);
@@ -194,15 +202,10 @@ namespace Ekmansoft.FamilyTree.WebApp.Services
 
           if (settings.ExportKml)
           {
-            string directory = "/tmp/";
-            if (!Directory.Exists(directory))
-            {
-              directory = "";
-            }
             kmlAnalysisFilename = "map_" + analysis.Id + "_result.kml";
             string mapFile = MapExportClass.CreateMapFile(stats.GetFamilyTree());
 
-            using (StreamWriter writer = new StreamWriter(directory + FamilyUtility.MakeFilename(kmlAnalysisFilename)))
+            using (StreamWriter writer = new StreamWriter(tempFileDirectory + FamilyUtility.MakeFilename(kmlAnalysisFilename)))
             {
               writer.Write(mapFile);
 
@@ -220,19 +223,26 @@ namespace Ekmansoft.FamilyTree.WebApp.Services
 
             if (!settings.CheckWholeFile)
             {
-              analysisType = settings.StartPersonName + " " + settings.GenerationsBack + "/" + settings.GenerationsForward;
+              analysisType = settings.StartPersonName + " " + 
+                              settings.GenerationsBack + "/" + 
+                              settings.GenerationsForward + "/" + 
+                              settings.EndYear;
             }
             else
             {
               analysisType = "whole file";
             }
+            if (gedcomFilename != null)
+            {
+              attachmentFilenames.Add(tempFileDirectory + FamilyUtility.MakeFilename(gedcomFilename));
+            }
             if (jsonAnalysisFilename != null)
             {
-              attachmentFilenames.Add(FamilyUtility.MakeFilename(jsonAnalysisFilename));
+              attachmentFilenames.Add(tempFileDirectory + FamilyUtility.MakeFilename(jsonAnalysisFilename));
             }
             if (kmlAnalysisFilename != null)
             {
-              attachmentFilenames.Add(FamilyUtility.MakeFilename(kmlAnalysisFilename));
+              attachmentFilenames.Add(tempFileDirectory + FamilyUtility.MakeFilename(kmlAnalysisFilename));
             }
             SendMailClass.SendMail(_emailSendSource.Address, 
                                     _emailSendSource.CredentialAddress, 
