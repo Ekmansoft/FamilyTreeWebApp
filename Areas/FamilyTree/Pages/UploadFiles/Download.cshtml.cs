@@ -41,28 +41,28 @@ namespace FamilyTreeServices.Pages
     {
       if (jsonId != null)
       {
-        string jsonFilename = "/tmp/work_" + jsonId + "_result.json";
+        string jsonFilename = "/tmp/job_" + jsonId + "_result.json";
         byte[] fileBytes = System.IO.File.ReadAllBytes(jsonFilename);
         return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, "AnalysisResults_" + jsonId + ".json");
       }
       if (kmlId != null)
       {
-        string kmlFilename = "/tmp/map_" + kmlId + "_result.kml";
+        string kmlFilename = "/tmp/job_" + kmlId + "_map.kml";
         byte[] fileBytes = System.IO.File.ReadAllBytes(kmlFilename);
-        return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, "map_" + kmlId + "_result.kml");
+        return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, "job_" + kmlId + "_map.kml");
       }
-      Analysis = await _context.Analyses.FirstOrDefaultAsync(m => m.Id == id);
-
-      if (Analysis != null)
+      if (id != null)
       {
-        AnalysisResults results = AnalysisResults.FromJson(Analysis.Results);
+        Analysis = await _context.Analyses.FirstOrDefaultAsync(m => m.Id == id);
 
-        if (results != null)
+        if (Analysis != null)
         {
-          if ((results.ExportedGedcomName != null) && (results.ExportedGedcomName.Length > 0))
+          AnalysisResults results = AnalysisResults.FromJson(Analysis.Results);
+
+          if (results != null)
           {
+            string fileName = "job_" + id + "_export.ged";
             byte[] fileBytes = System.IO.File.ReadAllBytes(results.ExportedGedcomName);
-            string fileName = Analysis.OriginalFilename + "_export.ged";
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
           }
         }
