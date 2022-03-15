@@ -228,11 +228,11 @@ namespace Ekmansoft.FamilyTree.WebApp.Services
             }
             if (jsonAnalysisFilename != null)
             {
-              attachmentFilenames.Add(jsonAnalysisFilename);
+              attachmentFilenames.Add(FamilyUtility.MakeFilename(jsonAnalysisFilename));
             }
             if (kmlAnalysisFilename != null)
             {
-              attachmentFilenames.Add(kmlAnalysisFilename);
+              attachmentFilenames.Add(FamilyUtility.MakeFilename(kmlAnalysisFilename));
             }
             SendMailClass.SendMail(_emailSendSource.Address, 
                                     _emailSendSource.CredentialAddress, 
