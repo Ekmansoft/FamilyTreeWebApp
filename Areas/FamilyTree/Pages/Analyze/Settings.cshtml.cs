@@ -123,6 +123,7 @@ namespace FamilyTreeServices.Pages
         {
           Message = "Geni login failed (Are cookies enabled?)";
         }
+        trace.TraceData(TraceEventType.Error, 0, "AnalyzeSettingsModel.OnGet() error webtree invalid!");
         webTree.Dispose();
         return Redirect("/FamilyTree/UploadFiles/UploadFailed");
       }
