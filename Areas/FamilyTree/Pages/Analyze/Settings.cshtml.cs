@@ -125,7 +125,14 @@ namespace FamilyTreeServices.Pages
         }
         trace.TraceData(TraceEventType.Error, 0, "AnalyzeSettingsModel.OnGet() error webtree invalid!");
         webTree.Dispose();
-        return Redirect("/FamilyTree/UploadFiles/UploadFailed");
+        if (!String.IsNullOrEmpty(GedcomFilename2))
+        {
+          return Redirect("/FamilyTree/UploadFiles/UploadFailed");
+        }
+        else
+        {
+          return Redirect("/FamilyTree/Geni/LoginFailed");
+        }
       }
 
       /*if((recheck_analysis_id != null) && (recheck_analysis_id > 0))
