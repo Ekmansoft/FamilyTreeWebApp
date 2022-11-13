@@ -57,7 +57,7 @@ namespace FamilyTreeServices.Pages
       Message = "Logging into Geni....";
       //geni_expires_in = expires_in;
       //geni_access_token = access_token;
-      trace.TraceData(TraceEventType.Information, 0, "GeniLoginOkModel.OnGet() code:" +
+      trace.TraceData(TraceEventType.Information, 0, "GeniLoginFailedModel.OnGet() code:" +
         code + " expires_in: " + expires_in + " state: " + state + " message: " + message);
 
       if (string.IsNullOrEmpty(code))
@@ -189,21 +189,21 @@ namespace FamilyTreeServices.Pages
       }
       catch (JsonException e)
       {
-        trace.TraceData(TraceEventType.Error, 0, "GeniLoginOkModel.OnGet() json parse failed " + returnLine.Length + ": "+ returnLine);
-        trace.TraceData(TraceEventType.Error, 0, "GeniLoginOkModel.OnGet() json parse failed " + e.ToString());
+        trace.TraceData(TraceEventType.Error, 0, "GeniLoginFailedModel.OnGet() json parse failed " + returnLine.Length + ": "+ returnLine);
+        trace.TraceData(TraceEventType.Error, 0, "GeniLoginFailedModel.OnGet() json parse failed " + e.ToString());
 
       }
       catch (Exception e)
       {
-        trace.TraceData(TraceEventType.Error, 0, "GeniLoginOkModel.OnGet() failed " + returnLine);
-        trace.TraceData(TraceEventType.Error, 0, "GeniLoginOkModel.OnGet() failed " + e.ToString());
+        trace.TraceData(TraceEventType.Error, 0, "GeniLoginFailedModel.OnGet() failed " + returnLine);
+        trace.TraceData(TraceEventType.Error, 0, "GeniLoginFailedModel.OnGet() failed " + e.ToString());
 
       }
 
 
       if (appAuthenticationResponse != null)
       {
-        trace.TraceData(TraceEventType.Information, 0, "GeniLoginOkModel.OnGet() get auth " + appAuthenticationResponse.access_token + " refreshToken:" + appAuthenticationResponse.refresh_token + " expiresIn:" + appAuthenticationResponse.expires_in);
+        trace.TraceData(TraceEventType.Information, 0, "GeniLoginFailedModel.OnGet() get auth " + appAuthenticationResponse.access_token + " refreshToken:" + appAuthenticationResponse.refresh_token + " expiresIn:" + appAuthenticationResponse.expires_in);
         if (!String.IsNullOrEmpty(appAuthenticationResponse.access_token))
         {
           HttpContext.Session.SetString("geni_access_token", appAuthenticationResponse.access_token);
@@ -233,7 +233,7 @@ namespace FamilyTreeServices.Pages
       if ((AlternativeRedirect != null) && (AlternativeRedirect.Length > 0))
       {
         redirectTarget = AlternativeRedirect;
-        trace.TraceData(TraceEventType.Information, 0, "GeniLoginOkModel.OnGet() redirect to " + redirectTarget);
+        trace.TraceData(TraceEventType.Information, 0, "GeniLoginFailedModel.OnGet() redirect to " + redirectTarget);
         HttpContext.Session.SetString("RedirectAfterGeniLogin", "");
       }
 
@@ -243,7 +243,7 @@ namespace FamilyTreeServices.Pages
     public void OnPost()
     {
       //Message = "Your Login to Geni. post" ;
-      trace.TraceData(TraceEventType.Information, 0, "GeniLoginOkModel.OnPost()");
+      trace.TraceData(TraceEventType.Information, 0, "GeniLoginFailedModel.OnPost()");
       //trace.TraceData(TraceEventType.Information, 0, "Geni LoginOk post " + Message);
     }
   }
