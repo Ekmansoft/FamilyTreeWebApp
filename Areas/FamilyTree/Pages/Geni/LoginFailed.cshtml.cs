@@ -58,7 +58,7 @@ namespace FamilyTreeServices.Pages
       //geni_expires_in = expires_in;
       //geni_access_token = access_token;
       trace.TraceData(TraceEventType.Information, 0, "GeniLoginFailedModel.OnGet() code:" +
-        code + " expires_in: " + expires_in + " state: " + state + " message: " + message);
+        code + " expires_in: " + expires_in + " state: " + state + " message: " + message + " redirect:" + redirectTarget);
 
       if (string.IsNullOrEmpty(code))
       {
