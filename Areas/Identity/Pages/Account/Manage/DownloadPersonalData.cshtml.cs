@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace AspNetCoreWebApp3.Areas.Identity.Pages.Account.Manage
@@ -44,7 +44,7 @@ namespace AspNetCoreWebApp3.Areas.Identity.Pages.Account.Manage
       }
 
       Response.Headers.Add("Content-Disposition", "attachment; filename=PersonalData.json");
-      return new FileContentResult(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(personalData)), "text/json");
+      return new FileContentResult(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(personalData)), "text/json");
     }
   }
 }
