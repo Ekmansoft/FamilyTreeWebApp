@@ -1,0 +1,206 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "Ekmansoft.FamilyTree.Codec.Gedcom/1.3.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Ekmansoft.FamilyTree.Library": "1.4.0"
+        },
+        "compile": {
+          "bin/placeholder/Ekmansoft.FamilyTree.Codec.Gedcom.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Ekmansoft.FamilyTree.Codec.Gedcom.dll": {}
+        }
+      },
+      "Ekmansoft.FamilyTree.Codec.Geni/1.3.1": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Ekmansoft.FamilyTree.Library": "1.4.0"
+        },
+        "compile": {
+          "bin/placeholder/Ekmansoft.FamilyTree.Codec.Geni.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Ekmansoft.FamilyTree.Codec.Geni.dll": {}
+        }
+      },
+      "Ekmansoft.FamilyTree.Codec.Text/1.4.0": {
+        "type": "project",
+        "framework": "Unsupported,Version=v0.0",
+        "compile": {
+          "bin/placeholder/Ekmansoft.FamilyTree.Codec.Text.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Ekmansoft.FamilyTree.Codec.Text.dll": {}
+        }
+      },
+      "Ekmansoft.FamilyTree.Library/1.4.0": {
+        "type": "project",
+        "framework": "Unsupported,Version=v0.0",
+        "compile": {
+          "bin/placeholder/Ekmansoft.FamilyTree.Library.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Ekmansoft.FamilyTree.Library.dll": {}
+        }
+      },
+      "Ekmansoft.FamilyTree.Tools/1.4.0": {
+        "type": "project",
+        "framework": "Unsupported,Version=v0.0",
+        "compile": {
+          "bin/placeholder/Ekmansoft.FamilyTree.Tools.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Ekmansoft.FamilyTree.Tools.dll": {}
+        }
+      },
+      "Ekmansoft.FamilyTree.WebTools/1.3.2": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "C:\\Users\\bk_ek\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeCodecDatabase\\FamilyTreeCodecDatabase.csproj": "1.0.0",
+          "Ekmansoft.FamilyTree.Codec.Gedcom": "1.3.0",
+          "Ekmansoft.FamilyTree.Codec.Geni": "1.3.1",
+          "Ekmansoft.FamilyTree.Codec.Text": "1.4.0",
+          "Ekmansoft.FamilyTree.Library": "1.4.0",
+          "Ekmansoft.FamilyTree.Tools": "1.4.0"
+        },
+        "compile": {
+          "bin/placeholder/Ekmansoft.FamilyTree.WebTools.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Ekmansoft.FamilyTree.WebTools.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Ekmansoft.FamilyTree.Codec.Gedcom/1.3.0": {
+      "type": "project",
+      "path": "../FamilyTreeCodecGedcom/FamilyTreeCodecGedcom.csproj",
+      "msbuildProject": "../FamilyTreeCodecGedcom/FamilyTreeCodecGedcom.csproj"
+    },
+    "Ekmansoft.FamilyTree.Codec.Geni/1.3.1": {
+      "type": "project",
+      "path": "../FamilyTreeCodecGeni/FamilyTreeCodecGeni.csproj",
+      "msbuildProject": "../FamilyTreeCodecGeni/FamilyTreeCodecGeni.csproj"
+    },
+    "Ekmansoft.FamilyTree.Codec.Text/1.4.0": {
+      "type": "project",
+      "path": "../FamilyTreeCodecText/FamilyTreeCodecText.csproj",
+      "msbuildProject": "../FamilyTreeCodecText/FamilyTreeCodecText.csproj"
+    },
+    "Ekmansoft.FamilyTree.Library/1.4.0": {
+      "type": "project",
+      "path": "../FamilyTreeLibrary/FamilyTreeLibrary.csproj",
+      "msbuildProject": "../FamilyTreeLibrary/FamilyTreeLibrary.csproj"
+    },
+    "Ekmansoft.FamilyTree.Tools/1.4.0": {
+      "type": "project",
+      "path": "../FamilyTreeTools/FamilyTreeTools.csproj",
+      "msbuildProject": "../FamilyTreeTools/FamilyTreeTools.csproj"
+    },
+    "Ekmansoft.FamilyTree.WebTools/1.3.2": {
+      "type": "project",
+      "path": "../FamilyTreeWebTools/FamilyTreeWebTools.csproj",
+      "msbuildProject": "../FamilyTreeWebTools/FamilyTreeWebTools.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "Ekmansoft.FamilyTree.Library >= 1.4.0",
+      "Ekmansoft.FamilyTree.Tools >= 1.4.0",
+      "Ekmansoft.FamilyTree.WebTools >= 1.3.2"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\bk_ek\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.3.1",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\bk_ek\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeWebApp\\FamilyTreeWebApp.csproj",
+      "projectName": "Ekmansoft.FamilyTree.WebApp",
+      "projectPath": "C:\\Users\\bk_ek\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeWebApp\\FamilyTreeWebApp.csproj",
+      "packagesPath": "C:\\Users\\bk_ek\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\bk_ek\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeWebApp\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\bk_ek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {
+            "C:\\Users\\bk_ek\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeLibrary\\FamilyTreeLibrary.csproj": {
+              "projectPath": "C:\\Users\\bk_ek\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeLibrary\\FamilyTreeLibrary.csproj"
+            },
+            "C:\\Users\\bk_ek\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeTools\\FamilyTreeTools.csproj": {
+              "projectPath": "C:\\Users\\bk_ek\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeTools\\FamilyTreeTools.csproj"
+            },
+            "C:\\Users\\bk_ek\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeWebTools\\FamilyTreeWebTools.csproj": {
+              "projectPath": "C:\\Users\\bk_ek\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeWebTools\\FamilyTreeWebTools.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.200"
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.200\\RuntimeIdentifierGraph.json"
+      }
+    }
+  },
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\bk_ek\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeCodecDatabase\\FamilyTreeCodecDatabase.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\bk_ek\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeCodecDatabase\\FamilyTreeCodecDatabase.csproj",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
+}

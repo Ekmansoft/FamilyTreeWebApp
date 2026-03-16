@@ -1,0 +1,582 @@
+{
+  "settings": {
+    "components": {
+      "code": true,
+      "binaries": false
+    },
+    "targetId": "net10.0",
+    "targetDisplayName": ".NETCoreApp,Version=v10.0"
+  },
+  "analysisStartTime": "2026-03-16T18:04:17.9991502Z",
+  "analysisEndTime": "2026-03-16T18:04:26.3160077Z",
+  "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2270980",
+  "stats": {
+    "summary": {
+      "projects": 7,
+      "issues": 2,
+      "incidents": 14,
+      "effort": 14
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 7,
+        "Optional": 0,
+        "Potential": 7,
+        "Information": 0
+      },
+      "category": {
+        "Project": 7,
+        "NuGet": 7
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeCodecGedcom\\FamilyTreeCodecGedcom.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "FamilyTreeCodecGedcom",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net6.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 9,
+        "numberOfCodeFiles": 9,
+        "linesTotal": 7696,
+        "linesOfCode": 7696,
+        "totalApiScanned": 4549,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "209e6946-855e-43c0-b8e9-cf902f37d0c8",
+          "ruleId": "Project.0002",
+          "projectPath": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeCodecGedcom\\FamilyTreeCodecGedcom.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net6.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net6.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeCodecGedcom\\FamilyTreeCodecGedcom.csproj",
+            "snippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net6.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeCodecGeni\\FamilyTreeCodecGeni.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "FamilyTreeCodecGeni",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net6.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 4,
+        "numberOfCodeFiles": 4,
+        "linesTotal": 3136,
+        "linesOfCode": 3136,
+        "totalApiScanned": 2691,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "b57a243e-317b-496d-b688-a08548cd0534",
+          "ruleId": "Project.0002",
+          "projectPath": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeCodecGeni\\FamilyTreeCodecGeni.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net6.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net6.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeCodecGeni\\FamilyTreeCodecGeni.csproj",
+            "snippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net6.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeCodecText\\FamilyTreeCodecText.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "FamilyTreeCodecText",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net7.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 1,
+        "numberOfCodeFiles": 1,
+        "linesTotal": 1188,
+        "linesOfCode": 1188,
+        "totalApiScanned": 1050,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "888c613b-b579-4903-abb0-aacdab10da32",
+          "ruleId": "Project.0002",
+          "projectPath": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeCodecText\\FamilyTreeCodecText.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net7.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net7.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeCodecText\\FamilyTreeCodecText.csproj",
+            "snippet": "Current target framework: net7.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net7.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net7.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeLibrary\\FamilyTreeLibrary.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "FamilyTreeLibrary",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net7.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 24,
+        "numberOfCodeFiles": 24,
+        "linesTotal": 4929,
+        "linesOfCode": 4929,
+        "totalApiScanned": 6622,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "f0fbcd40-6f9b-4fd0-a127-89ac11cf29b6",
+          "ruleId": "Project.0002",
+          "projectPath": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeLibrary\\FamilyTreeLibrary.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net7.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net7.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeLibrary\\FamilyTreeLibrary.csproj",
+            "snippet": "Current target framework: net7.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net7.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net7.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeTools\\FamilyTreeTools.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "FamilyTreeTools",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net7.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 3,
+        "numberOfCodeFiles": 3,
+        "linesTotal": 4031,
+        "linesOfCode": 4031,
+        "totalApiScanned": 7644,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "dc62d681-de4c-496b-bc1e-4c91963981db",
+          "ruleId": "Project.0002",
+          "projectPath": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeTools\\FamilyTreeTools.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net7.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net7.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeTools\\FamilyTreeTools.csproj",
+            "snippet": "Current target framework: net7.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net7.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net7.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "FamilyTreeWebApp.csproj",
+      "startingProject": true,
+      "issues": 2,
+      "storyPoints": 8,
+      "properties": {
+        "appName": "FamilyTreeWebApp",
+        "projectKind": "AspNetCore",
+        "frameworks": [
+          "net6.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 172,
+        "numberOfCodeFiles": 168,
+        "linesTotal": 11501,
+        "linesOfCode": 11412,
+        "totalApiScanned": 5883,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "90cee495-6724-4746-93d4-dce981686348",
+          "ruleId": "NuGet.0002",
+          "projectPath": "FamilyTreeWebApp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.DataProtection, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.DataProtection, and replace with new package Microsoft.AspNetCore.DataProtection 10.0.5",
+              "protected": "Microsoft.AspNetCore.DataProtection, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.DataProtection, and replace with new package Microsoft.AspNetCore.DataProtection 10.0.5"
+            },
+            "kind": "File",
+            "path": "FamilyTreeWebApp.csproj",
+            "snippet": "Microsoft.AspNetCore.DataProtection, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.DataProtection, and replace with new package Microsoft.AspNetCore.DataProtection 10.0.5",
+            "protectedSnippet": "Microsoft.AspNetCore.DataProtection, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.DataProtection, and replace with new package Microsoft.AspNetCore.DataProtection 10.0.5",
+            "label": "Microsoft.AspNetCore.DataProtection 6.0.0",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.DataProtection",
+              "PackageVersion": "6.0.0",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "c4507b7b-2e09-4abb-9f3c-96f2f91d44a4",
+          "ruleId": "NuGet.0002",
+          "projectPath": "FamilyTreeWebApp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.Identity.EntityFrameworkCore, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Identity.EntityFrameworkCore, and replace with new package Microsoft.AspNetCore.Identity.EntityFrameworkCore 10.0.5",
+              "protected": "Microsoft.AspNetCore.Identity.EntityFrameworkCore, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Identity.EntityFrameworkCore, and replace with new package Microsoft.AspNetCore.Identity.EntityFrameworkCore 10.0.5"
+            },
+            "kind": "File",
+            "path": "FamilyTreeWebApp.csproj",
+            "snippet": "Microsoft.AspNetCore.Identity.EntityFrameworkCore, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Identity.EntityFrameworkCore, and replace with new package Microsoft.AspNetCore.Identity.EntityFrameworkCore 10.0.5",
+            "protectedSnippet": "Microsoft.AspNetCore.Identity.EntityFrameworkCore, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Identity.EntityFrameworkCore, and replace with new package Microsoft.AspNetCore.Identity.EntityFrameworkCore 10.0.5",
+            "label": "Microsoft.AspNetCore.Identity.EntityFrameworkCore 6.0.0",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Identity.EntityFrameworkCore",
+              "PackageVersion": "6.0.0",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "795a1b15-57bc-4abb-a7fa-014f0494e233",
+          "ruleId": "NuGet.0002",
+          "projectPath": "FamilyTreeWebApp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.Identity.UI, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Identity.UI, and replace with new package Microsoft.AspNetCore.Identity.UI 10.0.5",
+              "protected": "Microsoft.AspNetCore.Identity.UI, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Identity.UI, and replace with new package Microsoft.AspNetCore.Identity.UI 10.0.5"
+            },
+            "kind": "File",
+            "path": "FamilyTreeWebApp.csproj",
+            "snippet": "Microsoft.AspNetCore.Identity.UI, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Identity.UI, and replace with new package Microsoft.AspNetCore.Identity.UI 10.0.5",
+            "protectedSnippet": "Microsoft.AspNetCore.Identity.UI, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Identity.UI, and replace with new package Microsoft.AspNetCore.Identity.UI 10.0.5",
+            "label": "Microsoft.AspNetCore.Identity.UI 6.0.0",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Identity.UI",
+              "PackageVersion": "6.0.0",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "9d60fa51-f832-4fe2-aa1a-b94f047c6ac3",
+          "ruleId": "NuGet.0002",
+          "projectPath": "FamilyTreeWebApp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.SqlServer, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.5",
+              "protected": "Microsoft.EntityFrameworkCore.SqlServer, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.5"
+            },
+            "kind": "File",
+            "path": "FamilyTreeWebApp.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.SqlServer, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.5",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.SqlServer, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.SqlServer, and replace with new package Microsoft.EntityFrameworkCore.SqlServer 10.0.5",
+            "label": "Microsoft.EntityFrameworkCore.SqlServer 6.0.0",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.SqlServer",
+              "PackageVersion": "6.0.0",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "11eecc3c-6d54-400f-affd-065c08c96357",
+          "ruleId": "NuGet.0002",
+          "projectPath": "FamilyTreeWebApp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.EntityFrameworkCore.Tools, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Tools, and replace with new package Microsoft.EntityFrameworkCore.Tools 10.0.5",
+              "protected": "Microsoft.EntityFrameworkCore.Tools, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Tools, and replace with new package Microsoft.EntityFrameworkCore.Tools 10.0.5"
+            },
+            "kind": "File",
+            "path": "FamilyTreeWebApp.csproj",
+            "snippet": "Microsoft.EntityFrameworkCore.Tools, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Tools, and replace with new package Microsoft.EntityFrameworkCore.Tools 10.0.5",
+            "protectedSnippet": "Microsoft.EntityFrameworkCore.Tools, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.EntityFrameworkCore.Tools, and replace with new package Microsoft.EntityFrameworkCore.Tools 10.0.5",
+            "label": "Microsoft.EntityFrameworkCore.Tools 6.0.0",
+            "properties": {
+              "PackageId": "Microsoft.EntityFrameworkCore.Tools",
+              "PackageVersion": "6.0.0",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "add8d4ce-7245-4a4e-9797-dd79868e1af6",
+          "ruleId": "NuGet.0002",
+          "projectPath": "FamilyTreeWebApp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Logging.Debug, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Logging.Debug, and replace with new package Microsoft.Extensions.Logging.Debug 10.0.5",
+              "protected": "Microsoft.Extensions.Logging.Debug, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Logging.Debug, and replace with new package Microsoft.Extensions.Logging.Debug 10.0.5"
+            },
+            "kind": "File",
+            "path": "FamilyTreeWebApp.csproj",
+            "snippet": "Microsoft.Extensions.Logging.Debug, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Logging.Debug, and replace with new package Microsoft.Extensions.Logging.Debug 10.0.5",
+            "protectedSnippet": "Microsoft.Extensions.Logging.Debug, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Logging.Debug, and replace with new package Microsoft.Extensions.Logging.Debug 10.0.5",
+            "label": "Microsoft.Extensions.Logging.Debug 6.0.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Logging.Debug",
+              "PackageVersion": "6.0.0",
+              "PackageNewVersion": "10.0.5",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "ed457056-66c5-4a9b-ad7b-6dbd7e76d5a0",
+          "ruleId": "NuGet.0002",
+          "projectPath": "FamilyTreeWebApp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.VisualStudio.Web.CodeGeneration.Design, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.VisualStudio.Web.CodeGeneration.Design, and replace with new package Microsoft.VisualStudio.Web.CodeGeneration.Design 10.0.2",
+              "protected": "Microsoft.VisualStudio.Web.CodeGeneration.Design, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.VisualStudio.Web.CodeGeneration.Design, and replace with new package Microsoft.VisualStudio.Web.CodeGeneration.Design 10.0.2"
+            },
+            "kind": "File",
+            "path": "FamilyTreeWebApp.csproj",
+            "snippet": "Microsoft.VisualStudio.Web.CodeGeneration.Design, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.VisualStudio.Web.CodeGeneration.Design, and replace with new package Microsoft.VisualStudio.Web.CodeGeneration.Design 10.0.2",
+            "protectedSnippet": "Microsoft.VisualStudio.Web.CodeGeneration.Design, 6.0.0\n\nRecommendation:\n\nRemove Microsoft.VisualStudio.Web.CodeGeneration.Design, and replace with new package Microsoft.VisualStudio.Web.CodeGeneration.Design 10.0.2",
+            "label": "Microsoft.VisualStudio.Web.CodeGeneration.Design 6.0.0",
+            "properties": {
+              "PackageId": "Microsoft.VisualStudio.Web.CodeGeneration.Design",
+              "PackageVersion": "6.0.0",
+              "PackageNewVersion": "10.0.2",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "4752e0c6-68cb-4a28-8cda-c4dbb4daa092",
+          "ruleId": "Project.0002",
+          "projectPath": "FamilyTreeWebApp.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net6.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net6.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "FamilyTreeWebApp.csproj",
+            "snippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net6.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeWebTools\\FamilyTreeWebTools.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "FamilyTreeWebTools",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net6.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 10,
+        "numberOfCodeFiles": 10,
+        "linesTotal": 1850,
+        "linesOfCode": 1850,
+        "totalApiScanned": 1784,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "b4e74bc9-e920-4f21-90b8-f76f185228ff",
+          "ruleId": "Project.0002",
+          "projectPath": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeWebTools\\FamilyTreeWebTools.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net6.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net6.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "%USERPROFILE%\\OneDrive\\Visual Studio\\Projects\\ImproveYourTree\\FamilyTreeWebTools\\FamilyTreeWebTools.csproj",
+            "snippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net6.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    }
+  ],
+  "rules": {
+    "Project.0002": {
+      "id": "Project.0002",
+      "isFeature": false,
+      "description": "Project\u0027s target framework(s) needs to be changed to the new target framework that you selected for this upgrade.\n\nDuring upgrade target framework will be adjusted to corresponding platform when applicable. In some cases project would result in multiple target frameworks after the upgrade if it was using features that now have their own platforms in modern .NET frameworks (windows, iOS, Android etc).",
+      "label": "Project\u0027s target framework(s) needs to be changed",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Overview of porting from .NET Framework to .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265227",
+          "isCustom": false
+        },
+        {
+          "title": ".NET project SDKs",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265226",
+          "isCustom": false
+        }
+      ]
+    },
+    "NuGet.0002": {
+      "id": "NuGet.0002",
+      "isFeature": false,
+      "description": "NuGet package upgrade is recommended for selected target framework.\n\nStandard .NET packages are recommended to have versions matching version of .NET that project targets.\n\nSome other packages also are known to work better for selected target frameworks.",
+      "label": "NuGet package upgrade is recommended",
+      "severity": "Potential",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262530",
+          "isCustom": false
+        }
+      ]
+    }
+  }
+}
